@@ -1,0 +1,11 @@
+.textoBemVindo {
+    text-align: center;
+    font-size: 1.4rem;
+    font-weight: normal;
+    color: #263A5B;
+}
+
+.hero {
+    background: radial-gradient(#445D86, #1E304A);
+    border-radius: 15px;
+}
