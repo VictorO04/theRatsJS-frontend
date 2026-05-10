@@ -4,9 +4,10 @@ header {
     justify-content: space-between;
     padding: 0 2rem;
     border-bottom: 1px solid #afafaf;
+    min-height: 4rem;
 }
 
-.leftSection, .rightSection, .nav, .menuButton, .languageButton {
+.rightSection, .nav, .menuButton, .languageButton {
     display: flex;
     align-items: center;
 }
@@ -34,7 +35,7 @@ header {
 }
 
 .logo {
-    width: 10rem;
+    width: clamp(8rem, 20vw, 13rem);
 }
 
 .nav {
@@ -63,4 +64,22 @@ header {
 
 .languageButton {
     gap: 0.5rem;
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 0 1rem;
+    }
+
+    .rightSection {
+        gap: 1rem;
+    }
+
+    .nav {
+        display: none;
+    }
+
+    .separator {
+        display: none;
+    }
 }

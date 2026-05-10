@@ -1,12 +1,13 @@
 import styles from "./Header.module.css";
-import { Link } from "react-router-dom";
-import { FiMenu } from 'react-icons/fi';
-import { LiaLanguageSolid } from 'react-icons/lia';
-import { useContext } from "react";
 import { LanguageContext } from "../../contexts/LanguageContext";
 
+import { Link } from "react-router-dom";
+import { useContext } from "react";
+
+import { LiaLanguageSolid } from 'react-icons/lia';
+
 function Header() {
-    const { lang, toggleLanguage } = useContext(LanguageContext)
+    const { lang, toggleLanguage } = useContext(LanguageContext);
 
     const texts = {
         "pt-br": {
@@ -15,7 +16,7 @@ function Header() {
             sobre: "Sobre Nós"
         },
 
-        en: {
+        "en": {
             home: "Home",
             contato: "Contact",
             sobre: "About Us"
@@ -24,20 +25,11 @@ function Header() {
 
     return (
         <header className={styles.header}>
-            <div className={styles.leftSection}>
-                <button
-                    className={styles.menuButton}
-                    aria-label="Abrir menu"
-                >
-                    <FiMenu size={20} />
-                </button>
-
-                <img
-                    className={styles.logo}
-                    src="../../public/logo-preto.png"
-                    alt="Logo do site"
-                />
-            </div>
+            <img
+                className={styles.logo}
+                src="/logo-preto.png"
+                alt="Logo do site"
+            />
 
             <div className={styles.rightSection}>
                 <nav className={styles.nav}>
