@@ -3,6 +3,7 @@ import ParticipanteCard from "../../components/Participantecard/ParticipanteCard
 import styles from "./Participantes.module.css";
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
+import Menu from "../../components/Menu/Menu";
 
 
 const API_URL = "/api/participantes";
@@ -41,6 +42,7 @@ export default function Participantes() {
   return (
     <>
       <Header />
+      <Menu />
 
 
       <div className={styles.pagina}>

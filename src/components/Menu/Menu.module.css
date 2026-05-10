@@ -9,6 +9,9 @@
     gap: 1rem;
     z-index: 999;
     height: fit-content;
+    background-color: #0d0e14;
+    height: 100vh;
+    border-right: 1px solid rgba(91, 107, 175, 0.35);
 }
 
 .link {
