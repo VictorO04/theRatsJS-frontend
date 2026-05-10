@@ -34,7 +34,7 @@ function Header() {
 
                 <img
                     className={styles.logo}
-                    src="../../public/logo-preto.png"
+                    src="https://i.ibb.co/5g1JwNBD/Gemini-Generated-Image-skjtrjskjtrjskjt-removebg-preview.png"
                     alt="Logo do site"
                 />
             </div>
