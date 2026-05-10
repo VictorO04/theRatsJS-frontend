@@ -5,15 +5,6 @@ function PaginaPrincipal() {
     return (
         <>
             <Header />
-            <main>
-                <h1 className={styles.textoBemVindo}>
-                    Seja bem-vindo ao <strong>The RatsJS</strong>, o destino definitivo para{' '}
-                    <strong>
-                        <u>amantes de literatura</u>
-                    </strong>
-                    .
-                </h1>
-            </main>
         </>
     );
 }

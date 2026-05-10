@@ -2,37 +2,66 @@ import styles from "./Header.module.css";
 import { Link } from "react-router-dom";
 import { FiMenu } from 'react-icons/fi';
 import { LiaLanguageSolid } from 'react-icons/lia';
+import { useContext } from "react";
+import { LanguageContext } from "../../contexts/LanguageContext";
 
 function Header() {
+    const { lang, toggleLanguage } = useContext(LanguageContext)
+
+    const texts = {
+        "pt-br": {
+            home: "Página Principal",
+            contato: "Contato",
+            sobre: "Sobre Nós"
+        },
+
+        en: {
+            home: "Home",
+            contato: "Contact",
+            sobre: "About Us"
+        }
+    }
+
     return (
-        <header>
-            <div className={styles.iconesHeader}>
-                <button className={styles.barraLateral}>
+        <header className={styles.header}>
+            <div className={styles.leftSection}>
+                <button
+                    className={styles.menuButton}
+                    aria-label="Abrir menu"
+                >
                     <FiMenu size={20} />
                 </button>
-                <img className={styles.logo} src="../../../public/logo-preto.png" alt="" />
+
+                <img
+                    className={styles.logo}
+                    src="../../public/logo-preto.png"
+                    alt="Logo do site"
+                />
             </div>
 
-            <div className={styles.navContainer}>
-                <nav>
-                    <Link className={styles.textoNav} to="/">
-                        Página principal
+            <div className={styles.rightSection}>
+                <nav className={styles.nav}>
+                    <Link className={styles.link} to="/">
+                        {texts[lang].home}
                     </Link>
-                    <Link className={styles.textoNav} to="/contato">
-                        Contato
+
+                    <Link className={styles.link} to="/contato">
+                        {texts[lang].contato}
                     </Link>
-                    <Link className={styles.textoNav} to="/sobre-nos">
-                        Sobre Nós
+
+                    <Link className={styles.link} to="/sobre-nos">
+                        {texts[lang].sobre}
                     </Link>
                 </nav>
 
-                <div className={styles.separador}></div>
+                <div className={styles.separator} />
 
-                <button className={styles.troca}>
+                <button onClick={toggleLanguage} className={styles.languageButton}>
                     <LiaLanguageSolid size={20} />
-                    pt-br
+                    {lang}
                 </button>
             </div>
+
         </header>
     );
 }

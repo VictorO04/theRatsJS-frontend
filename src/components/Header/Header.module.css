@@ -3,27 +3,32 @@ header {
     align-items: center;
     justify-content: space-between;
     padding: 0 2rem;
-    border-bottom: 1px solid #AFAFAF;
+    border-bottom: 1px solid #afafaf;
 }
 
-.iconesHeader {
+.leftSection, .rightSection, .nav, .menuButton, .languageButton {
     display: flex;
     align-items: center;
 }
 
-.barraLateral {
+.rightSection {
+    gap: 2.5rem;
+}
+
+.menuButton, .languageButton {
     border: none;
-    background-color: transparent;
+    background: transparent;
     cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 2.5rem;
-    width: 2.5rem;
-    transform: 0.3s;
 }
 
-.barraLateral:hover {
+.menuButton {
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    transition: 0.3s;
+}
+
+.menuButton:hover {
     background-color: rgb(230, 230, 230);
     border-radius: 50%;
 }
@@ -32,42 +37,30 @@ header {
     width: 10rem;
 }
 
-.navContainer {
-    display: flex;
-    align-items: center;
-    gap: 2.5rem;
+.nav {
+    gap: 1.2rem;
 }
 
-nav {
-    display: flex;
-    gap: 2.5rem;
-}
-
-.textoNav {
-    text-decoration: none;
-    font-size: 0.9rem;
+.link, .languageButton {
     color: #5b5b5b;
+    font-size: 0.9rem;
     transition: 0.3s;
 }
 
-.textoNav:hover, .troca:hover {
+.link {
+    text-decoration: none;
+}
+
+.link:hover, .languageButton:hover {
     color: black;
 }
 
-.separador {
+.separator {
     width: 1px;
     height: 1.5rem;
-    background-color: #AFAFAF;
+    background-color: #afafaf;
 }
 
-.troca {
-    display: flex;
+.languageButton {
     gap: 0.5rem;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.9rem;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
-    color: #5b5b5b;
 }
