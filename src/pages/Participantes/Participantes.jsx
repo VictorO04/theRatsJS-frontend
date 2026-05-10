@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import ParticipanteCard from "../../components/Participantecard/ParticipanteCard";
 import styles from "./Participantes.module.css";
 import Header from '../../components/Header/Header';
 import Footer from '../../components/Footer/Footer';
 import Menu from "../../components/Menu/Menu";
 import { LanguageContext } from "../../contexts/LanguageContext";
-import { useContext } from "react";
 
 
 const API_URL = "/api/participantes/";
@@ -63,6 +62,8 @@ const texts = {
 
 export default function Participantes() {
   const { lang } = useContext(LanguageContext);
+  const t = texts[lang];
+
   const [participantes, setParticipantes] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState(null);
@@ -71,11 +72,14 @@ export default function Participantes() {
   const buscarParticipantes = async () => {
     setCarregando(true);
     setErro(null);
+
     try {
       const resposta = await fetch(API_URL, {
         headers: { "x-api-key": API_KEY },
       });
+
       if (!resposta.ok) throw new Error(`Erro ${resposta.status}`);
+
       const dados = await resposta.json();
       setParticipantes(dados);
     } catch (e) {
@@ -94,6 +98,8 @@ export default function Participantes() {
     carregarParticipantes();
   }, []);
 
+  const plural = participantes.length !== 1 ? "s" : "";
+
 
   return (
     <>
@@ -111,13 +117,13 @@ export default function Participantes() {
               <span className={styles.ponto} /> SENAI + SESI · 2026
             </div>
             <h1 className={styles.titulo}>
-              The Rats — <em className={styles.destaque}>{texts[lang].titulo}</em>
+              The Rats — <em className={styles.destaque}>{t.titulo}</em>
             </h1>
-            <p className={styles.subtitulo}>{texts[lang].subtitulo}</p>
+            <p className={styles.subtitulo}>{t.subtitulo}</p>
             <div className={styles.stats}>
-              <div><span className={styles.statNumero}>{carregando ? "—" : participantes.length}</span><span className={styles.statRotulo}>{texts[lang].integrantes}</span></div>
-              <div><span className={styles.statNumero}>2</span><span className={styles.statRotulo}>{texts[lang].idioma}</span></div>
-              <div><span className={styles.statNumero}>1</span><span className={styles.statRotulo}>{texts[lang].grandeObra}</span></div>
+              <div><span className={styles.statNumero}>{carregando ? "—" : participantes.length}</span><span className={styles.statRotulo}>{t.integrantes}</span></div>
+              <div><span className={styles.statNumero}>2</span><span className={styles.statRotulo}>{t.idioma}</span></div>
+              <div><span className={styles.statNumero}>1</span><span className={styles.statRotulo}>{t.grandeObra}</span></div>
             </div>
           </div>
         </section>
@@ -126,23 +132,23 @@ export default function Participantes() {
         <section className={styles.sobre}>
           <div className={styles.sobreGrid}>
             <div>
-              <p className={styles.rotulo}>{texts[lang].rotulo}</p>
-              <h2 className={styles.tituloSecao}>{texts[lang].tituloSecao}</h2>
-              <p className={styles.texto}>{texts[lang].texto1}</p>
-              <p className={styles.texto}>{texts[lang].texto2}</p>
+              <p className={styles.rotulo}>{t.rotulo}</p>
+              <h2 className={styles.tituloSecao}>{t.tituloSecao}</h2>
+              <p className={styles.texto}>{t.texto1}</p>
+              <p className={styles.texto}>{t.texto2}</p>
             </div>
             <div className={styles.sobreCards}>
               <div className={styles.card}>
-                <p className={styles.cardTitulo}>{texts[lang].cardTitulo1}</p>
-                <p className={styles.cardTexto}>{texts[lang].cardTexto1}</p>
+                <p className={styles.cardTitulo}>{t.cardTitulo1}</p>
+                <p className={styles.cardTexto}>{t.cardTexto1}</p>
               </div>
               <div className={styles.card}>
-                <p className={styles.cardTitulo}>{texts[lang].cardTitulo2}</p>
-                <p className={styles.cardTexto}>{texts[lang].cardTexto2}</p>
+                <p className={styles.cardTitulo}>{t.cardTitulo2}</p>
+                <p className={styles.cardTexto}>{t.cardTexto2}</p>
               </div>
               <div className={`${styles.card} ${styles.cardRose}`}>
-                <p className={styles.cardTitulo}>{texts[lang].cardTitulo3}</p>
-                <p className={styles.cardTexto}>{texts[lang].cardTexto3}</p>
+                <p className={styles.cardTitulo}>{t.cardTitulo3}</p>
+                <p className={styles.cardTexto}>{t.cardTexto3}</p>
               </div>
             </div>
           </div>
@@ -152,26 +158,26 @@ export default function Participantes() {
         <section className={styles.secaoParticipantes}>
           <div className={styles.cabecalho}>
             <div>
-              <p className={styles.rotulo}>{texts[lang].rotuloParticipantes}</p>
-              <h2 className={styles.tituloSecao}>{texts[lang].tituloSecaoParticipantes}</h2>
+              <p className={styles.rotulo}>{t.rotuloParticipantes}</p>
+              <h2 className={styles.tituloSecao}>{t.tituloSecaoParticipantes}</h2>
             </div>
             {!carregando && !erro && (
-              <span className={styles.contador}>{participantes.length} {texts[lang].totalSecaoParticipantes}{participantes.length !== 1 ? "s" : ""}</span>
+              <span className={styles.contador}>{participantes.length} {t.totalSecaoParticipantes}{plural}</span>
             )}
           </div>
 
 
           {carregando && (
             <div className={styles.estadoCarregando}>
-              <div className={styles.spinner} />{texts[lang].spinner}</div>
+              <div className={styles.spinner} />{t.spinner}</div>
           )}
 
 
           {erro && (
             <div className={styles.estadoErro}>
-              {texts[lang].estadoErro}
+              {t.estadoErro}
               <p>{erro}</p>
-              <button className={styles.botaoTentar} onClick={buscarParticipantes}>{texts[lang].botaoTentar}</button>
+              <button className={styles.botaoTentar} onClick={buscarParticipantes}>{t.botaoTentar}</button>
             </div>
           )}
 

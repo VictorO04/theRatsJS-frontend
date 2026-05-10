@@ -1,20 +1,29 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Serif+Display:ital@0;1&display=swap');
 
+:root {
+  --bg: #0d0e14;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --primary: #d46475;
+  --border: rgba(91, 107, 175, 0.25);
+  --border-soft: rgba(91, 107, 175, 0.15);
+}
+
 
 .pagina {
+  margin-left: 280px;
   margin-top: 10vh;
-  background: #0d0e14;
-  font-family: 'DM Sans', system-ui, sans-serif;
-  color: #E2E8F0;
   min-height: 100vh;
-  margin-left: 14vw;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', system-ui, sans-serif;
 }
 
 
 .hero {
   position: relative;
   padding: 72px 2rem 64px;
-  border-bottom: 1px solid rgba(91, 107, 175, 0.35);
+  border-bottom: 1px solid var(--border-soft);
   overflow: hidden;
 }
 
@@ -22,10 +31,10 @@
 .heroFundo {
   position: absolute;
   inset: 0;
+  pointer-events: none;
   background:
     radial-gradient(ellipse 60% 80% at 80% 50%, rgba(212, 100, 117, 0.07) 0%, transparent 70%),
     radial-gradient(ellipse 50% 60% at 10% 50%, rgba(91, 107, 175, 0.08) 0%, transparent 70%);
-  pointer-events: none;
 }
 
 
@@ -42,8 +51,8 @@
   gap: 6px;
   font-size: 0.75rem;
   font-weight: 500;
-  letter-spacing: 0.08em;
   text-transform: uppercase;
+  letter-spacing: 0.08em;
   padding: 4px 12px;
   border-radius: 99px;
   background: rgba(212, 100, 117, 0.12);
@@ -57,7 +66,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #D46475;
+  background: var(--primary);
 }
 
 
@@ -66,20 +75,19 @@
   font-size: clamp(2rem, 5vw, 3.25rem);
   font-weight: 400;
   color: #E2E8F0;
-  margin: 0 0 12px 0;
-  line-height: 1.15;
+  margin: 0 0 12px;
 }
 
 
 .destaque {
-  color: #D46475;
+  color: var(--primary);
 }
 
 
 .subtitulo {
   font-size: 1rem;
-  color: #94A3B8;
-  margin: 0 0 32px 0;
+  color: var(--muted);
+  margin-bottom: 32px ;
   max-width: 520px;
   line-height: 1.6;
 }
@@ -92,29 +100,21 @@
 }
 
 
-.stats > div {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-
 .statNumero {
   font-size: 1.5rem;
   font-weight: 500;
-  color: #E2E8F0;
 }
 
 
 .statRotulo {
   font-size: 0.8125rem;
-  color: #4A5568;
+  color: var(--muted);
 }
 
 
 .sobre {
   padding: 56px 2rem;
-  border-bottom: 1px solid rgba(91, 107, 175, 0.2);
+  border-bottom: 1px solid var(--border-soft);
 }
 
 
@@ -124,39 +124,37 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 64px;
-  align-items: start;
 }
 
 
 @media (max-width: 680px) {
-  .sobreGrid { grid-template-columns: 1fr; gap: 32px; }
+  .sobreGrid { 
+    grid-template-columns: 1fr;
+    gap: 32px ;
+  }
 }
 
 
 .rotulo {
   font-size: 0.6875rem;
-  font-weight: 500;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: #D46475;
-  margin: 0 0 8px 0;
+  color: var(--primary);
+  margin-bottom: 8px;
 }
 
 
 .tituloSecao {
   font-family: 'DM Serif Display', serif;
   font-size: 1.75rem;
-  font-weight: 400;
-  color: #E2E8F0;
-  margin: 0 0 16px 0;
+  margin-bottom: 16px;
 }
 
 
 .texto {
-  font-size: 0.9375rem;
-  color: #94A3B8;
+  color: var(--muted);
   line-height: 1.7;
-  margin: 0 0 10px 0;
+  margin-bottom: 10px;
 }
 
 
@@ -169,7 +167,7 @@
 
 .card {
   background: rgba(91, 107, 175, 0.06);
-  border: 1px solid rgba(91, 107, 175, 0.25);
+  border: 1px solid var(--border);
   border-radius: 10px;
   padding: 16px 18px;
 }
@@ -182,9 +180,8 @@
 
 .cardTitulo {
   font-size: 0.8125rem;
-  font-weight: 500;
+  margin-bottom: 4px;
   color: #8b9fd4;
-  margin: 0 0 4px 0;
 }
 
 
@@ -195,8 +192,7 @@
 
 .cardTexto {
   font-size: 0.8125rem;
-  color: #94A3B8;
-  margin: 0;
+  color: var(--muted);
   line-height: 1.55;
 }
 
@@ -214,13 +210,13 @@
   justify-content: space-between;
   margin-bottom: 28px;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 12px;
 }
 
 
 .contador {
   font-size: 0.8125rem;
-  color: #4A5568;
+  color: var(--muted);
 }
 
 
@@ -235,19 +231,18 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   padding: 6rem 0;
-  color: #4A5568;
-  font-size: 0.875rem;
+  color: var(--muted);
 }
 
 
 .spinner {
   width: 30px;
   height: 30px;
-  border: 2px solid rgba(212, 100, 117, 0.15);
-  border-top-color: #D46475;
   border-radius: 50%;
+  border: 2px solid rgba(212, 100, 117, 0.15);
+  border-top-color: var(--primary);
   animation: girar 0.7s linear infinite;
 }
 
@@ -258,38 +253,108 @@
 
 
 .estadoErro {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  padding: 6rem 0;
-  color: #D46475;
-  font-size: 0.9375rem;
   text-align: center;
+  padding: 6rem 0;
+  color: var(--primary);
 }
 
 
 .estadoErro p {
-  margin: 0;
-  color: #94A3B8;
+  margin-top: 6px;
+  color: var(--muted);
   font-size: 0.8125rem;
 }
 
 
 .botaoTentar {
-  margin-top: 8px;
-  background: rgba(212, 100, 117, 0.1);
-  border: 1px solid rgba(212, 100, 117, 0.35);
+  margin-top: 10px;
+  padding: 8px 16px;
   border-radius: 8px;
-  padding: 8px 20px;
-  font-size: 0.8125rem;
-  font-family: inherit;
-  color: #f09aaa;
+  border: 1px solid var(--primary);
+  background: transparent;
+  color: var(--primary);
   cursor: pointer;
-  transition: background 0.2s;
+  transition: 0.2s;
 }
 
 
 .botaoTentar:hover {
   background: rgba(212, 100, 117, 0.18);
+}
+
+@media (max-width: 768px) {
+  .pagina {
+    padding-bottom: 80px;
+  }
+
+  .hero {
+    padding: 56px 1.25rem 48px;
+  }
+
+  .subtitulo {
+    font-size: 0.95rem;
+  }
+  
+  .stats {
+    gap: 20px;
+  }
+
+  .sobre {
+    padding: 48px 1.25rem;
+  }
+
+  .secaoParticipantes {
+    padding: 48px 1.25rem 64px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 48px 1rem 40px;
+  }
+
+  .titulo {
+    font-size:  1.8rem;
+  }
+
+  .pilula {
+    font-size: 0.65rem;
+    padding: 3px 10px;
+  }
+
+  .stats {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .statNumero {
+    font-size: 1.3rem;
+  }
+
+  .sobreGrid {
+    gap: 24px;
+  }
+
+  .tituloSecao {
+    font-size: 1.4rem;
+  }
+
+  .grade {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 1024px) {
+  .pagina {
+    margin-left: 0;
+    padding-bottom: 80px;
+  }
+
+  .sobreGrid {
+    gap: 40px;
+  }
+
+  .grade {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
 }
