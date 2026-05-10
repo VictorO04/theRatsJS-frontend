@@ -6,28 +6,29 @@ import { useContext } from "react";
 
 import { LiaLanguageSolid } from 'react-icons/lia';
 
+const texts = {
+    "pt-br": {
+        home: "Página Principal",
+        contato: "Contato",
+        sobre: "Sobre Nós"
+    },
+
+    "en": {
+        home: "Home",
+        contato: "Contact",
+        sobre: "About Us"
+    }
+}
+
 function Header() {
     const { lang, toggleLanguage } = useContext(LanguageContext);
 
-    const texts = {
-        "pt-br": {
-            home: "Página Principal",
-            contato: "Contato",
-            sobre: "Sobre Nós"
-        },
-
-        "en": {
-            home: "Home",
-            contato: "Contact",
-            sobre: "About Us"
-        }
-    }
 
     return (
         <header className={styles.header}>
             <img
                 className={styles.logo}
-                src="/logo-preto.png"
+                src="https://i.ibb.co/5g1JwNBD/Gemini-Generated-Image-skjtrjskjtrjskjt-removebg-preview.png"
                 alt="Logo do site"
             />
 
