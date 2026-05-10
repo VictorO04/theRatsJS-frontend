@@ -1,0 +1,342 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Serif+Display:ital@0;1&display=swap');
+
+
+/*aqui começa o estilo da hero*/
+.pagina {
+  background: #0d0e14;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  color: #E2E8F0;
+  min-height: 100vh;
+}
+
+.hero {
+  position: relative;
+  padding: 64px 2rem 56px;
+  border-bottom: 1px solid rgba(91, 107, 175, 0.35);
+  overflow: hidden;
+}
+
+.heroFundo {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 50% 80% at 90% 50%, rgba(212, 100, 117, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 60% at 5% 50%, rgba(91, 107, 175, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.heroConteudo {
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.faleConosco {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.75rem;
+  padding: 4px 12px;
+  border-radius: 100px;
+  background: rgba(212, 100, 117, 0.12);
+  border: 1px solid rgba(212, 100, 117, 0.35);
+  color: #f09aaa;
+  margin-bottom: 20px;
+}
+
+
+.titulo {
+  font-family: 'DM Serif Display', serif;
+  font-size: 3rem;
+  font-weight: 400;
+  color: #E2E8F0;
+  margin-bottom: 12px;
+  line-height: 1.15;
+}
+
+.contatoRosa {
+  color: #D46475;
+  font-style: italic;
+}
+
+.subtitulo {
+  font-size: 1rem;
+  color: #94A3B8;
+  margin: 0;
+  max-width: 480px;
+  line-height: 1.6;
+}
+
+/* aqui começa a parte do mid, formulario, bla bla bla bla */
+
+.mid {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 56px 2rem 72px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
+  align-items: start;
+}
+
+
+/* responsividade nas alturas rsrsrs */
+
+@media (max-width: 720px) {
+  .mid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}
+
+/* FORMULÁRIO */
+
+.formularioRosa {
+  font-size: 0.7rem;
+  font-weight: 400;
+  letter-spacing: 0.1rem;
+  color: #D46475;
+  margin-bottom: 8px;
+}
+
+.tituloSecao {
+  font-family: 'DM Serif Display', serif;
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: #E2E8F0;
+  margin-bottom: 24px;
+}
+
+/* formulario fru fru só pra falar que tem*/
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 0.8rem;
+  color: #94A3B8;
+  font-weight: 500;
+}
+
+.input, .select, .areaTexto {
+  background: rgba(91, 107, 175, 0.06);
+  border: 1px solid rgba(91, 107, 175, 0.25);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 0.875rem;
+  font-family: inherit;
+  color: #E2E8F0;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.input:focus, .select:focus, .areaTexto:focus {
+  border-color: rgba(91, 107, 175, 0.6);
+}
+
+.select {
+  cursor: pointer;
+  appearance: none;
+}
+
+.select option {
+  background: #1A1D26;
+}
+
+.areaTexto {
+
+  min-height: 120px;
+}
+
+.botaoEnviar {
+  background: #5B6BAF;
+  border: none;
+  border-radius: 8px;
+  padding: 11px 24px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  font-family: inherit;
+  color: #fff;
+  cursor: pointer;
+  transition: background 0.2s;
+  align-self: flex-start;
+  margin-top: 8px;
+}
+
+.botaoEnviar:hover {
+  background: #4a5a9e;
+}
+
+
+/* infos para contato */
+
+.colunaInformacao {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.cardInfo {
+  background: rgba(91, 107, 175, 0.06);
+  border: 1px solid rgba(91, 107, 175, 0.25);
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.cardInfoRose {
+  border-color: rgba(212, 100, 117, 0.25);
+}
+
+.cardInfoTitulo {
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: #8b9fd4;
+  margin: 0;
+}
+
+.linhaInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.infoRotulo {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: #4A5568;
+}
+
+.infoValor {
+  font-size: 0.875rem;
+  color: #94A3B8;
+}
+
+.infoValorLink {
+  font-size: 0.875rem;
+  color: #94A3B8;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.infoValorLink:hover {
+  color: #E2E8F0;
+}
+
+/* REDES SOCIAIS */
+.redesSociais {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.botaoSocial {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(91, 107, 175, 0.35);
+  background: rgba(91, 107, 175, 0.06);
+  color: #94A3B8;
+  font-size: 0.8125rem;
+  font-family: inherit;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+  cursor: pointer;
+}
+
+.botaoSocial:hover {
+  border-color: rgba(91, 107, 175, 0.6);
+  color: #E2E8F0;
+  background: rgba(91, 107, 175, 0.12);
+}
+
+/* FAQ */
+.faqLista {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.faqItem {
+  border-bottom: 1px solid rgba(91, 107, 175, 0.15);
+  padding: 12px 0;
+}
+
+.faqItem:last-child {
+  border-bottom: none;
+}
+
+.faqPergunta {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: #E2E8F0;
+  margin: 0 0 4px 0;
+}
+
+.faqResposta {
+  font-size: 0.8125rem;
+  color: #94A3B8;
+  margin: 0;
+  line-height: 1.55;
+}
+
+/* MAPA */
+.secaoMapa {
+  border-top: 1px solid rgba(91, 107, 175, 0.2);
+  padding: 56px 2rem;
+}
+
+.mapaInterno {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.mapaFrame {
+  width: 100%;
+  height: 280px;
+  border-radius: 12px;
+  border: 1px solid rgba(91, 107, 175, 0.25);
+  margin-top: 20px;
+  filter: grayscale(0.3) brightness(0.85);
+}
+
+/* WHATSAPP FLUTUANTE */
+.whatsappFlutuante {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  background: #D46475;
+  border: none;
+  border-radius: 50%;
+  width: 52px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(212, 100, 117, 0.35);
+  transition: background 0.2s, transform 0.2s;
+  text-decoration: none;
+  color: #fff;
+  font-size: 1.375rem;
+  z-index: 100;
+}
+
+.whatsappFlutuante:hover {
+  background: #b8505f;
+  transform: scale(1.08);
+}
