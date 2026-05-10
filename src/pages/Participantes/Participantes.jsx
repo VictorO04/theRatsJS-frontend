@@ -87,7 +87,11 @@ export default function Participantes() {
 
 
   useEffect(() => {
-    buscarParticipantes();
+    async function carregarParticipantes() {
+      await buscarParticipantes();
+
+    }
+    carregarParticipantes();
   }, []);
 
 
