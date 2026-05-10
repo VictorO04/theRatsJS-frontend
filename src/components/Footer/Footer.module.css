@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap');
+
+
+.rodapeRaiz {
+  background: #0d0e14;
+  border-top: 1px solid rgba(91, 107, 175, 0.35);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  color: #E2E8F0;
+  padding: 48px 0 0;
+}
+
+
+.rodapeInterno {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+
+.rodapeGrid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 48px;
+  padding-bottom: 40px;
+}
+
+
+@media (max-width: 768px) {
+  .rodapeGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+  .rodapeMarca {
+    grid-column: 1 / -1;
+  }
+}
+
+
+@media (max-width: 480px) {
+  .rodapeGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.logoMarca {
+  display: flex;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+
+.iconeLogoMarca {
+  width: 160px;
+  height: 96px;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+
+.nomeMarca {
+  font-size: 15px;
+  font-weight: 500;
+  color: #E2E8F0;
+}
+
+
+.descricaoMarca {
+  font-size: 13px;
+  color: #94A3B8;
+  line-height: 1.65;
+  margin: 0 0 22px 0;
+  max-width: 240px;
+}
+
+
+.fileiraSocial {
+  display: flex;
+  gap: 10px;
+}
+
+
+.botaoSocial {
+  width: 34px;
+  height: 34px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 8px;
+  border: 1px solid rgba(91, 107, 175, 0.35);
+  background: rgba(91, 107, 175, 0.06);
+  flex-shrink: 0;
+}
+
+
+.botaoSocial svg {
+    color: #D46475;
+}
+
+
+.botaoSocial:hover svg {
+    color: #f09aaa;
+}
+
+
+.tituloColuna {
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #D46475;
+  margin: 0 0 16px 0;
+}
+
+
+.listaLinks {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+
+.listaLinks a {
+  font-size: 13px;
+  color: #94A3B8;
+  display: block;
+  text-decoration: none;
+}
+
+
+.listaLinks span {
+  font-size: 13px;
+  color: #94A3B8;
+  display: block;
+  text-decoration: none;
+}
+
+
+.etiquetaNova {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 500;
+  padding: 2px 7px;
+  border-radius: 99px;
+  background: rgba(212, 100, 117, 0.15);
+  border: 1px solid rgba(212, 100, 117, 0.35);
+  color: #f09aaa;
+  margin-left: 4px;
+  line-height: 1.4;
+}
+
+.divisor {
+  border: none;
+  border-top: 1px solid #1E293B;
+  margin: 0;
+}
+
+
+.barraInferior {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+
+.direitos {
+  font-size: 12px;
+  color: #4A5568;
+  margin: 0;
+}
+
+
+.direitos span {
+  color: #D46475;
+}
+
+
+.fileiraTags {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+
+.tag {
+  font-size: 11px;
+  color: #4A5568;
+  padding: 3px 10px;
+  border-radius: 99px;
+  border: 1px solid #1E293B;
+  background: transparent;
+  font-family: inherit;
+}
+
+
+.tagAzul {
+  border-color: rgba(91, 107, 175, 0.35);
+  color: #8b9fd4;
+}
+
+
+.tagRose {
+  border-color: rgba(212, 100, 117, 0.35);
+  color: #f09aaa;
+}
+
+
+.espacador {
+  height: 28px;
+}
