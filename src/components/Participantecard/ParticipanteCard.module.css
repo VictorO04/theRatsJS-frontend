@@ -1,0 +1,103 @@
+.cartao {
+  background: rgba(91, 107, 175, 0.05);
+  border: 1px solid rgba(91, 107, 175, 0.25);
+  border-radius: 14px;
+  overflow: hidden;
+  transition: border-color 0.25s, transform 0.25s;
+}
+
+
+.cartao:hover {
+  border-color: rgba(212, 100, 117, 0.45);
+  transform: translateY(-2px);
+}
+
+
+.faixa {
+  height: 4px;
+  background: #D46475
+}
+
+
+.corpo {
+  padding: 20px;
+}
+
+
+.topo {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 16px;
+}
+
+
+.foto {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid rgba(212, 100, 117, 0.35);
+  flex-shrink: 0;
+}
+
+
+.avatar {
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: rgba(212, 100, 117, 0.1);
+  border: 1px solid rgba(212, 100, 117, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #f09aaa;
+  flex-shrink: 0;
+}
+
+
+.nome {
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: #E2E8F0;
+  margin: 0 0 2px 0;
+}
+
+
+.idade {
+  font-size: 0.8125rem;
+  color: #94A3B8;
+  margin: 0;
+}
+
+
+.divisor {
+  border: none;
+  border-top: 1px solid rgba(91, 107, 175, 0.15);
+  margin: 0 0 14px 0;
+}
+
+
+.curso {
+  display: inline-block;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  padding: 3px 10px;
+  border-radius: 99px;
+  background: rgba(212, 100, 117, 0.1);
+  border: 1px solid rgba(212, 100, 117, 0.3);
+  color: #f09aaa;
+  margin-bottom: 10px;
+}
+
+
+.email {
+  font-size: 0.8125rem;
+  color: #94A3B8;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

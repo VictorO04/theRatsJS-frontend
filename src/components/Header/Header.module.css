@@ -23,15 +23,22 @@ header {
 }
 
 .menuButton {
-    justify-content: center;
-    width: 2.5rem;
-    height: 2.5rem;
-    transition: 0.3s;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+  transition: background 0.2s, color 0.2s;
+  color: #94A3B8;
 }
 
 .menuButton:hover {
-    background-color: rgb(230, 230, 230);
-    border-radius: 50%;
+  background-color: rgba(91, 107, 175, 0.12);
+  color: #E2E8F0;
 }
 
 .logo {
@@ -39,27 +46,25 @@ header {
 }
 
 .nav {
-    gap: 1.2rem;
-}
-
-.link, .languageButton {
-    color: #5b5b5b;
-    font-size: 0.9rem;
-    transition: 0.3s;
+  display: flex;
+  gap: 2.5rem;
 }
 
 .link {
-    text-decoration: none;
+  text-decoration: none;
+  font-size: 0.875rem;
+  color: #94A3B8;
+  transition: color 0.2s;
 }
 
-.link:hover, .languageButton:hover {
-    color: black;
+.link:hover {
+  color: #E2E8F0;
 }
 
 .separator {
-    width: 1px;
-    height: 1.5rem;
-    background-color: #afafaf;
+  width: 1px;
+  height: 1.5rem;
+  background-color: rgba(91, 107, 175, 0.35);
 }
 
 .languageButton {
