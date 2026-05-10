@@ -1,0 +1,66 @@
+header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 2rem;
+    border-bottom: 1px solid #afafaf;
+}
+
+.leftSection, .rightSection, .nav, .menuButton, .languageButton {
+    display: flex;
+    align-items: center;
+}
+
+.rightSection {
+    gap: 2.5rem;
+}
+
+.menuButton, .languageButton {
+    border: none;
+    background: transparent;
+    cursor: pointer;
+}
+
+.menuButton {
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    transition: 0.3s;
+}
+
+.menuButton:hover {
+    background-color: rgb(230, 230, 230);
+    border-radius: 50%;
+}
+
+.logo {
+    width: 10rem;
+}
+
+.nav {
+    gap: 1.2rem;
+}
+
+.link, .languageButton {
+    color: #5b5b5b;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+.link {
+    text-decoration: none;
+}
+
+.link:hover, .languageButton:hover {
+    color: black;
+}
+
+.separator {
+    width: 1px;
+    height: 1.5rem;
+    background-color: #afafaf;
+}
+
+.languageButton {
+    gap: 0.5rem;
+}
