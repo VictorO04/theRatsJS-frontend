@@ -1,43 +1,36 @@
 import styles from "./Header.module.css";
-import { Link } from "react-router-dom";
-import { FiMenu } from 'react-icons/fi';
-import { LiaLanguageSolid } from 'react-icons/lia';
-import { useContext } from "react";
 import { LanguageContext } from "../../contexts/LanguageContext";
 
-function Header() {
-    const { lang, toggleLanguage } = useContext(LanguageContext)
+import { Link } from "react-router-dom";
+import { useContext } from "react";
 
-    const texts = {
-        "pt-br": {
-            home: "Página Principal",
-            contato: "Contato",
-            sobre: "Sobre Nós"
-        },
+import { LiaLanguageSolid } from 'react-icons/lia';
 
-        en: {
-            home: "Home",
-            contato: "Contact",
-            sobre: "About Us"
-        }
+const texts = {
+    "pt-br": {
+        home: "Página Principal",
+        contato: "Contato",
+        sobre: "Sobre Nós"
+    },
+
+    "en": {
+        home: "Home",
+        contato: "Contact",
+        sobre: "About Us"
     }
+}
+
+function Header() {
+    const { lang, toggleLanguage } = useContext(LanguageContext);
+
 
     return (
         <header className={styles.header}>
-            <div className={styles.leftSection}>
-                <button
-                    className={styles.menuButton}
-                    aria-label="Abrir menu"
-                >
-                    <FiMenu size={20} />
-                </button>
-
-                <img
-                    className={styles.logo}
-                    src="https://i.ibb.co/5g1JwNBD/Gemini-Generated-Image-skjtrjskjtrjskjt-removebg-preview.png"
-                    alt="Logo do site"
-                />
-            </div>
+            <img
+                className={styles.logo}
+                src="https://i.ibb.co/5g1JwNBD/Gemini-Generated-Image-skjtrjskjtrjskjt-removebg-preview.png"
+                alt="Logo do site"
+            />
 
             <div className={styles.rightSection}>
                 <nav className={styles.nav}>

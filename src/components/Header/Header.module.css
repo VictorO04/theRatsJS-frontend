@@ -1,65 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap');
-
-.header {
+header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 0 2rem;
-  height: 56px;
-  background: #0d0e14;
-  border-bottom: 1px solid rgba(91, 107, 175, 0.35);
-  font-family: 'DM Sans', system-ui, sans-serif;
-}
-
-.leftSection {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.menuButton {
-  border: none;
+  border-bottom: 1px solid #d46475;
   background-color: transparent;
-  cursor: pointer;
+  min-height: 4rem;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 10vh;
+  width: 100%;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+}
+
+.rightSection,
+.nav,
+.menuButton,
+.languageButton {
   display: flex;
   align-items: center;
-  justify-content: center;
-  height: 2.5rem;
-  width: 2.5rem;
-  border-radius: 50%;
-  transition: background 0.2s, color 0.2s;
-  color: #94A3B8;
-}
-
-.menuButton:hover {
-  background-color: rgba(91, 107, 175, 0.12);
-  color: #E2E8F0;
-}
-
-.logo {
-  width: 8rem;
 }
 
 .rightSection {
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
+  gap: clamp(1rem, 3vw, 2.5rem);
+}
+
+.languageButton {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.logo {
+  width: clamp(8rem, 20vw, 13rem);
 }
 
 .nav {
   display: flex;
-  gap: 2.5rem;
+  gap: clamp(1rem, 3vw, 2.5rem);
 }
 
-.link {
+.link,
+.languageButton {
+  font-weight: 500;
+  padding: 0.5rem 0.7rem;
+  border-radius: 10px;
   text-decoration: none;
   font-size: 0.875rem;
-  color: #94A3B8;
+  color: #94a3b8;
   transition: color 0.2s;
 }
 
-.link:hover {
-  color: #E2E8F0;
+.link:hover,
+.languageButton:hover {
+  background-color: rgba(255,255,255,0.05);
+  transform: translateY(-2px);
 }
 
 .separator {
@@ -69,20 +66,23 @@
 }
 
 .languageButton {
-  display: flex;
   gap: 0.5rem;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.875rem;
-  font-family: inherit;
-  border: none;
-  background-color: transparent;
-  cursor: pointer;
-  color: #94A3B8;
-  transition: color 0.2s;
-  text-transform: uppercase;
 }
 
-.languageButton:hover {
-  color: #E2E8F0;
+@media (max-width: 768px) {
+  header {
+    padding: 0 1rem;
+  }
+
+  .rightSection {
+    gap: 1rem;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .separator {
+    display: none;
+  }
 }

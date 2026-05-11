@@ -1,5 +1,6 @@
 import styles from "./ParticipanteCard.module.css";
-
+import { LanguageContext } from "../../contexts/LanguageContext";
+import { useContext } from "react";
 
 function iniciais(nome) {
   return nome.split(" ").slice(0, 2).map((p) => p[0]).join("").toUpperCase();
@@ -7,6 +8,8 @@ function iniciais(nome) {
 
 
 export default function ParticipanteCard({ participante }) {
+  const { lang } = useContext(LanguageContext);
+
   const temFoto = participante.foto && !participante.foto.includes("[vamos");
 
 
@@ -22,11 +25,11 @@ export default function ParticipanteCard({ participante }) {
           )}
           <div>
             <p className={styles.nome}>{participante.nome}</p>
-            <p className={styles.idade}>{participante.idade}</p>
+            <p className={styles.idade}>{lang === "pt-br" ? participante.idade : participante.age}</p>
           </div>
         </div>
         <hr className={styles.divisor} />
-        <span className={styles.curso}>{participante.curso}</span>
+        <span className={styles.curso}>{lang === "pt-br" ? participante.curso : participante.curse}</span>
         <p className={styles.email}>{participante.email}</p>
       </div>
     </div>

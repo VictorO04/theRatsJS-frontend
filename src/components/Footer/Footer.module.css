@@ -7,6 +7,7 @@
   font-family: 'DM Sans', system-ui, sans-serif;
   color: #E2E8F0;
   padding: 48px 0 0;
+  margin-left: 280px;
 }
 
 
@@ -80,6 +81,7 @@
 
 
 .botaoSocial {
+  cursor: pointer;
   width: 34px;
   height: 34px;
   display: flex;
@@ -213,4 +215,52 @@
 
 .espacador {
   height: 28px;
+}
+
+@media (max-width: 768px) {
+  .rodapeRaiz {
+    margin-left: 0;
+  }
+
+  .rodapeGrid {
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+}
+
+@media (max-width: 480px) {
+  .rodapeRaiz {
+    padding: 32px 0 0;
+    margin-left: 0;
+  }
+
+  .rodapeGrid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .rodapeMarca {
+    grid-column: 1 / -1;
+  }
+
+  .logoMarca {
+    justify-content: center;
+  }
+
+  .descricaoMarca {
+    margin: 0 auto 22px auto;
+  }
+
+  .fileiraSocial {
+    justify-content: center;
+  }
+
+  .barraInferior {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .fileiraTags {
+    justify-content: center;
+  }
 }
