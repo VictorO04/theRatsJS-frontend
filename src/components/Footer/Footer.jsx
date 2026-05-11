@@ -5,9 +5,30 @@ import {
     FaLinkedin,
     FaDiscord
 } from "react-icons/fa";
+import { LanguageContext } from '../../contexts/LanguageContext';
+import { useContext } from 'react';
 
+const text = {
+    'pt-br': {
+        descMarca: 'Curte a gente na rede social e fique por dentro das novidades!',
+        txtDocentes: 'Docentes',
+        txtContato: 'Entre em contato',
+        direitos: '© 2025 The rats JS · Feito com  ♥  pela equipe de desenvolvimento',
+        tagL: "Literatura"
+    },
+    en: {
+        descMarca: 'Like us on social media and stay up to date with the latest news!',
+        txtDocentes: 'teachers',
+        txtContato: 'get in touch',
+        direitos: '© 2025 The rats JS · Made with ♥ by the development team',
+        tagL: "Literature"
+    },
+};
 
 export default function Rodape() {
+    const { lang } = useContext(LanguageContext);
+    const t = text[lang];
+
     return (
         <footer className={styles.rodapeRaiz}>
             <div className={styles.rodapeInterno}>
@@ -26,9 +47,7 @@ export default function Rodape() {
                             />
                             <span className={styles.nomeMarca}>The Rats JS</span>
                         </div>
-                        <p className={styles.descricaoMarca}>
-                            Curte a gente na rede social e fique por dentro das novidades!
-                        </p>
+                        <p className={styles.descricaoMarca}>{t.descMarca}</p>
                         <div className={styles.fileiraSocial}>
                             <a href="https://github.com/arthurmorais0227" target="_blank" rel="noopener noreferrer">
                                 <div className={styles.botaoSocial}>
@@ -70,7 +89,7 @@ export default function Rodape() {
 
                     {/* Coluna 2 */}
                     <div>
-                        <p className={styles.tituloColuna}>Docentes</p>
+                        <p className={styles.tituloColuna}>{t.txtDocentes}</p>
                         <ul className={styles.listaLinks}>
                             <li><span>Eduardo Correia</span></li>
                             <li><span>Thiago Ferreira</span></li>
@@ -84,7 +103,7 @@ export default function Rodape() {
 
                     {/* Coluna 3 */}
                     <div>
-                        <p className={styles.tituloColuna}>Entre em contato</p>
+                        <p className={styles.tituloColuna}>{t.txtContato}</p>
                         <ul className={styles.listaLinks}>
                             <li><span>contato@theratsjs.com</span></li>
                             <li><span>(11) 1234-5678</span></li>
@@ -102,12 +121,10 @@ export default function Rodape() {
 
                 {/* Barra inferior */}
                 <div className={styles.barraInferior}>
-                    <p className={styles.direitos}>
-                        © 2025 The rats JS · Feito com  ♥  por pela equipe de desenvolvimento
-                    </p>
+                    <p className={styles.direitos}>{t.direitos}</p>
                     <div className={styles.fileiraTags}>
                         <span className={`${styles.tag} ${styles.tagAzul}`}>backend</span>
-                        <span className={`${styles.tag} ${styles.tagRose}`}>literatura</span>
+                        <span className={`${styles.tag} ${styles.tagRose}`}>{t.tagL}</span>
                         <span className={styles.tag}>frontend</span>
                     </div>
                 </div>

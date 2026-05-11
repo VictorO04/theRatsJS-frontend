@@ -7,7 +7,7 @@ import Contato from "./pages/Contato/Contato";
 function App() {
     return (
         <>
-
+            
                 <Routes>
                     <Route path="/" element={<PaginaPrincipal />} />
                     <Route path="/sobre-nos" element={<Participantes />} />
