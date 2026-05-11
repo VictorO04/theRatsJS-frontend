@@ -31,22 +31,22 @@ function Menu() {
     return (
         <div className={styles.menuContainer}>
             <Link className={styles.link} to="/acervo">
-                <FaBook size={22} />
+                <FaBook size={17} />
                 {texts[lang].acervo}
             </Link>
 
             <Link className={styles.link} to="/dicas-de-vestibular">
-                <RiBookletFill size={22} />
+                <RiBookletFill size={17} />
                 {texts[lang].dicas}
             </Link>
 
             <Link className={styles.link} to="/simulados">
-                <IoDocumentTextSharp size={22} />
+                <IoDocumentTextSharp size={17} />
                 {texts[lang].simulados}
             </Link>
 
             <Link className={styles.link} to="/video-aulas">
-                <FaVideo size={22} />
+                <FaVideo size={17} />
                 {texts[lang].videos}
             </Link>
         </div>
