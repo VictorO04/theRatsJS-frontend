@@ -1,11 +1,13 @@
 import styles from "./Contato.module.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import Menu from '../../components/Menu/Menu';
 
 export default function Contato() {
   return (
       <>
           <Header />
+            <Menu />
           <div className={styles.pagina}>
               {/* arthur morais -> 10/05 (16:20) aqui começa a parte inicial da tela: hero pq ta no topo*/}
 

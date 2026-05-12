@@ -3,6 +3,7 @@
 
 /*aqui começa o estilo da hero*/
 .pagina {
+  margin-left: 230px;
   background: #0d0e14;
   font-family: 'DM Sans', system-ui, sans-serif;
   color: #E2E8F0;
@@ -236,7 +237,7 @@
   color: #E2E8F0;
 }
 
-/* REDES SOCIAIS */
+/* redes sociaiss */
 .redesSociais {
   display: flex;
   gap: 8px;
@@ -265,37 +266,6 @@
   background: rgba(91, 107, 175, 0.12);
 }
 
-/* FAQ */
-.faqLista {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-}
-
-.faqItem {
-  border-bottom: 1px solid rgba(91, 107, 175, 0.15);
-  padding: 12px 0;
-}
-
-.faqItem:last-child {
-  border-bottom: none;
-}
-
-.faqPergunta {
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: #E2E8F0;
-  margin: 0 0 4px 0;
-}
-
-.faqResposta {
-  font-size: 0.8125rem;
-  color: #94A3B8;
-  margin: 0;
-  line-height: 1.55;
-}
-
-/* MAPA */
 .secaoMapa {
   border-top: 1px solid rgba(91, 107, 175, 0.2);
   padding: 56px 2rem;

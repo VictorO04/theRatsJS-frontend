@@ -6,7 +6,6 @@ import Footer from '../../components/Footer/Footer';
 import Menu from "../../components/Menu/Menu";
 import { LanguageContext } from "../../contexts/LanguageContext";
 
-
 const API_URL = "/api/participantes/";
 const API_KEY = "Fq0CotClRneRPJAeCakJsrSwGyVCJU58tQrPWYgLCK3ei9HT-Ygajl2KXCLiZTPO";
 
