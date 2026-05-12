@@ -1,0 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Serif+Display:ital@0;1&display=swap');
+
+:root,
+[data-theme="dark"] {
+  --bg: #0d0e14;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --primary: #D46475;
+  --primary-soft: rgba(212, 100, 117, 0.1);
+  --primary-border: rgba(212, 100, 117, 0.35);
+  --primary-hover: rgba(212, 100, 117, 0.45);
+  --primary-light: #f09aaa;
+  --border: rgba(91, 107, 175, 0.25);
+  --border-soft: rgba(91, 107, 175, 0.15);
+  --gradiente-opacity-1: 0.07;
+  --gradiente-opacity-2: 0.08;
+}
+
+[data-theme="light"] {
+  --bg: #f8f9fc;
+  --text: #1a1d2e;
+  --muted: #252527;
+  --primary: #5B6BAF;
+  --primary-soft: rgba(91, 107, 175, 0.1);
+  --primary-border: rgba(91, 107, 175, 0.35);
+  --primary-hover: rgba(91, 107, 175, 0.45);
+  --primary-light: #5B6BAF;
+  --border: rgba(91, 107, 175, 0.2);
+  --border-soft: rgba(76, 89, 146, 0.3);
+  --gradiente-opacity-1: 0.25;
+  --gradiente-opacity-2: 0.3;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  transition: background-color 0.2s, color 0.2s;
+}
