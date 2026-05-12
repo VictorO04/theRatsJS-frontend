@@ -105,7 +105,7 @@ export default function Participantes() {
       <Header />
       <Menu />
 
-
+      <main>
       <div className={styles.pagina}>
 
 
@@ -192,6 +192,7 @@ export default function Participantes() {
 
 
       </div>
+      </main>
       <Footer />
     </>
   );

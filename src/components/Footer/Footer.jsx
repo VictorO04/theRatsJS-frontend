@@ -7,6 +7,11 @@ import {
 } from "react-icons/fa";
 import { LanguageContext } from '../../contexts/LanguageContext';
 import { useContext } from 'react';
+import { useTheme } from '../../contexts/ThemeContext';  
+
+const LOGO_DARK = "https://i.ibb.co/5g1JwNBD/Gemini-Generated-Image-skjtrjskjtrjskjt-removebg-preview.png";
+const LOGO_LIGHT = "https://i.ibb.co/1f24Mb4Z/Gemini-Generated-Image-y93ys2y93ys2y93y-removebg-preview.png";
+
 
 const text = {
     'pt-br': {
@@ -25,23 +30,24 @@ const text = {
     },
 };
 
-export default function Rodape() {
+export default function Footer() {
+    const { theme } = useTheme();
     const { lang } = useContext(LanguageContext);
     const t = text[lang];
 
     return (
-        <footer className={styles.rodapeRaiz}>
-            <div className={styles.rodapeInterno}>
+        <footer className={styles.footerRaiz}>
+            <div className={styles.footerInterno}>
 
 
-                <div className={styles.rodapeGrid}>
+                <div className={styles.footerGrid}>
 
 
                     {/* Coluna da marca */}
-                    <div className={styles.rodapeMarca}>
+                    <div className={styles.footerMarca}>
                         <div className={styles.logoMarca}>
                             <img
-                                src="https://i.ibb.co/5g1JwNBD/Gemini-Generated-Image-skjtrjskjtrjskjt-removebg-preview.png"
+                                src={theme === "dark" ? LOGO_DARK : LOGO_LIGHT}
                                 alt="Ícone da marca"
                                 className={styles.iconeLogoMarca}
                             />
