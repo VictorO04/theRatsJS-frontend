@@ -5,6 +5,7 @@ import './index.css'
 import App from './App.jsx'
 import { LanguageProvider } from "./contexts/LanguageProvider.jsx";
 import { ThemeProvider } from "./contexts/ThemeContext.jsx";
+import './global.css' 
 
 createRoot(document.getElementById('root')).render(
     <StrictMode>

@@ -1,29 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap');
 
-
-:root,
-[data-theme="dark"] {
-  --bg: #0d0e14;
-  --text: #e2e8f0;
-  --muted: #94a3b8;
-  --primary: #D46475;
-  --border: rgba(91, 107, 175, 0.25);
-  --border-soft: rgba(91, 107, 175, 0.15);
-  --gradiente-opacity-1: 0.07;
-  --gradiente-opacity-2: 0.08;
-}
-
-[data-theme="light"] {
-  --bg: #f8f9fc;
-  --text: #1a1d2e;
-  --muted: #252527;
-  --primary: #5B6BAF;
-  --border: rgba(91, 107, 175, 0.2);
-  --border-soft: rgba(91, 107, 175, 0.1);
-  --gradiente-opacity-1: 0.25;
-  --gradiente-opacity-2: 0.3;
-}
-
 .footerRaiz {
   background: var(--bg);
   border-top: 1px solid var(--border);

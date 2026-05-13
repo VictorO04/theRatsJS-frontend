@@ -8,6 +8,8 @@ export default function Contato() {
       <>
           <Header />
             <Menu />
+
+            <main>
           <div className={styles.pagina}>
               {/* arthur morais -> 10/05 (16:20) aqui começa a parte inicial da tela: hero pq ta no topo*/}
 
@@ -158,7 +160,7 @@ export default function Contato() {
                   </div>
               </section>
           </div>
-
+            </main>
           <Footer />
       </>
   );

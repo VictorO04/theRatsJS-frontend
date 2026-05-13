@@ -1,12 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Serif+Display:ital@0;1&display=swap');
 
 
-/*aqui começa o estilo da hero*/
-.pagina {
+main {
   margin-left: 230px;
-  background: #0d0e14;
+  background: var(--bg);
   font-family: 'DM Sans', system-ui, sans-serif;
-  color: #E2E8F0;
   min-height: 100vh;
 }
 
@@ -14,7 +12,7 @@
   margin-top: 3rem;
   position: relative;
   padding: 64px 2rem 56px;
-  border-bottom: 1px solid rgba(91, 107, 175, 0.35);
+  border-bottom: 1px solid var(--border-soft);
   overflow: hidden;
 }
 
@@ -22,8 +20,8 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse 50% 80% at 90% 50%, rgba(212, 100, 117, 0.07) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 60% at 5% 50%, rgba(91, 107, 175, 0.08) 0%, transparent 70%);
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(192, 86, 86, var(--gradiente-opacity-1)) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 10% 50%, rgba(91, 107, 175, var(--gradiente-opacity-2)) 0%, transparent 70%);
   pointer-events: none;
 }
 
@@ -37,11 +35,11 @@
   display: inline-flex;
   align-items: center;
   font-size: 0.75rem;
-  padding: 4px 12px;
+  padding: 4.5px 12px;
   border-radius: 100px;
-  background: rgba(212, 100, 117, 0.12);
-  border: 1px solid rgba(212, 100, 117, 0.35);
-  color: #f09aaa;
+  background: rgba(91, 107, 175, 0.12);
+  border: 1px solid rgba(91, 107, 175, 0.35);
+  color: var(--primary);
   margin-bottom: 20px;
 }
 
@@ -50,19 +48,19 @@
   font-family: 'DM Serif Display', serif;
   font-size: 3rem;
   font-weight: 400;
-  color: #E2E8F0;
+  color: var(--text);
   margin-bottom: 12px;
   line-height: 1.15;
 }
 
 .contatoRosa {
-  color: #D46475;
+  color: var(--primary);
   font-style: italic;
 }
 
 .subtitulo {
   font-size: 1rem;
-  color: #94A3B8;
+  color: var(--muted);
   margin: 0;
   max-width: 480px;
   line-height: 1.6;
@@ -96,7 +94,7 @@
   font-size: 0.7rem;
   font-weight: 400;
   letter-spacing: 0.1rem;
-  color: #D46475;
+  color: var(--primary);
   margin-bottom: 8px;
 }
 
@@ -104,7 +102,7 @@
   font-family: 'DM Serif Display', serif;
   font-size: 1.5rem;
   font-weight: 400;
-  color: #E2E8F0;
+  color: var(--text);
   margin-bottom: 24px;
 }
 
@@ -124,18 +122,18 @@
 
 .label {
   font-size: 0.8rem;
-  color: #94A3B8;
+  color: var(--muted);
   font-weight: 500;
 }
 
 .input, .select, .areaTexto {
   background: rgba(91, 107, 175, 0.06);
-  border: 1px solid rgba(91, 107, 175, 0.25);
+  border: 1px solid rgba(91, 107, 175, var(--gradiente-opacity-2));
   border-radius: 8px;
   padding: 10px 14px;
   font-size: 0.875rem;
   font-family: inherit;
-  color: #E2E8F0;
+  color: var(--text);
   outline: none;
   transition: border-color 0.2s;
 }
@@ -150,16 +148,15 @@
 }
 
 .select option {
-  background: #1A1D26;
+  background: var(--bg);
 }
 
 .areaTexto {
-
   min-height: 120px;
 }
 
 .botaoEnviar {
-  background: #5B6BAF;
+  background: var(--primary);
   border: none;
   border-radius: 8px;
   padding: 11px 24px;
@@ -174,7 +171,7 @@
 }
 
 .botaoEnviar:hover {
-  background: #4a5a9e;
+  background: var(--primary-hover);
 }
 
 
@@ -188,7 +185,7 @@
 
 .cardInfo {
   background: rgba(91, 107, 175, 0.06);
-  border: 1px solid rgba(91, 107, 175, 0.25);
+  border: 1px solid var(--border-soft);
   border-radius: 12px;
   padding: 20px;
   display: flex;
@@ -196,14 +193,10 @@
   gap: 14px;
 }
 
-.cardInfoRose {
-  border-color: rgba(212, 100, 117, 0.25);
-}
-
 .cardInfoTitulo {
   font-size: 0.8125rem;
   font-weight: 500;
-  color: #8b9fd4;
+  color: var(--primary);
   margin: 0;
 }
 
@@ -234,7 +227,7 @@
 }
 
 .infoValorLink:hover {
-  color: #E2E8F0;
+  color: var(--muted);
 }
 
 /* redes sociaiss */
@@ -252,7 +245,7 @@
   border-radius: 8px;
   border: 1px solid rgba(91, 107, 175, 0.35);
   background: rgba(91, 107, 175, 0.06);
-  color: #94A3B8;
+  color: var(--muted);
   font-size: 0.8125rem;
   font-family: inherit;
   text-decoration: none;
@@ -262,7 +255,7 @@
 
 .botaoSocial:hover {
   border-color: rgba(91, 107, 175, 0.6);
-  color: #E2E8F0;
+  color: var(--primary);
   background: rgba(91, 107, 175, 0.12);
 }
 
