@@ -31,7 +31,7 @@ const texts= {
         cardQuestoes7: "15  Questões",
         cardNivel7: "Nível Ensino Médio",
         cardTitulo8: "Simulado com questões sobre Geografia",
-        cardQuestoes8: "15  Questões",  
+        cardQuestoes8: "15  Questões",
         cardNivel8: "Nível Ensino Médio",
         cardTitulo9: "Simulado com questões sobre Ecologia",
         cardQuestoes9: "15  Questões",
@@ -62,7 +62,7 @@ const texts= {
         cardQuestoes7: "15  Questions",
         cardNivel7: "High School Level",
         cardTitulo8: "Practice exam with questions about Geography",
-        cardQuestoes8: "15  Questions",  
+        cardQuestoes8: "15  Questions",
         cardNivel8: "High School Level",
         cardTitulo9: "Practice exam with questions about Ecology",
         cardQuestoes9: "15  Questions",
@@ -73,7 +73,7 @@ const texts= {
 export default function Simulados() {
     const { lang } = useContext(LanguageContext);
     const t = texts[lang];
-    
+
     return(
         <>
         <Header />
@@ -92,7 +92,7 @@ export default function Simulados() {
                     </h1>
                     <p className={styles.subtitulo}>{t.subtitulo}</p>
                 </div>
-            </section>    
+            </section>
             <section className={styles.cards}>
                 <div className={styles.card}>
                     <h2 className={styles.cardTitulo}>{t.cardTitulo1}</h2>
@@ -139,7 +139,7 @@ export default function Simulados() {
                     <p className={styles.cardQuestoes}>{t.cardQuestoes9}</p>
                     <p className={styles.cardNivel}>{t.cardNivel9}</p>
                 </div>
-            </section>    
+            </section>
         </div>
         <Footer />
         </>
