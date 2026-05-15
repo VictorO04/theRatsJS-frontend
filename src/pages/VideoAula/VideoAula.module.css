@@ -1,18 +1,8 @@
-:root {
-  --bg: #0d0e14;
-  --text: #e2e8f0;
-  --muted: #94a3b8;
-  --primary: #d46475;
-  --border: rgba(91, 107, 175, 0.25);
-  --border-soft: rgba(91, 107, 175, 0.15);
-}
-
 .pagina {
   margin-left: 230px;
   margin-top: 10vh;
   min-height: 100vh;
   background: var(--bg);
-  color: var(--text);
   font-family: 'DM Sans', system-ui, sans-serif;
 }
 
@@ -22,6 +12,10 @@
   border-bottom: 1px solid var(--border-soft);
   overflow: hidden;
   width: 100%;
+}
+
+.hero h1 {
+    color: var(--text);
 }
 
 .heroFundo {
@@ -72,13 +66,13 @@
 
 .destaque {
   color: var(--primary);
-  font-style: normal;
+  font-style: italic;
 }
 
 .canal {
   font-size: 1rem;
-  color: var(--primary);
-  margin-bottom: 32px;
+  color: var(--muted);
+  margin-bottom: 2px;
   max-width: 640px;
   line-height: 1.7;
 }
