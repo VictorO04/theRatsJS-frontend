@@ -1,0 +1,145 @@
+.pagina {
+  margin-left: 230px;
+  margin-top: 10vh;
+  min-height: 100vh;
+  background: var(--bg);
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+.hero {
+  position: relative;
+  padding: 72px 2rem 64px;
+  border-bottom: 1px solid var(--border-soft);
+  overflow: hidden;
+  width: 100%;
+}
+
+.hero h1 {
+    color: var(--text);
+}
+
+.heroFundo {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 60% 80% at 80% 50%, rgba(212, 100, 117, 0.07) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 60% at 10% 50%, rgba(91, 107, 175, 0.08) 0%, transparent 70%);
+}
+
+.heroConteudo {
+  max-width: 960px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.pilula {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba(212, 100, 117, 0.12);
+  border: 1px solid rgba(212, 100, 117, 0.35);
+  color: #f09aaa;
+  margin-bottom: 20px;
+}
+
+.ponto {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
+}
+
+.titulo {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-weight: 400;
+  color: #E2E8F0;
+  margin: 0 0 12px;
+}
+
+.destaque {
+  color: var(--primary);
+  font-style: italic;
+}
+
+.canal {
+  font-size: 1rem;
+  color: var(--muted);
+  margin-bottom: 2px;
+  max-width: 640px;
+  line-height: 1.7;
+}
+
+.videos {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 48px 2rem 64px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1rf));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 24px;
+  cursor: pointer;
+}
+
+.video {
+  background: rgba(91, 107, 175, 0.06);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 180px;
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.video iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    border-radius: 8px;
+    background: #000;
+}
+
+.tituloVideo {
+  font-size: 1rem;
+  margin: 0;
+  color: #e2e8f0;
+}
+
+.subtituloVideo {
+    font-size: 0.9rem;
+    color: var(--primary);
+    font-weight: 600;
+    margin: -8px 0 0;
+    text-transform: uppercase;
+}
+
+.descricao {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: var(--muted);
+    margin: 0;
+}
+
+
+
+@media (max-width: 768px) {
+  .pagina {
+    margin-left: 0;
+  }
+  .hero{
+    padding: 56px 1.5rem 48px;
+  }
+  .videos {
+    grid-template-columns: 1fr;
+    padding: 32px 1.5rem 48px
+  }
+}
