@@ -75,9 +75,9 @@
   font-style: normal;
 }
 
-.subtitulo {
+.canal {
   font-size: 1rem;
-  color: var(--muted);
+  color: var(--primary);
   margin-bottom: 32px;
   max-width: 640px;
   line-height: 1.7;
