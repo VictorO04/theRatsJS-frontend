@@ -16,20 +16,25 @@ const texts = {
         dicas: "Dicas",
         simulados: "Simulados",
         videos: "Video Aulas",
-        curiosidades: "Curiosidades"
+        curiosidades: "Curiosidades",
+        tema: "Tema"
     },
     "en": {
         acervo: "collection",
         dicas: "Exam Tips",
         simulados: "Mock Exams",
         videos: "Video Lessons",
-        curiosidades: "Curiosities"
+        curiosidades: "Curiosities",
+        tema: "Theme"
     }
 }
 
 function Menu() {
     const { lang } = useContext(LanguageContext);
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3dc62aeab0ca045f5b392f4eefd8e152f6267a0a
 
     return (
         <div className={styles.menuContainer}>
@@ -57,7 +62,10 @@ function Menu() {
                 <FaLightbulb size={17} />
                 {texts[lang].curiosidades}
             </Link>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 3dc62aeab0ca045f5b392f4eefd8e152f6267a0a
         </div>
     );
 }

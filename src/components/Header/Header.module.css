@@ -86,3 +86,18 @@ header {
     display: none;
   }
 }
+
+.botaoTema{
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    background-color: transparent;
+    border: none;
+    color: var(--muted);
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.botaoTema:hover {
+    color: var(--primary);
+}
