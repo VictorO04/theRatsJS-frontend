@@ -134,6 +134,16 @@
         box-shadow 0.2s ease;
 }
 
+:global([data-theme='light']) .searchInput {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(76, 89, 146, 0.25);
+    color: var(--text);
+}
+
+:global([data-theme='light']) .searchInput::placeholder {
+    color: rgba(37, 37, 39, 0.5);
+}
+
 .searchInput::placeholder {
     color: rgba(226, 232, 240, 0.62);
 }
