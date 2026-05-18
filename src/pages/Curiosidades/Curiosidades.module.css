@@ -1,0 +1,281 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Serif+Display:ital@0;1&display=swap');
+
+.pagina {
+    margin-left: 230px;
+    background: var(--bg);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: var(--text);
+    min-height: 100vh;
+}
+
+.hero {
+    margin-top: 3rem;
+    position: relative;
+    padding: 64px 2rem 56px;
+    border-bottom: 1px solid var(--border);
+    overflow: hidden;
+}
+
+.heroFundo {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+            ellipse 60% 80% at 90% 50%,
+            rgba(212, 100, 117, var(--gradiente-opacity-1)) 0%,
+            transparent 70%
+        ),
+        radial-gradient(
+            ellipse 40% 60% at 5% 50%,
+            rgba(91, 107, 175, var(--gradiente-opacity-2)) 0%,
+            transparent 70%
+        );
+    pointer-events: none;
+}
+
+.heroConteudo {
+    max-width: 960px;
+    margin: 0 auto;
+    position: relative;
+}
+
+.curiosidades {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 99px;
+    background: var(--primary-soft);
+    border: 1px solid var(--primary-border);
+    color: var(--primary-light);
+    margin-bottom: 20px;
+}
+
+.titulo {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 400;
+    color: var(--text);
+    margin: 0 0 12px 0;
+    line-height: 1.15;
+}
+
+.destaque {
+    color: var(--primary);
+    font-style: italic;
+}
+
+.subtitulo {
+    font-size: 1rem;
+    color: var(--muted);
+    margin: 0;
+    max-width: 480px;
+    line-height: 1.6;
+}
+
+.conteudo {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 56px 2rem 72px;
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.filtroRow {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.filtroBotao {
+    background: var(--bg-secondary, #f6f8ff);
+    border: 1px solid var(--border);
+    color: var(--text);
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-size: 0.875rem;
+    cursor: pointer;
+    transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+}
+
+.filtroBotao:hover {
+    background: var(--primary-soft);
+    border-color: var(--primary);
+}
+
+.filtroAtivo {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+}
+
+.semResultados {
+    color: var(--muted);
+    padding: 1.5rem;
+    background: var(--bg-secondary, #fafbff);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+}
+
+.progressoTopo {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.progressoTexto {
+    font-size: 0.8125rem;
+    color: var(--muted);
+    white-space: nowrap;
+}
+
+.barraBg {
+    flex: 1;
+    height: 4px;
+    background: var(--border-soft);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.barraFill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), #5b6baf);
+    border-radius: 99px;
+    transition: width 0.3s ease;
+}
+
+.flashcard {
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    min-height: 260px;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.25s;
+}
+
+.flashcard:hover {
+    border-color: var(--primary-hover);
+}
+
+.flashFaixa {
+    height: 4px;
+    background: var(--primary);
+}
+
+.flashConteudo {
+    flex: 1;
+    padding: 36px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.flashTipo {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary-light);
+}
+
+.flashTexto {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.25rem, 3vw, 1.75rem);
+    color: var(--text);
+    line-height: 1.45;
+    margin: 0;
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.flashId {
+    font-size: 0.75rem;
+    color: var(--muted);
+    align-self: flex-end;
+}
+
+.navegacao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+}
+
+.botaoNavegar {
+    background: var(--primary-soft);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 9px 18px;
+    font-size: 0.875rem;
+    font-family: inherit;
+    color: var(--muted);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s;
+}
+
+.botaoNavegar:hover:not(:disabled) {
+    background: var(--primary-border);
+    color: var(--text);
+}
+
+.botaoNavegar:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.botaoNavAvancar {
+    background: var(--primary);
+    border: none;
+    border-radius: 8px;
+    padding: 9px 18px;
+    font-size: 0.875rem;
+    font-family: inherit;
+    color: #fff;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.botaoNavAvancar:hover:not(:disabled) {
+    background: var(--primary-hover);
+}
+
+.botaoNavAvancar:disabled {
+    opacity: 0.3;
+    cursor: default;
+}
+
+.spinner {
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--primary-soft);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: girar 0.7s linear infinite;
+
+    /*arthur 08:10 18/05, tentando centralizar o spinner*/
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+@keyframes girar {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.erro {
+    color: var(--primary);
+    text-align: center;
+    padding: 6rem 0;
+    font-size: 0.875rem;
+}
