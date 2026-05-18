@@ -15,7 +15,7 @@
 }
 
 .hero h1 {
-    color: var(--text);
+  color: var(--text);
 }
 
 .heroFundo {
@@ -34,18 +34,18 @@
 }
 
 .pilula {
-  display: inline-flex;
+  display: inline-flex;;
   align-items: center;
   gap: 6px;
   font-size: 0.75rem;
   font-weight: 500;
-  text-transform: uppercase;
   letter-spacing: 0.08em;
+  text-transform: uppercase;
   padding: 4px 12px;
-  border-radius: 999px;
-  background: rgba(212, 100, 117, 0.12);
-  border: 1px solid rgba(212, 100, 117, 0.35);
-  color: #f09aaa;
+  border-radius: 99px;
+  background: var(--primary-soft);
+  border: 1px solid var(--primary-border);
+  color: var(--primary-light);
   margin-bottom: 20px;
 }
 
@@ -101,11 +101,11 @@
 }
 
 .video iframe {
-    width: 100%;
-    aspect-ratio: 16 / 9;
-    border: none;
-    border-radius: 8px;
-    background: #000;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: none;
+  border-radius: 8px;
+  background: #000;
 }
 
 .tituloVideo {
@@ -113,32 +113,60 @@
   margin: 0;
   color: var(--text)
 }
+
 .subtituloVideo {
-    font-size: 0.9rem;
-    color: var(--primary);
-    font-weight: 600;
-    margin: -8px 0 0;
-    text-transform: uppercase;
+  font-size: 0.9rem;
+  color: var(--primary);
+  font-weight: 600;
+  margin: -8px 0 0;
+  text-transform: uppercase;
 }
 
 .descricao {
-    font-size: 0.95rem;
-    line-height: 1.6;
-    color: var(--muted);
-    margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
 }
-
-
 
 @media (max-width: 768px) {
   .pagina {
     margin-left: 0;
   }
-  .hero{
+
+  .hero {
     padding: 56px 1.5rem 48px;
   }
+
   .videos {
     grid-template-columns: 1fr;
     padding: 32px 1.5rem 48px
   }
+}
+
+.spinner {
+  width: 30px;
+  height: 30px;
+  border: 2px solid var(--primary-soft);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: girar 0.7s linear infinite;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes girar {
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
+    /* mantém o translate junto */
+  }
+}
+
+.erro {
+  color: var(--primary);
+  text-align: center;
+  padding: 6rem 0;
+  font-size: 0.875rem;
 }
