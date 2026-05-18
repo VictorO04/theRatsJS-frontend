@@ -143,8 +143,8 @@
 }
 
 .flashTexto {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 1rem;
   color: var(--text);
   line-height: 1.45;
   margin: 0;
