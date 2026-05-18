@@ -210,22 +210,22 @@
 }
 
 .spinner {
-  width: 30px;
-  height: 30px;
-  border: 2px solid var(--primary-soft);
-  border-top-color: var(--primary);
-  border-radius: 50%;
-  animation: girar 0.7s linear infinite;
-
- /*arthur 08:10 18/05, tentando centralizar o spinner*/
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--primary-soft);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: girar 0.7s linear infinite;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 @keyframes girar {
-  to { transform: rotate(360deg); }
+    to {
+        transform: translate(-50%, -50%) rotate(360deg); /* mantém o translate junto */
+    }
 }
 
 .erro {
