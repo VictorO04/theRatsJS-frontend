@@ -2,8 +2,70 @@ import styles from "./Contato.module.css";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import Menu from '../../components/Menu/Menu';
+import { LanguageContext } from '../../contexts/LanguageContext';
+import { useContext } from 'react';
+
+const text = {
+    'pt-br': {
+        faleConosco: 'FALE CONOSCO',
+        entreEm: 'Entre em',
+        contato: 'contato',
+        temDuvidas:
+            'Tem dúvidas sobre o projeto, quer colaborar ou só quer dizer oi? Manda uma mensagem — respondemos em até 24h.',
+        formulario: 'FORMULÁRIO',
+        envieUmaMensagem: 'Envie uma mensagem',
+        nome: 'Nome',
+        placeholderNome: 'Seu nome completo',
+        placeholderEmail: 'seu@email.com',
+        assunto: 'Assunto',
+        selecioneUmAssunto: 'Selecione um assunto',
+        suporte: 'Suporte',
+        parceria: 'Parceria',
+        sugestao: 'Sugestão',
+        outro: 'Outro',
+        mensagem: 'Mensagem',
+        escrevaSuaMensagem: 'Escreva sua mensagem aqui...',
+        enviarMensagem: 'Enviar Mensagem',
+        informacoesContato: 'Informações de Contato',
+        emailContato: 'contato@therats.com.br',
+        endereco: 'Endereço',
+        atendimento: 'Atendimento',
+        hAtendimento: 'Seg-Sex, 8h até às 18h',
+        redesSociais: "Redes Sociais"
+    },
+    en: {
+        faleConosco: 'TALK TO US',
+        entreEm: 'Get in',
+        contato: 'touch',
+        temDuvidas:
+            "Have questions about the project, want to collaborate, or just want to say hi? Send us a message — we'll respond within 24 hours.",
+        formulario: 'FORM',
+        envieUmaMensagem: 'Send a message',
+        nome: 'Name',
+        placeholderNome: 'Your full name',
+        placeholderEmail: 'your@email.com',
+        assunto: 'Subject',
+        selecioneUmAssunto: 'Select a subject',
+        suporte: 'Support',
+        parceria: 'Partnership',
+        sugestao: 'suggestion',
+        outro: 'Other',
+        mensagem: 'message',
+        escrevaSuaMensagem: 'Write your message here...',
+        enviarMensagem: 'send message',
+        informacoesContato: 'Contact Information',
+        emailContato: 'contact@therats.com.br',
+        endereco: 'Address',
+        atendimento: 'Service',
+        hAtendimento: 'Mon-Fri, 8am to 6pm',
+        redesSociais: "Social Media"
+    },
+};
 
 export default function Contato() {
+    const { lang } = useContext(LanguageContext);
+    const t = text[lang];
+
   return (
       <>
           <Header />
@@ -17,30 +79,29 @@ export default function Contato() {
                   <div className={styles.heroFundo} />
                   <div className={styles.heroConteudo}>
                       <div className={styles.faleConosco}>
-                          <span className={styles.ponto} /> FALE CONOSCO
+                          <span className={styles.ponto} /> {t.faleConosco}
                       </div>
                       <h1 className={styles.titulo}>
-                          Entre em <span className={styles.contatoRosa}>contato</span>
+                              {t.entreEm}<span className={styles.contatoRosa}> {t.contato}</span>
                       </h1>
                       <p className={styles.subtitulo}>
-                          Tem dúvidas sobre o projeto, quer colaborar ou só quer dizer oi? Manda uma
-                          mensagem — respondemos em até 24h.
+                          {t.temDuvidas}
                       </p>
                   </div>
               </section>
 
               <section className={styles.mid}>
                   <div>
-                      <p className={styles.formularioRosa}>FORMULÁRIO</p>
-                      <h2 className={styles.tituloSecao}>Envie uma mensagem</h2>
+                          <p className={styles.formularioRosa}>{t.formulario}</p>
+                          <h2 className={styles.tituloSecao}>{t.envieUmaMensagem}</h2>
 
                       <form className={styles.formulario}>
                           <div className={styles.campo}>
-                              <label className={styles.label}>Nome</label>
+                                  <label className={styles.label}>{ t.nome }</label>
                               <input
                                   className={styles.input}
                                   type="text"
-                                  placeholder="Seu nome completo"
+                                  placeholder={t.placeholderNome}
                               />
                           </div>
 
@@ -49,44 +110,44 @@ export default function Contato() {
                               <input
                                   className={styles.input}
                                   type="email"
-                                  placeholder="seu@email.com"
+                                  placeholder={t.placeholderEmail}
                               />
                           </div>
 
                           <div className={styles.campo}>
-                              <label className={styles.label}>Assunto</label>
+                                  <label className={styles.label}>{ t.assunto }</label>
                               <select className={styles.select}>
-                                  <option value="">Selecione um assunto</option>
-                                  <option value="quero falar c o lisboa">Suporte</option>
-                                  <option value="quero falar c o victor">Parceria</option>
-                                  <option value="quero falar c o arthur">Sugestão</option>
-                                  <option value="outro (rafinha)">Outro</option>
+                                      <option value="">{t.selecioneUmAssunto}</option>
+                                      <option value="quero falar c o lisboa">{t.suporte}</option>
+                                      <option value="quero falar c o victor">{t.parceria}</option>
+                                      <option value="quero falar c o arthur">{t.sugestao}</option>
+                                      <option value="outro (rafinha)">{t.outro}</option>
                               </select>
                           </div>
 
                           <div className={styles.campo}>
-                              <label className={styles.label}>Mensagem</label>
+                                  <label className={styles.label}>{t.mensagem}</label>
                               <textarea
                                   className={styles.areaTexto}
-                                  placeholder="Escreva sua mensagem aqui..."
+                                  placeholder={t.escrevaSuaMensagem}
                               />
                           </div>
 
                           <button className={styles.botaoEnviar} type="button">
-                              Enviar mensagem
+                              {t.enviarMensagem}
                           </button>
                       </form>
                   </div>
 
                   <div className={styles.colunaInformacao}>
                       <div className={styles.cardInfo}>
-                          <p className={styles.cardInfoTitulo}>Informações de contato</p>
+                              <p className={styles.cardInfoTitulo}>{t.informacoesContato}</p>
                           <div className={styles.linhaInfo}>
                               <span className={styles.infoRotulo}>E-mail</span>
                               <a
                                   className={styles.infoValorLink}
                                   href="mailto:contato@therats.com.br">
-                                  contato@therats.com.br
+                                  {t.emailContato}
                               </a>
                           </div>
                           <div className={styles.linhaInfo}>
@@ -100,17 +161,17 @@ export default function Contato() {
                               </a>
                           </div>
                           <div className={styles.linhaInfo}>
-                              <span className={styles.infoRotulo}>Endereço</span>
+                                  <span className={styles.infoRotulo}>{t.endereco}</span>
                               <span className={styles.infoValor}>Valinhos, São Paulo — Brasil</span>
                           </div>
                           <div className={styles.linhaInfo}>
-                              <span className={styles.infoRotulo}>Atendimento</span>
-                              <span className={styles.infoValor}>Seg–Sex, 8h às 18h</span>
+                                  <span className={styles.infoRotulo}>{t.atendimento}</span>
+                              <span className={styles.infoValor}>{t.hAtendimento}</span>
                           </div>
                       </div>
 
                       <div className={styles.cardInfo}>
-                          <p className={styles.cardInfoTitulo}>Redes sociais</p>
+                              <p className={styles.cardInfoTitulo}>{t.redesSociais}</p>
                           <div className={styles.redesSociais}>
                               <a
                                   className={styles.botaoSocial}
