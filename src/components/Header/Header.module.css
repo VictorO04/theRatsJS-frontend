@@ -4,7 +4,7 @@ header {
   align-items: center;
   justify-content: space-between;
   padding: 0 2rem;
-  border-bottom: 1px solid #d46475;
+  border-bottom: 1px solid var(--primary);
   background-color: transparent;
   min-height: 4rem;
   position: fixed;
@@ -50,7 +50,7 @@ header {
   border-radius: 10px;
   text-decoration: none;
   font-size: 0.875rem;
-  color: #94a3b8;
+  color: var(--muted);
   transition: color 0.2s;
 }
 
@@ -62,7 +62,7 @@ header {
 .separator {
   width: 1px;
   height: 1.5rem;
-  background-color: #d46475;
+  background-color: var(--primary);
 }
 
 .languageButton {

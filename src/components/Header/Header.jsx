@@ -3,8 +3,12 @@ import { LanguageContext } from "../../contexts/LanguageContext";
 
 import { Link } from "react-router-dom";
 import { useContext } from "react";
+import { useTheme } from '../../contexts/ThemeContext';
 
 import { LiaLanguageSolid } from 'react-icons/lia';
+
+const LOGO_DARK = "https://i.ibb.co/5g1JwNBD/Gemini-Generated-Image-skjtrjskjtrjskjt-removebg-preview.png";
+const LOGO_LIGHT = "https://i.ibb.co/1f24Mb4Z/Gemini-Generated-Image-y93ys2y93ys2y93y-removebg-preview.png";
 
 const texts = {
     "pt-br": {
@@ -22,14 +26,15 @@ const texts = {
 
 function Header() {
     const { lang, toggleLanguage } = useContext(LanguageContext);
+    const { theme } = useTheme();
 
 
     return (
         <header className={styles.header}>
             <img
+                src={theme === "dark" ? LOGO_DARK : LOGO_LIGHT}
+                alt="Ícone da marca"
                 className={styles.logo}
-                src="https://i.ibb.co/5g1JwNBD/Gemini-Generated-Image-skjtrjskjtrjskjt-removebg-preview.png"
-                alt="Logo do site"
             />
 
             <div className={styles.rightSection}>
