@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Serif+Display:ital@0;1&display=swap');
 
 .pagina {
+  margin-left: 230px;
   background: var(--bg);
   font-family: 'DM Sans', system-ui, sans-serif;
   color: var(--text);
@@ -215,6 +216,12 @@
   border-top-color: var(--primary);
   border-radius: 50%;
   animation: girar 0.7s linear infinite;
+
+ /*arthur 08:10 18/05, tentando centralizar o spinner*/
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 @keyframes girar {
