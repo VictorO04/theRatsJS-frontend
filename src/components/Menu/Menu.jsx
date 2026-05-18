@@ -20,7 +20,7 @@ const texts = {
         tema: "Tema"
     },
     "en": {
-        acervo: "collection",
+        acervo: "Collection",
         dicas: "Exam Tips",
         simulados: "Mock Exams",
         videos: "Video Lessons",
