@@ -1,21 +1,128 @@
-main {
-  margin-top: 10vh;
-  background: #0d0e14;
-  font-family: 'DM Sans', system-ui, sans-serif;
-  color: #E2E8F0;
-  min-height: 100vh;
-  padding: 2rem;
-}
- 
-.textoBemVindo {
-  text-align: center;
-  font-size: 1.4rem;
-  font-weight: 400;
-  color: #94A3B8;
-}
- 
-.hero {
+/* Destaque principal */
+.destaque {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
   background: rgba(91, 107, 175, 0.06);
   border: 1px solid rgba(91, 107, 175, 0.35);
   border-radius: 12px;
+  padding: 2rem;
+  margin: 3rem 0;
+  position: relative;
+}
+
+.destaqueInfo {
+  flex: 1;
+  min-width: 300px;
+  padding-right: 2rem;
+}
+
+.destaqueLabel {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #F87171;
+  text-transform: uppercase;
+}
+
+.tituloDestaque {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0.5rem 0 1rem;
+}
+
+.sinopseDestaque {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.botaoDestaque {
+  background-color: #F87171;
+  color: #fff;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background 0.3s;
+}
+
+.botaoDestaque:hover {
+  background-color: #EF4444;
+}
+
+.destaqueImagem {
+  flex: 0 0 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.destaqueImagem img {
+  width: 100%;
+  max-width: 220px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.livrosDisponiveis {
+  position: absolute;
+  bottom: 1rem;
+  left: 2rem;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #3B82F6;
+}
+
+/* Lista de livros */
+.listaLivros {
+  margin-top: 4rem;
+}
+
+.cardsLivros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.cardLivro {
+  background: #1E293B;
+  border-radius: 12px;
+  padding: 1rem;
+  flex: 1 1 180px;
+  max-width: 200px;
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.cardLivro:hover {
+  transform: translateY(-5px);
+}
+
+.cardLivro img {
+  width: 100%;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+}
+
+.cardLivro h3 {
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.8rem;
+}
+
+.botaoVerDetalhes {
+  background-color: #3B82F6;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background 0.3s;
+}
+
+.botaoVerDetalhes:hover {
+  background-color: #2563EB;
 }
