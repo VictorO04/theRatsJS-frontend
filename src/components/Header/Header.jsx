@@ -6,6 +6,7 @@ import { useContext } from "react";
 import { useTheme } from '../../contexts/ThemeContext';
 
 import { LiaLanguageSolid } from 'react-icons/lia';
+import { MdDarkMode, MdLightMode } from 'react-icons/md';
 
 const LOGO_DARK = "https://i.ibb.co/5g1JwNBD/Gemini-Generated-Image-skjtrjskjtrjskjt-removebg-preview.png";
 const LOGO_LIGHT = "https://i.ibb.co/1f24Mb4Z/Gemini-Generated-Image-y93ys2y93ys2y93y-removebg-preview.png";
@@ -26,13 +27,13 @@ const texts = {
 
 function Header() {
     const { lang, toggleLanguage } = useContext(LanguageContext);
-    const { theme } = useTheme();
+    const { theme, toggle } = useTheme();
 
 
     return (
         <header className={styles.header}>
             <img
-                src={theme === "dark" ? LOGO_DARK : LOGO_LIGHT}
+                src={theme === 'dark' ? LOGO_DARK : LOGO_LIGHT}
                 alt="Ícone da marca"
                 className={styles.logo}
             />
@@ -54,12 +55,15 @@ function Header() {
 
                 <div className={styles.separator} />
 
+                <button className={styles.botaoTema} onClick={toggle}>
+                    {theme === 'dark' ? <MdLightMode size={17} /> : <MdDarkMode size={17} />}
+                </button>
+
                 <button onClick={toggleLanguage} className={styles.languageButton}>
                     <LiaLanguageSolid size={20} />
                     {lang}
                 </button>
             </div>
-
         </header>
     );
 }

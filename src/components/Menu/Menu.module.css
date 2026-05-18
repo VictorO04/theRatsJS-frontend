@@ -67,20 +67,3 @@
         padding: 0.5rem;
     }
 }
-
-.botaoTema{
-    display: flex;
-    align-items: center;
-    gap: 0.7rem;
-    padding: 0.8rem 1rem;
-    border-radius: 10px;
-    background-color: transparent;
-    border: none;
-    color: var(--muted);
-    cursor: pointer;
-    transition: 0.2s;
-}
-
-.botaoTema:hover {
-    color: var(--primary);
-}

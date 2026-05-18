@@ -1,6 +1,5 @@
 import styles from "./Menu.module.css";
 import { LanguageContext } from "../../contexts/LanguageContext";
-import { useTheme } from "../../contexts/ThemeContext";
 
 import { Link } from "react-router-dom";
 import { useContext } from "react";
@@ -10,7 +9,6 @@ import { RiBookletFill } from "react-icons/ri";
 import { IoDocumentTextSharp } from "react-icons/io5";
 import { FaVideo } from "react-icons/fa";
 import { FaLightbulb } from "react-icons/fa";
-import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 const texts = {
     "pt-br": {
@@ -18,20 +16,21 @@ const texts = {
         dicas: "Dicas",
         simulados: "Simulados",
         videos: "Video Aulas",
-        curiosidades: "Curiosidades"
+        curiosidades: "Curiosidades",
+        tema: "Tema"
     },
     "en": {
         acervo: "collection",
         dicas: "Exam Tips",
         simulados: "Mock Exams",
         videos: "Video Lessons",
-        curiosidades: "Curiosities"
+        curiosidades: "Curiosities",
+        tema: "Theme"
     }
 }
 
 function Menu() {
     const { lang } = useContext(LanguageContext);
-    const { theme, toggle } = useTheme();
 
     return (
         <div className={styles.menuContainer}>
@@ -59,10 +58,6 @@ function Menu() {
                 <FaLightbulb size={17} />
                 {texts[lang].curiosidades}
             </Link>
-
-            <button className={styles.botaoTema} onClick={toggle}>
-                {theme === "dark" ? <MdLightMode size={17} /> : <MdDarkMode size={17} />}
-            </button>
         </div>
     );
 }
