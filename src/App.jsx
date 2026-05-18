@@ -6,6 +6,7 @@ import Simulados from './pages/Simulados/Simulados';
 import VideoAula from './pages/VideoAula/VideoAula';
 import Dicas from './pages/Dicas/Dicas';
 import Curiosidades from './pages/Curiosidades/Curiosidades';
+import Acervo from './pages/Acervo/Acervo';
 
 function App() {
     return (
@@ -18,6 +19,7 @@ function App() {
                 <Route path="/video-aulas" element={<VideoAula />} />
                 <Route path="/dicas" element={<Dicas />} />
                 <Route path="/curiosidades" element={<Curiosidades />} />
+                <Route path="/acervo" element={<Acervo />} />
             </Routes>
         </>
     );
