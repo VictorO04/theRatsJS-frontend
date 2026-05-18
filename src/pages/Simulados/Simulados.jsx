@@ -10,39 +10,45 @@ const texts = {
         titulo: 'Simulados',
         subtitulo:
             'Veja a nossa lista de Simulados abaixo para dar início ou pesquise por disciplina:',
-            cardTitulo1: 'Simulado com questões sobre os livros',
-            cardQuestoes1: '15  Questões',
-            cardNivel1: 'Nível Ensino Médio',
-            cardTitulo2: 'Simulado com questões sobre Matemática',
-            cardQuestoes2: '15  Questões',
-            cardNivel2: 'Nível Ensino Médio',
-            cardTitulo3: 'Simulado com questões sobre Português',
-            cardQuestoes3: '15  Questões',
-            cardNivel3: 'Nível Ensino Médio',
-            cardTitulo4: 'Simulado com questões sobre História',
-            cardQuestoes4: '15  Questões',
-            cardNivel4: 'Nível Ensino Médio',
-            cardTitulo5: 'Simulado com questões sobre Biologia',
-            cardQuestoes5: '15  Questões',
-            cardNivel5: 'Nível Ensino Médio',
-            cardTitulo6: 'Simulado com questões sobre Fisíca',
-            cardQuestoes6: '15  Questões',
-            cardNivel6: 'Nível Ensino Médio',
-            cardTitulo7: 'Simulado com questões sobre Química',
-            cardQuestoes7: '15  Questões',
-            cardNivel7: 'Nível Ensino Médio',
-            cardTitulo8: 'Simulado com questões sobre Geografia',
-            cardQuestoes8: '15  Questões',
-            cardNivel8: 'Nível Ensino Médio',
-            cardTitulo9: 'Simulado com questões sobre Ecologia',
-            cardQuestoes9: '15  Questões',
-            cardNivel9: 'Nível Ensino Médio',
-            placeholderBusca: 'Digite uma disciplina ou tema',
-            textoResultadoVazio: 'Nenhum simulado encontrado.',
+        detalhesTitulo: 'Detalhes do Simulado',
+        iniciar: 'Iniciar',
+        perguntas: 'Perguntas do simulado',
+        cardTitulo1: 'Simulado com questões sobre os livros',
+        cardQuestoes1: '15  Questões',
+        cardNivel1: 'Nível Ensino Médio',
+        cardTitulo2: 'Simulado com questões sobre Matemática',
+        cardQuestoes2: '15  Questões',
+        cardNivel2: 'Nível Ensino Médio',
+        cardTitulo3: 'Simulado com questões sobre Português',
+        cardQuestoes3: '15  Questões',
+        cardNivel3: 'Nível Ensino Médio',
+        cardTitulo4: 'Simulado com questões sobre História',
+        cardQuestoes4: '15  Questões',
+        cardNivel4: 'Nível Ensino Médio',
+        cardTitulo5: 'Simulado com questões sobre Biologia',
+        cardQuestoes5: '15  Questões',
+        cardNivel5: 'Nível Ensino Médio',
+        cardTitulo6: 'Simulado com questões sobre Fisíca',
+        cardQuestoes6: '15  Questões',
+        cardNivel6: 'Nível Ensino Médio',
+        cardTitulo7: 'Simulado com questões sobre Química',
+        cardQuestoes7: '15  Questões',
+        cardNivel7: 'Nível Ensino Médio',
+        cardTitulo8: 'Simulado com questões sobre Geografia',
+        cardQuestoes8: '15  Questões',
+        cardNivel8: 'Nível Ensino Médio',
+        cardTitulo9: 'Simulado com questões sobre Ecologia',
+        cardQuestoes9: '15  Questões',
+        cardNivel9: 'Nível Ensino Médio',
+        placeholderBusca: 'Digite uma disciplina ou tema',
+        textoResultadoVazio: 'Nenhum simulado encontrado.',
     },
     en: {
         titulo: 'Practice Exams',
         subtitulo: 'See our list of Practice Exams below to get started or search by subject:',
+        detalhesTitulo: 'Exam details',
+        iniciar: 'Start',
+        perguntas: 'Exam questions',
         cardTitulo1: 'Practice exam with questions about the books',
         cardQuestoes1: '15  Questions',
         cardNivel1: 'High School Level',
@@ -79,17 +85,54 @@ export default function Simulados() {
     const { lang } = useContext(LanguageContext);
     const t = texts[lang];
     const [searchTerm, setSearchTerm] = useState('');
+    const [selectedSimulado, setSelectedSimulado] = useState(null);
 
     const simulados = [
-        { title: t.cardTitulo1, questions: t.cardQuestoes1, level: t.cardNivel1 },
-        { title: t.cardTitulo2, questions: t.cardQuestoes2, level: t.cardNivel2 },
-        { title: t.cardTitulo3, questions: t.cardQuestoes3, level: t.cardNivel3 },
-        { title: t.cardTitulo4, questions: t.cardQuestoes4, level: t.cardNivel4 },
-        { title: t.cardTitulo5, questions: t.cardQuestoes5, level: t.cardNivel5 },
-        { title: t.cardTitulo6, questions: t.cardQuestoes6, level: t.cardNivel6 },
-        { title: t.cardTitulo7, questions: t.cardQuestoes7, level: t.cardNivel7 },
-        { title: t.cardTitulo8, questions: t.cardQuestoes8, level: t.cardNivel8 },
-        { title: t.cardTitulo9, questions: t.cardQuestoes9, level: t.cardNivel9 },
+        {
+            title: t.cardTitulo1,
+            questions: t.cardQuestoes1,
+            level: t.cardNivel1,
+        },
+        {
+            title: t.cardTitulo2,
+            questions: t.cardQuestoes2,
+            level: t.cardNivel2,
+        },
+        {
+            title: t.cardTitulo3,
+            questions: t.cardQuestoes3,
+            level: t.cardNivel3,
+        },
+        {
+            title: t.cardTitulo4,
+            questions: t.cardQuestoes4,
+            level: t.cardNivel4,
+        },
+        {
+            title: t.cardTitulo5,
+            questions: t.cardQuestoes5,
+            level: t.cardNivel5,
+        },
+        {
+            title: t.cardTitulo6,
+            questions: t.cardQuestoes6,
+            level: t.cardNivel6,
+        },
+        {
+            title: t.cardTitulo7,
+            questions: t.cardQuestoes7,
+            level: t.cardNivel7,
+        },
+        {
+            title: t.cardTitulo8,
+            questions: t.cardQuestoes8,
+            level: t.cardNivel8,
+        },
+        {
+            title: t.cardTitulo9,
+            questions: t.cardQuestoes9,
+            level: t.cardNivel9,
+        },
     ];
 
     const filteredSimulados =
@@ -130,17 +173,48 @@ export default function Simulados() {
                         </div>
                     </div>
                 </section>
-                <section className={styles.cards}>
-                    {filteredSimulados.length === 0 ? (
-                        <p className={styles.noResults}>{t.textoResultadoVazio}</p>
-                    ) : (
-                        filteredSimulados.map((simulado, index) => (
-                            <div className={styles.card} key={index}>
-                                <h2 className={styles.cardTitulo}>{simulado.title}</h2>
-                                <p className={styles.cardQuestoes}>{simulado.questions}</p>
-                                <p className={styles.cardNivel}>{simulado.level}</p>
+                <section
+                    className={`${styles.cardsSection} ${
+                        selectedSimulado ? styles.withDetails : styles.noDetails
+                    }`}>
+                    <div className={styles.cards}>
+                        {filteredSimulados.length === 0 ? (
+                            <p className={styles.noResults}>{t.textoResultadoVazio}</p>
+                        ) : (
+                            filteredSimulados.map((simulado, index) => (
+                                <div
+                                    className={`${styles.card} ${
+                                        selectedSimulado?.title === simulado.title
+                                            ? styles.cardSelected
+                                            : ''
+                                    }`}
+                                    key={index}
+                                    onClick={() => setSelectedSimulado(simulado)}>
+                                    <h2 className={styles.cardTitulo}>{simulado.title}</h2>
+                                    <p className={styles.cardQuestoes}>{simulado.questions}</p>
+                                    <p className={styles.cardNivel}>{simulado.level}</p>
+                                </div>
+                            ))
+                        )}
+                    </div>
+
+                    {selectedSimulado && (
+                        <aside className={styles.detailsPanel}>
+                            <div className={styles.detailsCard}>
+                                <div className={styles.detailsHeader}>
+                                    <div>
+                                        <p className={styles.detailsLabel}>{t.detalhesTitulo}</p>
+                                        <h2 className={styles.detailsTitle}>
+                                            {selectedSimulado.title}
+                                        </h2>
+                                        <p className={styles.detailsInfo}>
+                                            {selectedSimulado.questions} · {selectedSimulado.level}
+                                        </p>
+                                    </div>
+                                    <button className={styles.startButton}>{t.iniciar}</button>
+                                </div>
                             </div>
-                        ))
+                        </aside>
                     )}
                 </section>
             </div>
