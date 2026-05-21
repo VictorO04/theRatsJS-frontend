@@ -1,7 +1,5 @@
 import { useState, useEffect, useContext } from "react";
 import styles from "./Dicas.module.css";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 import Menu from "../../components/Menu/Menu";
 import { LanguageContext } from "../../contexts/LanguageContext";
 
@@ -47,7 +45,6 @@ export default function Dicas() {
   return (
     <>
       <div className={styles.pagina}>
-        <Header />
         <Menu />
         <section className={styles.hero}>
           <div className={styles.heroFundo} />
@@ -102,7 +99,6 @@ export default function Dicas() {
 
         </div>
       </div>
-      <Footer />
     </>
   );
 }

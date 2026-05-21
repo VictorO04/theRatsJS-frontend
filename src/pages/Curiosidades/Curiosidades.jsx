@@ -1,7 +1,5 @@
 import { useState, useEffect, useContext } from 'react';
 import styles from './Curiosidades.module.css';
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
 import Menu from '../../components/Menu/Menu';
 import { LanguageContext } from '../../contexts/LanguageContext';
 
@@ -62,7 +60,6 @@ export default function Curiosidades() {
     return (
         <>
             <div className={styles.pagina}>
-                <Header />
                 <Menu />
                 <section className={styles.hero}>
                     <div className={styles.heroFundo} />
@@ -167,7 +164,6 @@ export default function Curiosidades() {
                     )}
                 </div>
             </div>
-            <Footer />
         </>
     );
 }

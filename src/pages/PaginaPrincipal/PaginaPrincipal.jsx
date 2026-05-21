@@ -1,7 +1,5 @@
 import styles from "./PaginaPrincipal.module.css";
-import Header from '../../components/Header/Header';
 import Menu from '../../components/Menu/Menu';
-import Footer from '../../components/Footer/Footer';
 import { LanguageContext } from "../../contexts/LanguageContext";
 
 import { useContext, useEffect, useState } from "react";
@@ -51,7 +49,6 @@ function PaginaPrincipal() {
 
     return (
         <>
-            <Header />
             <Menu />
             <main className={styles.main}>
                 {/* Texto de boas-vindas */}
@@ -93,7 +90,6 @@ function PaginaPrincipal() {
                     </div>
                 </section>
             </main>
-            <Footer />
         </>
     );
 }

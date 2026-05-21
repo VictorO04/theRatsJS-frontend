@@ -61,7 +61,7 @@ function Header() {
 
                 <button onClick={toggleLanguage} className={styles.languageButton}>
                     <LiaLanguageSolid size={20} />
-                    {lang}
+                    {lang === "pt-br" ? "PT" : "EN"}
                 </button>
             </div>
         </header>
