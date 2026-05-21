@@ -7,10 +7,13 @@ import VideoAula from './pages/VideoAula/VideoAula';
 import Dicas from './pages/Dicas/Dicas';
 import Curiosidades from './pages/Curiosidades/Curiosidades';
 import Acervo from './pages/Acervo/Acervo';
+import Header from './components/Header/Header';
+import Footer from './components/Footer/Footer';
 
 function App() {
     return (
         <>
+            <Header />
             <Routes>
                 <Route path="/" element={<PaginaPrincipal />} />
                 <Route path="/sobre-nos" element={<Participantes />} />
@@ -21,6 +24,7 @@ function App() {
                 <Route path="/curiosidades" element={<Curiosidades />} />
                 <Route path="/acervo" element={<Acervo />} />
             </Routes>
+            <Footer />
         </>
     );
 }

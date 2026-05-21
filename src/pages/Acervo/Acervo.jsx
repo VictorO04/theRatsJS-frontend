@@ -1,9 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import styles from './Acervo.module.css';
-import Header from '../../components/Header/Header';
 import Menu from '../../components/Menu/Menu';
-import Footer from '../../components/Footer/Footer';
 import { LanguageContext } from '../../contexts/LanguageContext';
 
 const API_URL = '/api/biblioteca';
@@ -162,7 +160,6 @@ export default function Acervo() {
 
     return (
         <>
-            <Header />
             <Menu />
 
             <div className={styles.pagina}>

@@ -5,8 +5,7 @@ html {
 }
 
 main {
-  margin: 0;
-  padding: 0;
+  margin-left: 230px;
   min-height: 100vh;
   background: var(--bg);
   color: var(--text);
@@ -14,8 +13,9 @@ main {
 }
 
 .hero {
+  margin-top: 3rem;
   position: relative;
-  padding: 7rem 2rem 64px;
+  padding: 64px 2rem 56px;
   border-bottom: 1px solid var(--border-soft);
   overflow: hidden;
   width: 100%;
@@ -66,10 +66,11 @@ main {
 
 .titulo {
   font-family: 'DM Serif Display', serif;
-  font-size: clamp(2rem, 5vw, 3.25rem);
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 400;
   color: var(--text);
-  margin: 0 0 12px;
+  margin-bottom: 12px;
+  line-height: 1.15;
 }
 
 
@@ -81,8 +82,8 @@ main {
 .subtitulo {
   font-size: 1rem;
   color: var(--muted);
-  margin-bottom: 32px;
-  max-width: 520px;
+  margin: 0;
+  max-width: 480px;
   line-height: 1.6;
 }
 
@@ -141,8 +142,9 @@ main {
 
 .tituloSecao {
   font-family: 'DM Serif Display', serif;
-  font-size: 1.75rem;
-  margin-bottom: 16px;
+  font-size: 1.5rem;
+  margin-bottom: 24px;
+  color: var(--text);
   font-weight: 400;
 }
 
@@ -164,8 +166,11 @@ main {
 .card {
   background: rgba(91, 107, 175, 0.06);
   border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 16px 18px;
+  border-radius: 12px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 
@@ -187,14 +192,14 @@ main {
 
 
 .cardTexto {
-  font-size: 0.8125rem;
+  font-size: 0.875rem;
   color: var(--muted);
-  line-height: 1.55;
+  line-height: 1.6;
 }
 
 
 .secaoParticipantes {
-  padding: 56px 2rem 72px;
+  padding: 56px 2rem;
   max-width: 960px;
   margin: 0 auto;
 }
@@ -219,7 +224,7 @@ main {
 .grade {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-  gap: 16px;
+  gap: 20px;
 }
 
 
@@ -283,26 +288,61 @@ main {
 @media (max-width: 768px) {
   .pagina {
     padding-bottom: 80px;
+    margin-left: 0;
+    width: 100%;
+    overflow-x: hidden;
+  }
+
+  main {
+    margin-left: 0;
+    width: 100%;
+    overflow-x: hidden;
   }
 
   .hero {
     padding: 56px 1.25rem 48px;
   }
 
+  .heroConteudo {
+    width: 100%;
+  }
+
+  .titulo {
+    font-size: 2.3rem;
+    line-height: 1.15;
+  }
+
   .subtitulo {
     font-size: 0.95rem;
+    max-width: 100%;
   }
 
   .stats {
     gap: 20px;
+    width: 100%;
   }
 
   .sobre {
     padding: 48px 1.25rem;
   }
 
+  .sobreGrid {
+    grid-template-columns: 1fr;
+    gap: 32px;
+  }
+
   .secaoParticipantes {
     padding: 48px 1.25rem 64px;
+  }
+
+  .cabecalho {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .grade {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
   }
 }
 
@@ -311,22 +351,39 @@ main {
     padding: 48px 1rem 40px;
   }
 
+  .heroConteudo {
+    width: 100%;
+  }
+
   .titulo {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
+    line-height: 1.2;
+    word-break: break-word;
+  }
+
+  .subtitulo {
+    font-size: 0.92rem;
+    line-height: 1.6;
   }
 
   .pilula {
     font-size: 0.65rem;
     padding: 3px 10px;
+    flex-wrap: wrap;
   }
 
   .stats {
     flex-direction: column;
-    gap: 12px;
+    align-items: flex-start;
+    gap: 14px;
   }
 
   .statNumero {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
+  }
+
+  .sobre {
+    padding: 40px 1rem;
   }
 
   .sobreGrid {
@@ -334,25 +391,32 @@ main {
   }
 
   .tituloSecao {
-    font-size: 1.4rem;
+    font-size: 1.35rem;
+    line-height: 1.2;
+  }
+
+  .texto {
+    font-size: 0.92rem;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .cardTexto {
+    font-size: 0.82rem;
+  }
+
+  .secaoParticipantes {
+    padding: 40px 1rem 56px;
+  }
+
+  .cabecalho {
+    margin-bottom: 20px;
   }
 
   .grade {
     grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 1024px) {
-  .pagina {
-    margin-left: 0;
-    padding-bottom: 80px;
-  }
-
-  .sobreGrid {
-    gap: 40px;
-  }
-
-  .grade {
-    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 14px;
   }
 }

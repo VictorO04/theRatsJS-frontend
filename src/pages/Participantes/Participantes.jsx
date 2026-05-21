@@ -1,8 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import ParticipanteCard from "../../components/Participantecard/ParticipanteCard";
 import styles from "./Participantes.module.css";
-import Header from '../../components/Header/Header';
-import Footer from '../../components/Footer/Footer';
 import Menu from "../../components/Menu/Menu";
 import { LanguageContext } from "../../contexts/LanguageContext";
 
@@ -102,7 +100,6 @@ export default function Participantes() {
 
   return (
     <>
-      <Header />
       <Menu />
 
       <main>
@@ -193,7 +190,6 @@ export default function Participantes() {
 
       </div>
       </main>
-      <Footer />
     </>
   );
 }

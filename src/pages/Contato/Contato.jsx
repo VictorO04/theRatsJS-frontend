@@ -1,6 +1,4 @@
 import styles from "./Contato.module.css";
-import Header from "../../components/Header/Header";
-import Footer from "../../components/Footer/Footer";
 import Menu from '../../components/Menu/Menu';
 import { LanguageContext } from '../../contexts/LanguageContext';
 import { useContext } from 'react';
@@ -72,7 +70,6 @@ export default function Contato() {
 
   return (
       <>
-          <Header />
           <Menu />
 
           <main>
@@ -227,7 +224,6 @@ export default function Contato() {
                   </section>
               </div>
           </main>
-          <Footer />
       </>
   );
 }
