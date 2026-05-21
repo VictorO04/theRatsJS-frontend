@@ -36,9 +36,13 @@ main {
 .faleConosco {
   display: inline-flex;
   align-items: center;
+  gap: 6px;
   font-size: 0.75rem;
-  padding: 4.5px 12px;
-  border-radius: 100px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 12px;
+  border-radius: 99px;
   background: rgba(91, 107, 175, 0.12);
   border: 1px solid rgba(91, 107, 175, 0.35);
   color: var(--primary);
@@ -183,6 +187,13 @@ main {
   display: flex;
   flex-direction: column;
   gap: 14px;
+}
+
+.ponto {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
 }
 
 .cardInfoTitulo {

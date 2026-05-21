@@ -4,7 +4,8 @@ import Menu from "../../components/Menu/Menu";
 import { LanguageContext } from "../../contexts/LanguageContext";
 
 const API_URL = "/api/dicas";
-const API_KEY = "Fq0CotClRneRPJAeCakJsrSwGyVCJU58tQrPWYgLCK3ei9HT-Ygajl2KXCLiZTPO";
+const API_KEY =
+  "Fq0CotClRneRPJAeCakJsrSwGyVCJU58tQrPWYgLCK3ei9HT-Ygajl2KXCLiZTPO";
 
 export default function Dicas() {
   const { lang } = useContext(LanguageContext);
@@ -34,10 +35,23 @@ export default function Dicas() {
   };
 
   useEffect(() => {
-    buscarDicas();
+    const carregar = async () => {
+      await buscarDicas();
+    };
+
+    carregar();
   }, []);
 
-  if (carregando) return <div className={styles.spinner} />;
+  if (carregando) {
+    return (
+      <>
+        <Menu />
+        <div className={styles.loadingContainer}>
+          <div className={styles.spinner} />
+        </div>
+      </>
+    );
+  }
   if (erro) return <p className={styles.erro}>{erro}</p>;
 
   const dica = dicas[atual];
@@ -50,13 +64,21 @@ export default function Dicas() {
           <div className={styles.heroFundo} />
           <div className={styles.heroConteudo}>
             <div className={styles.dicasEstudo}>
-              <span/>
+              <span className={styles.ponto} />
               {lang === "en" ? "Study tips" : "Dicas de estudo"}
             </div>
             <h1 className={styles.titulo}>
-              {lang === "en"
-                ? <>Tips for the <span className={styles.destaque}>entrance exam</span></>
-                : <>Dicas para o <span className={styles.destaque}>vestibular</span></>}
+              {lang === "en" ? (
+                <>
+                  Tips for the{" "}
+                  <span className={styles.destaque}>entrance exam</span>
+                </>
+              ) : (
+                <>
+                  Dicas para o{" "}
+                  <span className={styles.destaque}>vestibular</span>
+                </>
+              )}
             </h1>
             <p className={styles.subtitulo}>
               {lang === "en"
@@ -67,11 +89,15 @@ export default function Dicas() {
         </section>
 
         <div className={styles.conteudo}>
-
           <div className={styles.progressoTopo}>
-            <span className={styles.progressoTexto}>{atual + 1} / {dicas.length}</span>
+            <span className={styles.progressoTexto}>
+              {atual + 1} / {dicas.length}
+            </span>
             <div className={styles.barraBg}>
-              <div className={styles.barraFill} style={{ width: `${((atual + 1) / dicas.length) * 100}%` }} />
+              <div
+                className={styles.barraFill}
+                style={{ width: `${((atual + 1) / dicas.length) * 100}%` }}
+              />
             </div>
           </div>
 
@@ -89,14 +115,21 @@ export default function Dicas() {
           </div>
 
           <div className={styles.navegacao}>
-            <button className={styles.botaoNavegar} onClick={() => setAtual(atual - 1)} disabled={atual === 0}>
+            <button
+              className={styles.botaoNavegar}
+              onClick={() => setAtual(atual - 1)}
+              disabled={atual === 0}
+            >
               ← {lang === "en" ? "Previous" : "Anterior"}
             </button>
-            <button className={styles.botaoNavAvancar} onClick={() => setAtual(atual + 1)} disabled={atual === dicas.length - 1}>
+            <button
+              className={styles.botaoNavAvancar}
+              onClick={() => setAtual(atual + 1)}
+              disabled={atual === dicas.length - 1}
+            >
               {lang === "en" ? "Next" : "Próxima"} →
             </button>
           </div>
-
         </div>
       </div>
     </>

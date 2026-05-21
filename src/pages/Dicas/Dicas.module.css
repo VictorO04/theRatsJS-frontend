@@ -12,7 +12,7 @@
   margin-top: 3rem;
   position: relative;
   padding: 64px 2rem 56px;
-  border-bottom: 1px solid var(--border);
+  border-bottom: 1px solid var(--border-soft);
   overflow: hidden;
 }
 
@@ -41,9 +41,9 @@
   text-transform: uppercase;
   padding: 4px 12px;
   border-radius: 99px;
-  background: var(--primary-soft);
-  border: 1px solid var(--primary-border);
-  color: var(--primary-light);
+  background: rgba(91, 107, 175, 0.12);
+  border: 1px solid rgba(91, 107, 175, 0.35);
+  color: var(--primary);
   margin-bottom: 20px;
 }
 
@@ -70,7 +70,7 @@
 }
 
 .conteudo {
-  max-width: 640px;
+  max-width: 960px;
   margin: 0 auto;
   padding: 56px 2rem 72px;
   display: flex;
@@ -127,7 +127,7 @@
 
 .flashConteudo {
   flex: 1;
-  padding: 36px 40px;
+  padding: 32px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -144,7 +144,7 @@
 
 .flashTexto {
   font-family: 'DM Sans', system-ui, sans-serif;
-  font-size: 1rem;
+  font-size: 0.95rem;
   color: var(--text);
   line-height: 1.45;
   margin: 0;
@@ -209,6 +209,16 @@
   cursor: default;
 }
 
+.loadingContainer {
+  margin-left: 230px;
+  min-height: 100vh;
+  background: var(--bg);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .spinner {
     width: 30px;
     height: 30px;
@@ -216,10 +226,13 @@
     border-top-color: var(--primary);
     border-radius: 50%;
     animation: girar 0.7s linear infinite;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+}
+
+.ponto {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--primary);
 }
 
 @keyframes girar {
@@ -233,4 +246,92 @@
   text-align: center;
   padding: 6rem 0;
   font-size: 0.875rem;
+}
+
+@media (max-width: 900px) {
+  .pagina {
+    margin-left: 0;
+    width: 100%;
+    overflow-x: hidden;
+    padding-bottom: 80px;
+  }
+
+  .hero {
+    padding: 56px 1.25rem 48px;
+  }
+
+  .heroConteudo {
+    width: 100%
+  }
+
+  .titulo {
+    font-size: 2.3rem;
+    line-height: 1.15;
+  }
+
+  .subtitulo {
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .conteudo {
+    padding: 48px 1.25rem 64px;
+  }
+
+  .flashcard {
+    padding: 28px;
+  }
+
+  .spinner {
+    left: 50%;
+  }
+
+  .loadingContainer {
+    margin-left: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero {
+    padding: 48px 1rem 40px;
+  }
+
+  .titulo {
+    font-size: 1.9rem;
+    line-height: 1.2;
+    word-break: break-word;
+  }
+
+  .subtitulo {
+    font-size: 0.92rem;
+    line-height: 3px 10px;
+  }
+
+  .conteudo {
+    padding: 40px 1rem 56px;
+    gap: 20px;
+  }
+
+  .flashcard {
+    min-height: auto;
+  }
+
+  .flashConteudo {
+    padding: 22px 20px;
+    gap: 16px;
+  }
+
+  .flashTexto {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .navegacao {
+    flex-direction:  column;
+  }
+
+  .botaoNavegar, .botaoNavAvancar {
+    width: 100%;
+    justify-content: center;
+  }
 }
