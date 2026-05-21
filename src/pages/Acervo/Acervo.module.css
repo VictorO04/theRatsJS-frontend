@@ -99,11 +99,11 @@
     background: rgba(91, 107, 175, 0.06);
     border: 1px solid var(--border);
     border-radius: 14px;
-    padding: 24px;
+    padding: 16px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    min-height: 180px;
+    gap: 8px;
+    min-height: 90px;
     transition:
         transform 0.2s ease,
         border-color 0.2s ease,
@@ -112,7 +112,7 @@
 
 .livro img {
     width: 100%;
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 4 / 6;
     object-fit: contain;
     border: none;
     border-radius: 8px;
@@ -120,7 +120,7 @@
 }
 
 .livro h2 {
-    font-size: 1.125rem;
+    font-size: 1.6rem;
     margin: 8px 0 0;
     color: var(--text);
     font-weight: 600;
@@ -136,7 +136,7 @@
 
 .botao {
     margin-top: 12px;
-    padding: 8px 12px;
+    padding: 10px 14px;
     background: var(--primary);
     color: #fff;
     border: none;
