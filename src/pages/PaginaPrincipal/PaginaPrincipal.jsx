@@ -1,10 +1,60 @@
-import { useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import styles from "./PaginaPrincipal.module.css";
 import Menu from "../../components/Menu/Menu";
 import { LanguageContext } from "../../contexts/LanguageContext";
 
-export default function Home() {
+const API_URL = "/api/livros";
+const API_KEY = "Fq0CotClRneRPJAeCakJsrSwGyVCJU58tQrPWYgLCK3ei9HT-Ygajl2KXCLiZTPO";
+
+export default function PaginaPrincipal() {
   const { lang } = useContext(LanguageContext);
+  const [livro, setLivro] = useState(null);
+  const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState(null);
+
+  useEffect(() => {
+    const buscar = async () => {
+      setCarregando(true);
+      setErro(null);
+      try {
+        const resposta = await fetch(API_URL, {
+          headers: { "x-api-key": API_KEY },
+        });
+        if (!resposta.ok) throw new Error(`Erro ${resposta.status}`);
+        const dados = await resposta.json();
+        const osRatos = dados.find((l) => l.id === 1);
+        setLivro(osRatos ?? dados[0]);
+      } catch (e) {
+        setErro(e.message);
+      } finally {
+        setCarregando(false);
+      }
+    };
+    buscar();
+  }, []);
+
+  if (carregando) {
+    return (
+      <div className={styles.pagina}>
+        <Menu />
+        <div className={styles.loadingContainer}>
+          <div className={styles.spinner} />
+        </div>
+      </div>
+    );
+  }
+
+  if (erro || !livro) {
+    return (
+      <div className={styles.pagina}>
+        <Menu />
+        <p className={styles.erro}>{erro ?? "Livro não encontrado."}</p>
+      </div>
+    );
+  }
+
+  const genero = lang === "en" ? livro.genero_en : livro.genero;
+  const resumo = lang === "en" ? livro.resumo_en : livro.resumo;
 
   return (
     <div className={styles.pagina}>
@@ -12,7 +62,6 @@ export default function Home() {
 
       <section className={styles.hero}>
         <div className={styles.heroFundo} />
-
         <div className={styles.heroConteudo}>
           <div className={styles.heroTexto}>
             <div className={styles.badge}>
@@ -21,30 +70,26 @@ export default function Home() {
             </div>
 
             <h1 className={styles.titulo}>
-              Os Ratos —{" "}
-              <span className={styles.destaque}>Dyonélio Machado</span>
+              {livro.titulo} —{" "}
+              <span className={styles.destaque}>{livro.autor}</span>
             </h1>
 
-            <p className={styles.subtitulo}>
-              {lang === "en"
-                ? "The novel follows a single day in the life of Naziazeno Barbosa, a public servant living in Porto Alegre who is desperately trying to find 53 mil-réis to pay the milkman. The narrative plunges into the protagonist's existential anguish and physical exhaustion as he wanders the city in search of an impossible loan."
-                : "O livro acompanha um único dia na vida de Naziazeno Barbosa, um funcionário público que vive em Porto Alegre e está desesperado para conseguir 53 mil-réis para pagar o leiteiro. A narrativa mergulha na angústia existencial e no cansaço físico do protagonista enquanto ele percorre a cidade em busca de um empréstimo impossível."}
-            </p>
+            <p className={styles.subtitulo}>{resumo}</p>
 
             <div className={styles.metaRow}>
               <div className={styles.metaItem}>
                 <span className={styles.metaLabel}>{lang === "en" ? "Author" : "Autor"}</span>
-                <span className={styles.metaValor}>Dyonélio Machado</span>
+                <span className={styles.metaValor}>{livro.autor}</span>
               </div>
               <div className={styles.metaDivider} />
               <div className={styles.metaItem}>
                 <span className={styles.metaLabel}>{lang === "en" ? "Year" : "Ano"}</span>
-                <span className={styles.metaValor}>1935</span>
+                <span className={styles.metaValor}>{livro.anoPublicacao}</span>
               </div>
               <div className={styles.metaDivider} />
               <div className={styles.metaItem}>
                 <span className={styles.metaLabel}>{lang === "en" ? "Genre" : "Gênero"}</span>
-                <span className={styles.metaValor}>{lang === "en" ? "Modernist novel" : "Romance modernista"}</span>
+                <span className={styles.metaValor}>{genero}</span>
               </div>
             </div>
           </div>
@@ -52,8 +97,8 @@ export default function Home() {
           <div className={styles.capaWrapper}>
             <div className={styles.capaGlow} />
             <img
-              
-              alt="Capa do livro Os Ratos"
+              src={livro.capa}
+              alt={`Capa do livro ${livro.titulo}`}
               className={styles.capa}
             />
           </div>
