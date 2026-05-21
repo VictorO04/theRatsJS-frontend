@@ -1,97 +1,64 @@
+import { useContext } from "react";
 import styles from "./PaginaPrincipal.module.css";
-import Menu from '../../components/Menu/Menu';
+import Menu from "../../components/Menu/Menu";
 import { LanguageContext } from "../../contexts/LanguageContext";
 
-import { useContext, useEffect, useState } from "react";
+export default function Home() {
+  const { lang } = useContext(LanguageContext);
 
-const texts = {
-    "pt-br": {
-        h1: "Seja bem-vindo ao The RatsJS, o destino definitivo para amantes de literatura.",
-        h2: "Escolha sua próxima leitura",
-        destaque: "DESTAQUE",
-        conhecerLivro: "Conhecer o livro",
-        verDetalhes: "Ver detalhes",
-        livrosDisponiveis: "+ 1.000 Livros disponíveis"
-    },
-    "en": {
-        h1: "Welcome to The RatsJS, the ultimate destination for literature lovers.",
-        h2: "Choose your next reading",
-        destaque: "FEATURED",
-        conhecerLivro: "Check the book",
-        verDetalhes: "See details",
-        livrosDisponiveis: "+ 1,000 books available"
-    }
-};
+  return (
+    <div className={styles.pagina}>
+      <Menu />
 
-function PaginaPrincipal() {
-    const { lang } = useContext(LanguageContext);
-    const [destaque, setDestaque] = useState(null);
-    const [livros, setLivros] = useState([]);
+      <section className={styles.hero}>
+        <div className={styles.heroFundo} />
 
-    useEffect(() => {
-        // Puxando o livro de destaque do banco
-        const fetchLivroDestaque = async () => {
-            const res = await fetch('/api/livros/destaque'); // endpoint do seu backend
-            const data = await res.json();
-            setDestaque(data);
-        };
+        <div className={styles.heroConteudo}>
+          <div className={styles.heroTexto}>
+            <div className={styles.badge}>
+              <span className={styles.ponto} />
+              {lang === "en" ? "Featured work" : "Obra em destaque"}
+            </div>
 
-        // Puxando os outros livros de uma API externa
-        const fetchLivrosAPI = async () => {
-            const res = await fetch('https://api.exemplo.com/livros');
-            const data = await res.json();
-            setLivros(data);
-        };
+            <h1 className={styles.titulo}>
+              Os Ratos —{" "}
+              <span className={styles.destaque}>Dyonélio Machado</span>
+            </h1>
 
-        fetchLivroDestaque();
-        fetchLivrosAPI();
-    }, []);
+            <p className={styles.subtitulo}>
+              {lang === "en"
+                ? "The novel follows a single day in the life of Naziazeno Barbosa, a public servant living in Porto Alegre who is desperately trying to find 53 mil-réis to pay the milkman. The narrative plunges into the protagonist's existential anguish and physical exhaustion as he wanders the city in search of an impossible loan."
+                : "O livro acompanha um único dia na vida de Naziazeno Barbosa, um funcionário público que vive em Porto Alegre e está desesperado para conseguir 53 mil-réis para pagar o leiteiro. A narrativa mergulha na angústia existencial e no cansaço físico do protagonista enquanto ele percorre a cidade em busca de um empréstimo impossível."}
+            </p>
 
-    return (
-        <>
-            <Menu />
-            <main className={styles.main}>
-                {/* Texto de boas-vindas */}
-                <h1 className={styles.textoBemVindo}>{texts[lang].h1}</h1>
+            <div className={styles.metaRow}>
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>{lang === "en" ? "Author" : "Autor"}</span>
+                <span className={styles.metaValor}>Dyonélio Machado</span>
+              </div>
+              <div className={styles.metaDivider} />
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>{lang === "en" ? "Year" : "Ano"}</span>
+                <span className={styles.metaValor}>1935</span>
+              </div>
+              <div className={styles.metaDivider} />
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>{lang === "en" ? "Genre" : "Gênero"}</span>
+                <span className={styles.metaValor}>{lang === "en" ? "Modernist novel" : "Romance modernista"}</span>
+              </div>
+            </div>
+          </div>
 
-                {/* Destaque */}
-                {destaque && (
-                    <section className={styles.destaque}>
-                        <div className={styles.destaqueInfo}>
-                            <span className={styles.destaqueLabel}>{texts[lang].destaque}</span>
-                            <h2 className={styles.tituloDestaque}>{destaque.titulo}</h2>
-                            <p className={styles.sinopseDestaque}>{destaque.sinopse}</p>
-                            <button className={styles.botaoDestaque}>
-                                {texts[lang].conhecerLivro}
-                            </button>
-                        </div>
-                        <div className={styles.destaqueImagem}>
-                            <img src={destaque.imagem} alt={destaque.titulo} />
-                        </div>
-                        <div className={styles.livrosDisponiveis}>
-                            {texts[lang].livrosDisponiveis} 📚
-                        </div>
-                    </section>
-                )}
-
-                {/* Lista de livros */}
-                <section className={styles.listaLivros}>
-                    <h2>{texts[lang].h2}</h2>
-                    <div className={styles.cardsLivros}>
-                        {livros.map(livro => (
-                            <div key={livro.id} className={styles.cardLivro}>
-                                <img src={livro.imagem} alt={livro.titulo} />
-                                <h3>{livro.titulo}</h3>
-                                <button className={styles.botaoVerDetalhes}>
-                                    {texts[lang].verDetalhes}
-                                </button>
-                            </div>
-                        ))}
-                    </div>
-                </section>
-            </main>
-        </>
-    );
+          <div className={styles.capaWrapper}>
+            <div className={styles.capaGlow} />
+            <img
+              
+              alt="Capa do livro Os Ratos"
+              className={styles.capa}
+            />
+          </div>
+        </div>
+      </section>
+    </div>
+  );
 }
-
-export default PaginaPrincipal;
