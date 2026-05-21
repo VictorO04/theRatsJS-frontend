@@ -1,21 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Serif+Display:ital@0;1&display=swap');
+
 .pagina {
     margin-left: 230px;
-    margin-top: 10vh;
     min-height: 100vh;
     background: var(--bg);
     font-family: 'DM Sans', system-ui, sans-serif;
+    color: var(--text);
 }
 
 .hero {
+    margin-top: 5rem;
     position: relative;
     padding: 72px 2rem 64px;
     border-bottom: 1px solid var(--border-soft);
     overflow: hidden;
-    width: 100%;
-}
-
-.hero h1 {
-    color: var(--text);
 }
 
 .heroFundo {
@@ -23,16 +21,8 @@
     inset: 0;
     pointer-events: none;
     background:
-        radial-gradient(
-            ellipse 60% 80% at 90% 50%,
-            rgba(212, 100, 117, var(--gradiente-opacity-1)) 0%,
-            transparent 70%
-        ),
-        radial-gradient(
-            ellipse 40% 60% at 5% 50%,
-            rgba(91, 107, 175, var(--gradiente-opacity-2)) 0%,
-            transparent 70%
-        );
+        radial-gradient(ellipse 60% 80% at 90% 50%, rgba(212, 100, 117, var(--gradiente-opacity-1)) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 5% 50%, rgba(91, 107, 175, var(--gradiente-opacity-2)) 0%, transparent 70%);
 }
 
 .heroConteudo {
@@ -68,7 +58,7 @@
     font-family: 'DM Serif Display', serif;
     font-size: clamp(2rem, 5vw, 3.25rem);
     font-weight: 400;
-    color: #e2e8f0;
+    color: var(--text);
     margin: 0 0 12px;
 }
 
@@ -77,95 +67,80 @@
     font-style: italic;
 }
 
-.canal {
+.subtitulo {
     font-size: 1rem;
     color: var(--muted);
-    margin-bottom: 2px;
+    margin: 0;
     max-width: 640px;
     line-height: 1.7;
 }
 
-.livros {
-    max-width: 2000px;
+.grade {
+    max-width: 1120px;
     margin: 0 auto;
-    padding: 48px 1rem 64px;
+    padding: 48px 2rem 64px;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 24px;
-    cursor: pointer;
 }
 
-.livro {
+.card {
     background: rgba(91, 107, 175, 0.06);
     border: 1px solid var(--border);
     border-radius: 14px;
-    padding: 24px;
+    padding: 20px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
-    min-height: 180px;
-    transition:
-        transform 0.2s ease,
-        border-color 0.2s ease,
-        background 0.2s ease;
+    gap: 10px;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+    cursor: pointer;
 }
 
-.livro img {
+.card:hover {
+    transform: translateY(-3px);
+    border-color: var(--primary-border);
+}
+
+.cardCapa {
     width: 100%;
-    aspect-ratio: 3 / 4;
+    aspect-ratio: 4 / 6;
     object-fit: contain;
-    border: none;
     border-radius: 8px;
     background: #000;
 }
 
-.livro h2 {
-    font-size: 1.125rem;
-    margin: 8px 0 0;
-    color: var(--text);
+.cardTitulo {
+    font-size: 1rem;
     font-weight: 600;
-    text-align: center;
+    color: var(--text);
+    margin: 4px 0 0;
+    line-height: 1.3;
 }
 
-.Autor {
-    font-size: 1rem;
+.cardAutor {
+    font-size: 0.875rem;
     color: var(--muted);
     margin: 0;
-    font-weight: 500;
+    font-style: italic;
 }
 
 .botao {
-    margin-top: 12px;
-    padding: 8px 12px;
+    margin-top: auto;
+    padding: 9px 14px;
     background: var(--primary);
     color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     font-weight: 600;
-    transition:
-        transform 0.12s ease,
-        opacity 0.12s ease;
+    font-size: 0.875rem;
+    font-family: inherit;
+    transition: opacity 0.2s, transform 0.2s;
 }
 
 .botao:hover {
-    transform: translateY(-2px);
-    opacity: 0.95;
-}
-
-@media (max-width: 768px) {
-    .pagina {
-        margin-left: 0;
-    }
-
-    .hero {
-        padding: 56px 1.5rem 48px;
-    }
-
-    .livros {
-        grid-template-columns: 1fr;
-        padding: 32px 1.5rem 48px;
-    }
+    opacity: 0.88;
+    transform: translateY(-1px);
 }
 
 .spinner {
@@ -175,17 +150,12 @@
     border-top-color: var(--primary);
     border-radius: 50%;
     animation: girar 0.7s linear infinite;
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin: 6rem auto;
+    grid-column: 1 / -1;
 }
 
 @keyframes girar {
-    to {
-        transform: translate(-50%, -50%) rotate(360deg);
-        /* mantém o translate junto */
-    }
+    to { transform: rotate(360deg); }
 }
 
 .erro {
@@ -193,4 +163,248 @@
     text-align: center;
     padding: 6rem 0;
     font-size: 0.875rem;
+    grid-column: 1 / -1;
+}
+
+/* pagina que vem dps do get by id do livro da api dos cabraasss */
+.popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    z-index: 1000;
+    padding: 2rem 1rem;
+    overflow-y: auto;
+}
+
+.popupSpinner {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1001;
+}
+
+.detalhes {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    width: 100%;
+    max-width: 1200px;
+    overflow: hidden;
+    animation: surgir 0.2s ease;
+    margin: auto;
+}
+
+@keyframes surgir {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.detalhesFaixa {
+    height: 4px;
+    background: var(--primary);
+}
+
+.detalhesCorpo {
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.detalhesHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+    justify-content: space-between;
+}
+
+.aviso {
+    font-size: 0.875rem;
+    color: var(--muted);
+    text-align: justify;
+    padding: 2rem 0;
+    width: 10rem;
+    border: 1px solid var(--primary);
+    padding: 0.5rem;
+    border-radius: 8px;
+    background: color-mix(in srgb, var(--primary-soft) 50%, transparent);
+}
+
+.detalhesTopo {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.detalhesCapa {
+    width: 90px;
+    aspect-ratio: 3/4;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.detalhesAno {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin: 0 0 4px 0;
+}
+
+.detalhesTitulo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.375rem;
+    font-weight: 400;
+    color: var(--text);
+    margin: 0 0 4px 0;
+}
+
+.detalhesAutorNome {
+    font-size: 0.875rem;
+    color: var(--muted);
+    margin: 0 0 10px 0;
+    font-style: italic;
+}
+
+.detalhesTags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.tag {
+    font-size: 0.6875rem;
+    padding: 2px 9px;
+    border-radius: 99px;
+    border: 1px solid var(--border);
+    color: var(--text);
+}
+
+.tagRose {
+    border-color: var(--primary-soft);
+    color: var(--primary);
+}
+
+.botaoFechar {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--muted);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition: background 0.2s, color 0.2s;
+}
+
+.botaoFechar:hover {
+    background: rgba(91, 107, 175, 0.12);
+    color: var(--text);
+}
+
+.divisor {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 0;
+}
+
+.detalhesSecoes {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.detalhesSecao {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.detalhesDupla {
+    display: grid;
+    flex-direction: column;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.secaoRotulo {
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin: 0;
+}
+
+.secaoTexto {
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin: 0;
+}
+
+.detalhesCard {
+    background: color-mix(in srgb, var(--primary-soft) 50%, transparent);
+    border: 1px solid var(--primary-border);
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.detalhesCardTitulo {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text);
+    margin: 0 0 6px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+}
+
+.detalhesCardTexto {
+    font-size: 0.8125rem;
+    color: var(--muted);
+    line-height: 1.6;
+    margin: 0;
+}
+
+.pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+.pill {
+    font-size: 0.8125rem;
+    padding: 4px 12px;
+    border-radius: 99px;
+    background: var(--primary-soft);
+    border: 1px solid var(--primary-border);
+    color: var(--primary);
+}
+
+@media (max-width: 768px) {
+    .pagina { margin-left: 0; }
+    .hero { padding: 56px 1.5rem 48px; }
+    .grade { padding: 32px 1.5rem 48px; grid-template-columns: 1fr 1fr; }
+    .modalDupla { grid-template-columns: 1fr; }
+    .modalTopo { flex-direction: column; }
+    .modalCapa { width: 100%; aspect-ratio: 16/9; object-fit: cover; }
+}
+
+@media (max-width: 480px) {
+    .grade { grid-template-columns: 1fr; }
 }
