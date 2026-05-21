@@ -1,6 +1,5 @@
 .pagina {
     margin-left: 230px;
-    margin-top: 10vh;
     min-height: 100vh;
     background: var(--bg);
     color: var(--text);
@@ -86,39 +85,6 @@
     margin-top: 16px;
 }
 
-.searchControl {
-    display: flex;
-    gap: 12px;
-    align-items: center;
-}
-
-.searchButton {
-    min-width: 110px;
-    height: 50px;
-    padding: 0 18px;
-    border-radius: 14px;
-    border: none;
-    background: var(--primary);
-    color: #fff;
-    font-weight: 600;
-    cursor: pointer;
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
-}
-
-.searchButton:hover {
-    background: var(--primary-hover);
-    transform: translateY(-1px);
-}
-
-.searchLabel {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 0.95rem;
-    color: var(--text);
-}
-
 .searchInput {
     width: 100%;
     min-height: 50px;
@@ -129,9 +95,7 @@
     color: var(--text);
     font-size: 1rem;
     outline: none;
-    transition:
-        border-color 0.2s ease,
-        box-shadow 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 :global([data-theme='light']) .searchInput {
@@ -160,21 +124,11 @@
     padding: 36px 0;
 }
 
-.cards {
-    width: 100%;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 24px;
-}
-
 .cardsSection {
     max-width: 1120px;
     margin: 0 auto;
     padding: 48px 2rem 64px;
     display: grid;
-    grid-template-columns: 1fr 420px;
     gap: 24px;
 }
 
@@ -186,6 +140,13 @@
     grid-template-columns: 1fr 420px;
 }
 
+.cards {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 24px;
+}
+
 .card {
     background: transparent;
     border: 1px solid var(--border);
@@ -195,11 +156,12 @@
     flex-direction: column;
     gap: 12px;
     min-height: 180px;
-    transition:
-        transform 0.2s ease,
-        border-color 0.2s ease,
-        background 0.2s ease;
     cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-2px);
 }
 
 .cardSelected {
@@ -207,10 +169,38 @@
     border-color: var(--primary-border);
 }
 
+.cardIcone {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.125rem;
+    flex-shrink: 0;
+}
+
+.cardTitulo {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin: 0;
+    color: var(--text);
+}
+
+.cardQuestoes,
+.cardNivel {
+    font-size: 0.875rem;
+    margin: 0;
+    color: var(--muted);
+}
+
+.cardNivel {
+    font-weight: 500;
+}
+
 .detailsPanel {
-    max-width: 1120px;
-    margin: 0 auto 64px;
-    padding: 0 2rem;
+    position: sticky;
+    top: 24px;
 }
 
 .detailsCard {
@@ -260,9 +250,7 @@
     color: #fff;
     font-weight: 700;
     cursor: pointer;
-    transition:
-        background 0.2s ease,
-        transform 0.2s ease;
+    transition: background 0.2s ease, transform 0.2s ease;
 }
 
 .startButton:hover {
@@ -270,65 +258,12 @@
     transform: translateY(-1px);
 }
 
-.detailsBody {
-    display: grid;
-    gap: 16px;
-}
-
-.detailsSubtitle {
-    margin: 0;
-    color: var(--text);
-    font-size: 1rem;
-    font-weight: 600;
-}
-
-.questionList {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    gap: 10px;
-}
-
-.questionItem {
-    padding: 16px;
-    border-radius: 14px;
-    background: var(--primary-soft);
-    color: var(--text);
-    border: 1px solid var(--primary-border);
-}
-
-.detailsEmpty {
-    min-height: 220px;
-    display: grid;
-    gap: 12px;
-    padding: 28px;
-    border-radius: 24px;
-    background: rgba(15, 23, 42, 0.9);
-    border: 1px dashed var(--primary-border);
-}
-
-.detailsEmptyTitle {
-    margin: 0;
-    color: var(--text);
-    font-size: 1.25rem;
-    font-weight: 700;
-}
-
-.detailsEmptyText {
-    margin: 0;
-    color: var(--muted);
-    line-height: 1.6;
-}
 @media (max-width: 980px) {
     .cards {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
-    .cardsSection {
+    .withDetails {
         grid-template-columns: 1fr;
-    }
-    .detailsPanel {
-        padding: 0 0 0 0;
     }
 }
 
@@ -339,48 +274,10 @@
     .hero {
         padding: 56px 1.5rem 48px;
     }
-    .cards {
-        grid-template-columns: 1fr;
-        padding: 32px 1.5rem 48px;
-    }
     .cardsSection {
         padding: 32px 1.5rem 48px;
     }
-}
-
-.cardTitulo {
-    font-size: 1rem;
-    line-height: 1.4;
-    margin: 0;
-    color: var(--text);
-}
-
-.cardQuestoes,
-.cardNivel {
-    font-size: 0.95rem;
-    margin: 0;
-    color: var(--muted);
-}
-
-.cardNivel {
-    font-weight: 500;
-}
-
-@media (max-width: 980px) {
-    .cards {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-}
-
-@media (max-width: 680px) {
-    .pagina {
-        margin-left: 0;
-    }
-    .hero {
-        padding: 56px 1.5rem 48px;
-    }
     .cards {
         grid-template-columns: 1fr;
-        padding: 32px 1.5rem 48px;
     }
 }
