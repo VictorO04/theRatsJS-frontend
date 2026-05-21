@@ -32,11 +32,13 @@ function Header() {
 
     return (
         <header className={styles.header}>
-            <img
-                src={theme === 'dark' ? LOGO_DARK : LOGO_LIGHT}
-                alt="Ícone da marca"
-                className={styles.logo}
-            />
+            <Link to="/">
+                <img
+                    src={theme === 'dark' ? LOGO_DARK : LOGO_LIGHT}
+                    alt="Ícone da marca"
+                    className={styles.logo}
+                />
+            </Link>
 
             <div className={styles.rightSection}>
                 <nav className={styles.nav}>

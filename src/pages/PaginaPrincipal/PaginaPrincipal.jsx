@@ -1,97 +1,109 @@
+import { useState, useEffect, useContext } from "react";
 import styles from "./PaginaPrincipal.module.css";
-import Menu from '../../components/Menu/Menu';
+import Menu from "../../components/Menu/Menu";
 import { LanguageContext } from "../../contexts/LanguageContext";
 
-import { useContext, useEffect, useState } from "react";
+const API_URL = "/api/livros";
+const API_KEY = "Fq0CotClRneRPJAeCakJsrSwGyVCJU58tQrPWYgLCK3ei9HT-Ygajl2KXCLiZTPO";
 
-const texts = {
-    "pt-br": {
-        h1: "Seja bem-vindo ao The RatsJS, o destino definitivo para amantes de literatura.",
-        h2: "Escolha sua próxima leitura",
-        destaque: "DESTAQUE",
-        conhecerLivro: "Conhecer o livro",
-        verDetalhes: "Ver detalhes",
-        livrosDisponiveis: "+ 1.000 Livros disponíveis"
-    },
-    "en": {
-        h1: "Welcome to The RatsJS, the ultimate destination for literature lovers.",
-        h2: "Choose your next reading",
-        destaque: "FEATURED",
-        conhecerLivro: "Check the book",
-        verDetalhes: "See details",
-        livrosDisponiveis: "+ 1,000 books available"
-    }
-};
+export default function PaginaPrincipal() {
+  const { lang } = useContext(LanguageContext);
+  const [livro, setLivro] = useState(null);
+  const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState(null);
 
-function PaginaPrincipal() {
-    const { lang } = useContext(LanguageContext);
-    const [destaque, setDestaque] = useState(null);
-    const [livros, setLivros] = useState([]);
+  useEffect(() => {
+    const buscar = async () => {
+      setCarregando(true);
+      setErro(null);
+      try {
+        const resposta = await fetch(API_URL, {
+          headers: { "x-api-key": API_KEY },
+        });
+        if (!resposta.ok) throw new Error(`Erro ${resposta.status}`);
+        const dados = await resposta.json();
+        const osRatos = dados.find((l) => l.id === 1);
+        setLivro(osRatos ?? dados[0]);
+      } catch (e) {
+        setErro(e.message);
+      } finally {
+        setCarregando(false);
+      }
+    };
+    buscar();
+  }, []);
 
-    useEffect(() => {
-        // Puxando o livro de destaque do banco
-        const fetchLivroDestaque = async () => {
-            const res = await fetch('/api/livros/destaque'); // endpoint do seu backend
-            const data = await res.json();
-            setDestaque(data);
-        };
-
-        // Puxando os outros livros de uma API externa
-        const fetchLivrosAPI = async () => {
-            const res = await fetch('https://api.exemplo.com/livros');
-            const data = await res.json();
-            setLivros(data);
-        };
-
-        fetchLivroDestaque();
-        fetchLivrosAPI();
-    }, []);
-
+  if (carregando) {
     return (
-        <>
-            <Menu />
-            <main className={styles.main}>
-                {/* Texto de boas-vindas */}
-                <h1 className={styles.textoBemVindo}>{texts[lang].h1}</h1>
-
-                {/* Destaque */}
-                {destaque && (
-                    <section className={styles.destaque}>
-                        <div className={styles.destaqueInfo}>
-                            <span className={styles.destaqueLabel}>{texts[lang].destaque}</span>
-                            <h2 className={styles.tituloDestaque}>{destaque.titulo}</h2>
-                            <p className={styles.sinopseDestaque}>{destaque.sinopse}</p>
-                            <button className={styles.botaoDestaque}>
-                                {texts[lang].conhecerLivro}
-                            </button>
-                        </div>
-                        <div className={styles.destaqueImagem}>
-                            <img src={destaque.imagem} alt={destaque.titulo} />
-                        </div>
-                        <div className={styles.livrosDisponiveis}>
-                            {texts[lang].livrosDisponiveis} 📚
-                        </div>
-                    </section>
-                )}
-
-                {/* Lista de livros */}
-                <section className={styles.listaLivros}>
-                    <h2>{texts[lang].h2}</h2>
-                    <div className={styles.cardsLivros}>
-                        {livros.map(livro => (
-                            <div key={livro.id} className={styles.cardLivro}>
-                                <img src={livro.imagem} alt={livro.titulo} />
-                                <h3>{livro.titulo}</h3>
-                                <button className={styles.botaoVerDetalhes}>
-                                    {texts[lang].verDetalhes}
-                                </button>
-                            </div>
-                        ))}
-                    </div>
-                </section>
-            </main>
-        </>
+      <div className={styles.pagina}>
+        <Menu />
+        <div className={styles.loadingContainer}>
+          <div className={styles.spinner} />
+        </div>
+      </div>
     );
-}
+  }
 
-export default PaginaPrincipal;
+  if (erro || !livro) {
+    return (
+      <div className={styles.pagina}>
+        <Menu />
+        <p className={styles.erro}>{erro ?? "Livro não encontrado."}</p>
+      </div>
+    );
+  }
+
+  const genero = lang === "en" ? livro.genero_en : livro.genero;
+  const resumo = lang === "en" ? livro.resumo_en : livro.resumo;
+
+  return (
+    <div className={styles.pagina}>
+      <Menu />
+
+      <section className={styles.hero}>
+        <div className={styles.heroFundo} />
+        <div className={styles.heroConteudo}>
+          <div className={styles.heroTexto}>
+            <div className={styles.badge}>
+              <span className={styles.ponto} />
+              {lang === "en" ? "Featured work" : "Obra em destaque"}
+            </div>
+
+            <h1 className={styles.titulo}>
+              {livro.titulo} —{" "}
+              <span className={styles.destaque}>{livro.autor}</span>
+            </h1>
+
+            <p className={styles.subtitulo}>{resumo}</p>
+
+            <div className={styles.metaRow}>
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>{lang === "en" ? "Author" : "Autor"}</span>
+                <span className={styles.metaValor}>{livro.autor}</span>
+              </div>
+              <div className={styles.metaDivider} />
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>{lang === "en" ? "Year" : "Ano"}</span>
+                <span className={styles.metaValor}>{livro.anoPublicacao}</span>
+              </div>
+              <div className={styles.metaDivider} />
+              <div className={styles.metaItem}>
+                <span className={styles.metaLabel}>{lang === "en" ? "Genre" : "Gênero"}</span>
+                <span className={styles.metaValor}>{genero}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.capaWrapper}>
+            <div className={styles.capaGlow} />
+            <img
+              src={livro.capa}
+              alt={`Capa do livro ${livro.titulo}`}
+              className={styles.capa}
+            />
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
