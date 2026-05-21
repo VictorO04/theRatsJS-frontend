@@ -199,10 +199,33 @@
   .footerGrid {
     grid-template-columns: 1fr 1fr;
     gap: 24px;
+    text-align: center;
   }
 
   .footerMarca {
     grid-column: 1 / -1;
+  }
+
+  .logoMarca {
+    justify-content: center;
+  }
+
+  .descricaoMarca {
+    margin: 0 auto 22px;
+  }
+
+  .fileiraSocial {
+    justify-content: center;
+  }
+
+  .barraInferior {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+
+  .fileiraTags {
+    justify-content: center;
   }
 }
 
