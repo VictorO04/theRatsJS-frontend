@@ -1,8 +1,6 @@
 import { useState, useEffect, useContext } from 'react';
 import styles from './VideoAula.module.css';
-import Header from '../../components/Header/Header';
 import Menu from '../../components/Menu/Menu';
-import Footer from '../../components/Footer/Footer';
 import { LanguageContext } from '../../contexts/LanguageContext';
 
 const API_URL = "/api/videoAulas";
@@ -70,7 +68,6 @@ export default function Videos() {
 
     return (
         <>
-            <Header />
             <Menu />
 
             <div className={styles.pagina}>
@@ -122,8 +119,6 @@ export default function Videos() {
                     ))}
                 </section>
             </div>
-
-            <Footer />
         </>
     );
 }

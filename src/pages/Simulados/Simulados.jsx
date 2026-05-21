@@ -1,8 +1,6 @@
 import { useContext, useState, useEffect } from 'react';
 import styles from './Simulados.module.css';
-import Header from '../../components/Header/Header';
 import Menu from '../../components/Menu/Menu';
-import Footer from '../../components/Footer/Footer';
 import { LanguageContext } from '../../contexts/LanguageContext';
 
 const texts = {
@@ -86,7 +84,6 @@ export default function Simulados() {
 
     return (
         <>
-            <Header />
             <Menu />
 
             <div className={styles.pagina}>
@@ -157,7 +154,6 @@ export default function Simulados() {
                     )}
                 </section>
             </div>
-            <Footer />
         </>
     );
 }

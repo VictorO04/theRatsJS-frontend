@@ -1,8 +1,6 @@
 import { useContext } from 'react';
 import styles from './Acervo.module.css';
-import Header from '../../components/Header/Header';
 import Menu from '../../components/Menu/Menu';
-import Footer from '../../components/Footer/Footer';
 import { LanguageContext } from '../../contexts/LanguageContext';
 
 const text = {
@@ -36,7 +34,6 @@ export default function Acervo() {
 
     return (
         <>
-            <Header />
             <Menu />
 
             <div className={styles.pagina}>
@@ -82,7 +79,6 @@ export default function Acervo() {
                     </div>
                 </section>
             </div>
-            <Footer />
         </>
     );
 }

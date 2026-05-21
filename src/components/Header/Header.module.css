@@ -6,12 +6,12 @@ header {
   padding: 0 2rem;
   border-bottom: 1px solid var(--primary);
   background-color: transparent;
-  min-height: 4rem;
+  min-height: 4.5rem;
   position: fixed;
   top: 0;
   left: 0;
   height: 5vh;
-  width: 100%;
+  right: 0;
   z-index: 1000;
   backdrop-filter: blur(8px);
 }
@@ -26,6 +26,7 @@ header {
 
 .rightSection {
   gap: clamp(1rem, 3vw, 2.5rem);
+  min-width: 0;
 }
 
 .languageButton {
@@ -35,21 +36,27 @@ header {
 }
 
 .logo {
-  width: clamp(8rem, 20vw, 13rem);
+  width: clamp(7rem, 14vw, 12rem);
+  object-fit: contain;
 }
 
 .nav {
   display: flex;
-  gap: clamp(1rem, 3vw, 2.5rem);
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.link {
+  min-width: 0;
 }
 
 .link,
 .languageButton {
   font-weight: 500;
-  padding: 0.5rem 0.7rem;
+  padding: 0.55rem 0.9rem;
   border-radius: 10px;
   text-decoration: none;
-  font-size: 0.875rem;
+  font-size: 0.9rem;
   color: var(--muted);
   transition: color 0.2s;
 }
@@ -61,43 +68,115 @@ header {
 
 .separator {
   width: 1px;
-  height: 1.5rem;
+  height: 1.2rem;
   background-color: var(--primary);
+}
+
+.botaoTema {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border: none;
+  background-color: transparent;
+  border-radius: 10px;
+  color: var(--muted);
+  cursor: pointer;
+  transition: 0.2s
+}
+
+.botaoTema:hover {
+  background: rgba(91, 107, 175, 0.12);
+  color: var(--primary);
 }
 
 .languageButton {
   gap: 0.5rem;
 }
 
-@media (max-width: 768px) {
-  header {
-    padding: 0 1rem;
+@media (max-width: 900px) {
+  .header {
+    padding: 0.125rem;
+  }
+
+  .nav {
+    gap: 1rem;
+  }
+
+  .link {
+    font-size: 0.82rem;
+    padding: 0.45rem 0.6rem;
   }
 
   .rightSection {
-    gap: 1rem;
+    gap: 0.8rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .header {
+    padding: 0 1rem;
+    min-height: 4rem;
+  }
+
+  .logo {
+    width: 6.5rem;
   }
 
   .nav {
     display: none;
   }
 
+  .botaoTema, .languageButton {
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    justify-content: center;
+  }
+
+  .nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .link {
+    white-space: nowrap;
+    font-size: 0.78rem;
+    padding: 0.4rem 0.55rem;
+  }
+
   .separator {
     display: none;
   }
+
+  .languageButton span {
+    display: none;
+  }
+
+  .languageButton {
+    padding: 0.45rem;
+  }
 }
 
-.botaoTema{
-    display: flex;
-    align-items: center;
-    border-radius: 10px;
-    background-color: transparent;
-    border: none;
-    color: var(--muted);
-    cursor: pointer;
-    transition: 0.2s;
-}
+@media (max-width: 420px) {
+  .header {
+    gap: 0.5rem;
+  }
 
-.botaoTema:hover {
-    color: var(--primary);
+  .logo {
+    width: 5.5rem;
+  }
+
+  .rightSection {
+    gap: 0.4rem;
+  }
+
+  .link {
+    font-size: 0.72rem;
+    padding: 0.35rem 0.45rem;
+  }
+
+  .botaoTema, .languageButton {
+    padding: 0.4rem;
+  }
 }

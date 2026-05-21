@@ -28,7 +28,9 @@ main {
 .heroConteudo {
   max-width: 960px;
   margin: 0 auto;
-  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .faleConosco {
@@ -46,7 +48,7 @@ main {
 
 .titulo {
   font-family: 'DM Serif Display', serif;
-  font-size: 3rem;
+  font-size: clamp(2rem, 5vw, 3rem);
   font-weight: 400;
   color: var(--text);
   margin-bottom: 12px;
@@ -69,23 +71,13 @@ main {
 /* aqui começa a parte do mid, formulario, bla bla bla bla */
 
 .mid {
-  max-width: 960px;
+  max-width: 1100px;
   margin: 0 auto;
   padding: 56px 2rem 72px;
   display: grid;
   grid-template-columns: 1.4fr 1fr;
-  gap: 48px;
-  align-items: start;
-}
-
-
-/* responsividade nas alturas rsrsrs */
-
-@media (max-width: 720px) {
-  .mid {
-    grid-template-columns: 1fr;
-    gap: 40px;
-  }
+  gap: 56px;
+  align-items: center;
 }
 
 /* FORMULÁRIO */
@@ -262,6 +254,7 @@ main {
 .secaoMapa {
   border-top: 1px solid rgba(91, 107, 175, 0.2);
   padding: 56px 2rem;
+  margin-bottom: 3rem;
 }
 
 .mapaInterno {
@@ -303,4 +296,99 @@ main {
 .whatsappFlutuante:hover {
   background: #b8505f;
   transform: scale(1.08);
+}
+
+@media (max-width: 900px) {
+  main {
+    margin-left: 0;
+  }
+
+  .hero {
+    padding: 56px 1.5rem 48px;
+  }
+
+  .mid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+    padding: 48px 1.5rem;
+  }
+
+  .titulo {
+    font-size: 2.5rem;
+  }
+
+  .secaoMapa {
+    padding: 48px 1.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 48px 1rem 40px;
+  }
+
+  .titulo {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .subtitulo {
+    font-size: 0.95rem;
+  }
+
+  .mid {
+    padding: 40px 1rem;
+    gap: 40px;
+  }
+
+  .tituloSecao {
+    font-size: 1.3rem;
+  }
+
+  .cardInfo {
+    padding: 16px;
+  }
+
+  .botaoEnviar {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .redesSociais {
+    flex-direction: column;
+  }
+
+  .botaoSocial {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .mapaFrame {
+    height: 220px;
+  }
+
+  .whatsappFlutuante {
+    width: 48px;
+    height: 48px;
+    right: 16px;
+    bottom: 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .titulo {
+    font-size: 1.7rem;
+  }
+
+  .input, .select, .areaTexto {
+    padding: 10px;
+  }
+
+  .botaoEnviar {
+    font-size: 0.85rem;
+  }
+
+  .mapaFrame {
+    height: 180px;
+  }
 }
