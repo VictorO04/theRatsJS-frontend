@@ -14,21 +14,18 @@ export default function PaginaPrincipal() {
   const [erro, setErro] = useState(null);
   const [personagens, setPersonagens] = useState([]);
   const [carregandoPersonagens, setCarregandoPersonagens] = useState(true);
-  const [erroPersonagens, setErroPersonagens] = useState(null);
   const [personagemSelecionado, setPersonagemSelecionado] = useState(null);
+  const [secaoAtiva, setSecaoAtiva] = useState("enredo");
 
   useEffect(() => {
     const buscarLivro = async () => {
       setCarregando(true);
       setErro(null);
       try {
-        const resposta = await fetch(API_URL, {
-          headers: { "x-api-key": API_KEY },
-        });
+        const resposta = await fetch(API_URL, { headers: { "x-api-key": API_KEY } });
         if (!resposta.ok) throw new Error(`Erro ${resposta.status}`);
         const dados = await resposta.json();
-        const osRatos = dados.find((l) => l.id === 1);
-        setLivro(osRatos ?? dados[0]);
+        setLivro(dados.find((l) => l.id === 1) ?? dados[0]);
       } catch (e) {
         setErro(e.message);
       } finally {
@@ -38,16 +35,13 @@ export default function PaginaPrincipal() {
 
     const buscarPersonagens = async () => {
       setCarregandoPersonagens(true);
-      setErroPersonagens(null);
       try {
-        const resposta = await fetch("/api/personagens", {
-          headers: { "x-api-key": API_KEY },
-        });
+        const resposta = await fetch("/api/personagens", { headers: { "x-api-key": API_KEY } });
         if (!resposta.ok) throw new Error(`Erro ${resposta.status}`);
         const dados = await resposta.json();
         setPersonagens(Array.isArray(dados) ? dados : dados.data ?? []);
       } catch (e) {
-        setErroPersonagens(e.message);
+        console.error(e);
       } finally {
         setCarregandoPersonagens(false);
       }
@@ -61,9 +55,7 @@ export default function PaginaPrincipal() {
     return (
       <div className={styles.pagina}>
         <Menu />
-        <div className={styles.loadingContainer}>
-          <div className={styles.spinner} />
-        </div>
+        <div className={styles.loadingContainer}><div className={styles.spinner} /></div>
       </div>
     );
   }
@@ -77,18 +69,28 @@ export default function PaginaPrincipal() {
     );
   }
 
-  const titulo = lang === "en" ? "The Rats" : "Os Ratos";
-  const genero = lang === "en" ? livro.genero_en : livro.genero;
-  const resumo = lang === "en" ? livro.resumo_en : livro.resumo;
-  const autor = lang === "en" ? livro.autor_en : livro.autor;
-  const verossimilhanca = lang === "en" ? livro.verossimilhanca_en : livro.verossimilhanca;
-  const enredo = lang === "en" ? livro.enredo_en : livro.enredo;
-  const conclusao = lang === "en" ? livro.conclusao_en : livro.conclusao;
-  const caracteristicasLiterarias = lang === "en" ? livro.caracteristicasLiterarias_en : livro.caracteristicasLiterarias;
-  const estiloEscrita = lang === "en" ? livro.estiloEscrita_en : livro.estiloEscrita;
-  const contexto = lang === "en" ? livro.contexto_en : livro.contexto;
-  const anoPublicacao = lang === "en" ? livro.anoPublicacao_en : livro.anoPublicacao;
-  const detalhesAutor = lang === "en" ? livro.detalhesAutor_en : livro.detalhesAutor;
+  const pt = lang === "pt-br";
+
+  const secoes = [
+    { id: "enredo",              label: pt ? "Enredo"                  : "Plot"                  },
+    { id: "contexto",            label: pt ? "Contexto"                : "Context"               },
+    { id: "estiloEscrita",       label: pt ? "Estilo de escrita"       : "Writing style"         },
+    { id: "verossimilhanca",     label: pt ? "Verossimilhança"         : "Verisimilitude"        },
+    { id: "caracteristicas",     label: pt ? "Características"         : "Literary traits"       },
+    { id: "autor",               label: pt ? "Sobre o autor"           : "About the author"      },
+    { id: "conclusao",           label: pt ? "Conclusão"               : "Conclusion"            },
+    { id: "personagens",         label: pt ? "Personagens"             : "Characters"            },
+  ];
+
+  const conteudoSecao = {
+    enredo:          pt ? livro.enredo              : livro.enredo_en,
+    contexto:        pt ? livro.contexto            : livro.contexto_en,
+    estiloEscrita:   pt ? livro.estiloEscrita       : livro.estiloEscrita_en,
+    verossimilhanca: pt ? livro.verossimilhanca     : livro.verossimilhanca_en,
+    caracteristicas: pt ? livro.caracteristicasLiterarias : livro.caracteristicasLiterarias_en,
+    autor:           pt ? livro.detalhesAutor       : livro.detalhesAutor_en,
+    conclusao:       pt ? livro.conclusao           : livro.conclusao_en,
+  };
 
   return (
     <div className={styles.pagina}>
@@ -97,163 +99,119 @@ export default function PaginaPrincipal() {
       <section className={styles.hero}>
         <div className={styles.heroFundo} />
         <div className={styles.heroConteudo}>
+
+          {/* TOPO */}
           <div className={styles.heroTop}>
             <div className={styles.heroTexto}>
               <div className={styles.badge}>
                 <span className={styles.ponto} />
-                {lang === "en" ? "Featured work" : "Obra em destaque"}
+                {pt ? "Obra em destaque" : "Featured work"}
               </div>
-
               <h1 className={styles.titulo}>
-                {titulo} —{" "}
-                <span className={styles.destaque}>{autor}</span>
+                {pt ? "Os Ratos" : "The Rats"} —{" "}
+                <span className={styles.destaque}>{livro.autor}</span>
               </h1>
-
-              <p className={styles.subtitulo}>{resumo}</p>
-
+              <p className={styles.subtitulo}>{pt ? livro.resumo : livro.resumo_en}</p>
               <div className={styles.metaRow}>
                 <div className={styles.metaItem}>
-                  <span className={styles.metaLabel}>{lang === "en" ? "Author" : "Autor"}</span>
-                  <span className={styles.metaValor}>{autor}</span>
+                  <span className={styles.metaLabel}>{pt ? "Autor" : "Author"}</span>
+                  <span className={styles.metaValor}>{livro.autor}</span>
                 </div>
                 <div className={styles.metaDivider} />
                 <div className={styles.metaItem}>
-                  <span className={styles.metaLabel}>{lang === "en" ? "Year" : "Ano"}</span>
-                  <span className={styles.metaValor}>{anoPublicacao}</span>
+                  <span className={styles.metaLabel}>{pt ? "Ano" : "Year"}</span>
+                  <span className={styles.metaValor}>{livro.anoPublicacao}</span>
                 </div>
                 <div className={styles.metaDivider} />
                 <div className={styles.metaItem}>
-                  <span className={styles.metaLabel}>{lang === "en" ? "Genre" : "Gênero"}</span>
-                  <span className={styles.metaValor}>{genero}</span>
+                  <span className={styles.metaLabel}>{pt ? "Gênero" : "Genre"}</span>
+                  <span className={styles.metaValor}>{pt ? livro.genero : livro.genero_en}</span>
                 </div>
               </div>
             </div>
 
             <div className={styles.capaWrapper}>
               <div className={styles.capaGlow} />
-              <img
-                src={livro.capa}
-                alt={`Capa do livro ${livro.titulo}`}
-                className={styles.capa}
-              />
+              <img src={livro.capa} alt={livro.titulo} className={styles.capa} />
             </div>
           </div>
 
-          <div className={styles.heroDetails}>
-            <div className={styles.featureCard}>
-              <h2 className={styles.featureTitle}>{lang === "en" ? "Plot" : "Enredo"}</h2>
-              <p>{enredo}</p>
-            </div>
-
-            <div className={styles.smallInfoRow}>
-              <div className={styles.smallInfo}>
-                <span className={styles.smallLabel}>{lang === "en" ? "Writing style" : "Estilo de escrita"}</span>
-                <p>{estiloEscrita}</p>
-              </div>
-              <div className={styles.smallInfo}>
-                <span className={styles.smallLabel}>{lang === "en" ? "Reality" : "Verossimilhança"}</span>
-                <p>{verossimilhanca}</p>
-              </div>
-              <div className={styles.smallInfo}>
-                <span className={styles.smallLabel}>{lang === "en" ? "Literary traits" : "Características literárias"}</span>
-                <p>{caracteristicasLiterarias}</p>
-              </div>
-            </div>
-
-            <div className={styles.gridSecondary}>
-              <div className={styles.blocoWide}>
-                <h2 className={styles.blocoTitulo}>{lang === "en" ? "Context" : "Contexto"}</h2>
-                <p>{contexto}</p>
-              </div>
-              <div className={styles.sideColumn}>
-                <div className={styles.bloco}>
-                  <h2 className={styles.blocoTitulo}>{lang === "en" ? "Author notes" : "Sobre o autor"}</h2>
-                  <p>{detalhesAutor}</p>
-                </div>
-                <div className={styles.blocoAlt}>
-                  <h2 className={styles.blocoTitulo}>{lang === "en" ? "Conclusion" : "Conclusão"}</h2>
-                  <p>{conclusao}</p>
-                </div>
-              </div>
+          {/* TABS */}
+          <div className={styles.tabsWrapper}>
+            <div className={styles.tabs}>
+              {secoes.map((s) => (
+                <button
+                  key={s.id}
+                  className={`${styles.tab} ${secaoAtiva === s.id ? styles.tabAtiva : ""}`}
+                  onClick={() => setSecaoAtiva(s.id)}
+                >
+                  {s.label}
+                </button>
+              ))}
             </div>
           </div>
 
-          <section className={styles.personagensSection}>
-            <div className={styles.personagensHeader}>
-              <h2>{lang === "en" ? "Characters" : "Personagens"}</h2>
-              {carregandoPersonagens && (
-                <span className={styles.personagensLoading}>
-                  {lang === "en" ? "Loading characters..." : "Carregando personagens..."}
-                </span>
-              )}
-            </div>
-
-            {erroPersonagens ? (
-              <p className={styles.erro}>{erroPersonagens}</p>
-            ) : (
+          {/* CONTEÚDO DA SEÇÃO */}
+          <div className={styles.secaoConteudo}>
+            {secaoAtiva === "personagens" ? (
               <div className={styles.personagensGrid}>
-                {personagens.map((personagem) => (
-                  <button
-                    key={personagem.id}
-                    className={styles.personagemCard}
-                    type="button"
-                    onClick={() => setPersonagemSelecionado(personagem)}
-                  >
-                    <span className={styles.personagemNome}>
-                      {personagem.nome || personagem.name || "Personagem"}
-                    </span>
-                    {(personagem.papel || personagem.role) && (
-                      <span className={styles.personagemFuncao}>
-                        {personagem.papel || personagem.role}
-                      </span>
-                    )}
-                  </button>
-                ))}
+                {carregandoPersonagens ? (
+                  <div className={styles.spinner} />
+                ) : (
+                  personagens.map((p) => (
+                    <button
+                      key={p.id}
+                      className={styles.personagemCard}
+                      onClick={() => setPersonagemSelecionado(p)}
+                    >
+                      <div className={styles.personagemAvatar}>
+                        {p.nome.split(" ").slice(0, 2).map(n => n[0]).join("").toUpperCase()}
+                      </div>
+                      <span className={styles.personagemNome}>{p.nome}</span>
+                    </button>
+                  ))
+                )}
+              </div>
+            ) : (
+              <div className={styles.secaoTextoWrapper}>
+                <p className={styles.secaoRotulo}>
+                  {secoes.find(s => s.id === secaoAtiva)?.label}
+                </p>
+                <p className={styles.secaoTexto}>{conteudoSecao[secaoAtiva]}</p>
               </div>
             )}
-          </section>
+          </div>
 
-          {personagemSelecionado &&
-            createPortal(
-              <div className={styles.personagemOverlay} onClick={() => setPersonagemSelecionado(null)}>
-                <div className={styles.personagemModal} onClick={(e) => e.stopPropagation()}>
-                  <button
-                    className={styles.personagemClose}
-                    type="button"
-                    onClick={() => setPersonagemSelecionado(null)}
-                  >
-                    ✕
-                  </button>
-                  <h2 className={styles.personagemModalTitle}>
-                    {personagemSelecionado.nome || personagemSelecionado.name || (lang === "en" ? "Character details" : "Detalhes do personagem")}
-                  </h2>
-                  <div className={styles.personagemModalBody}>
-                    {Object.entries(personagemSelecionado)
-                      .filter(([key]) => !["id", "nome", "name", "papel", "role"].includes(key))
-                      .map(([key, value]) => (
-                        <div key={key} className={styles.personagemField}>
-                          <span className={styles.personagemFieldLabel}>
-                            {key
-                              .replace(/([A-Z])/g, " $1")
-                              .replace(/_/g, " ")
-                              .replace(/\b\w/g, (letter) => letter.toUpperCase())}
-                          </span>
-                          <p className={styles.personagemFieldValue}>
-                            {Array.isArray(value)
-                              ? value.join(", ")
-                              : typeof value === "object" && value !== null
-                              ? JSON.stringify(value, null, 2)
-                              : String(value)}
-                          </p>
-                        </div>
-                      ))}
-                  </div>
-                </div>
-              </div>,
-              document.body
-            )}
         </div>
       </section>
+
+      {personagemSelecionado && createPortal(
+        <div className={styles.personagemOverlay} onClick={() => setPersonagemSelecionado(null)}>
+          <div className={styles.personagemModal} onClick={e => e.stopPropagation()}>
+            <div className={styles.modalFaixa} />
+            <div className={styles.modalCorpo}>
+              <div className={styles.modalHeader}>
+                <div className={styles.personagemAvatarGrande}>
+                  {personagemSelecionado.nome.split(" ").slice(0, 2).map(n => n[0]).join("").toUpperCase()}
+                </div>
+                <div>
+                  <h2 className={styles.personagemModalTitle}>{personagemSelecionado.nome}</h2>
+                  <p className={styles.personagemCaracteristicas}>
+                    {pt ? personagemSelecionado.caracteristicas_pt : personagemSelecionado.caracteristicas_en}
+                  </p>
+                </div>
+                <button className={styles.personagemClose} onClick={() => setPersonagemSelecionado(null)}>✕</button>
+              </div>
+              <hr className={styles.modalDivisor} />
+              <p className={styles.modalSecaoRotulo}>{pt ? "Representação" : "Representation"}</p>
+              <p className={styles.modalTexto}>
+                {pt ? personagemSelecionado.representacao_pt : personagemSelecionado.representacao_en}
+              </p>
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
     </div>
   );
 }
