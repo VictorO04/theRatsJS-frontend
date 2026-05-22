@@ -84,7 +84,9 @@ export default function SimuladoExame() {
     const [exameTerminado, setExameTerminado] = useState(false);
 
     const questaoAtual = questoes[indiceQuestaoAtual];
-    const respostaCorreta = questaoAtual.respostaCorreta || questaoAtual.correctAnswer;
+    const respostaCorreta = lang === 'pt-br' 
+        ? (questaoAtual.respostaCorreta || questaoAtual.correctAnswer)
+        : (questaoAtual.correctAnswer || questaoAtual.respostaCorreta);
     const enunciadoQuestao = lang === 'pt-br' ? questaoAtual.pergunta : questaoAtual.question;
     const explicacaoQuestao = lang === 'pt-br' ? questaoAtual.explicacao : questaoAtual.explanation;
 

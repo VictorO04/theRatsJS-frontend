@@ -33,7 +33,6 @@ const texts = {
   },
 };
 
-// ── Mapeamento de Matérias em Português ──
 const MATERIA_CONFIG = {
   'Química':    { icone: <FaFlask />,      cor: '#e67e22', bordaCor: 'rgba(230,126,34,0.35)',  bgCor: 'rgba(230,126,34,0.08)'  },
   'Matemática': { icone: <FaCalculator />, cor: '#3498db', bordaCor: 'rgba(52,152,219,0.35)',  bgCor: 'rgba(52,152,219,0.08)'  },
@@ -47,7 +46,6 @@ const MATERIA_CONFIG = {
   'Português':  { icone: <FaBook />,       cor: '#8e44ad', bordaCor: 'rgba(142,68,173,0.35)',  bgCor: 'rgba(142,68,173,0.08)'  },
 };
 
-// ── Tradução de Nomes de Matérias ──
 const TRADUCAO_MATERIAS = {
   'Química': { en: 'Chemistry' },
   'Matemática': { en: 'Mathematics' },
@@ -89,12 +87,10 @@ function traduzirMateria(materia, idioma) {
 }
 
 export default function Simulados() {
-  // ── Contexto e Navegação ──
   const navigate = useNavigate();
   const { lang } = useContext(LanguageContext);
   const traducoes = texts[lang];
 
-  // ── Estados ──
   const [termoBusca, setTermoBusca] = useState('');
   const [simuladoSelecionado, setSimuladoSelecionado] = useState(null);
   const [todasAsQuestoes, setTodasAsQuestoes] = useState([]);
