@@ -33,6 +33,7 @@ const texts = {
   },
 };
 
+// ── Mapeamento de Matérias em Português ──
 const MATERIA_CONFIG = {
   'Química':    { icone: <FaFlask />,      cor: '#e67e22', bordaCor: 'rgba(230,126,34,0.35)',  bgCor: 'rgba(230,126,34,0.08)'  },
   'Matemática': { icone: <FaCalculator />, cor: '#3498db', bordaCor: 'rgba(52,152,219,0.35)',  bgCor: 'rgba(52,152,219,0.08)'  },
@@ -46,6 +47,20 @@ const MATERIA_CONFIG = {
   'Português':  { icone: <FaBook />,       cor: '#8e44ad', bordaCor: 'rgba(142,68,173,0.35)',  bgCor: 'rgba(142,68,173,0.08)'  },
 };
 
+// ── Tradução de Nomes de Matérias ──
+const TRADUCAO_MATERIAS = {
+  'Química': { en: 'Chemistry' },
+  'Matemática': { en: 'Mathematics' },
+  'Literatura': { en: 'Literature' },
+  'Geografia': { en: 'Geography' },
+  'História': { en: 'History' },
+  'Redação': { en: 'Writing' },
+  'Física': { en: 'Physics' },
+  'Biologia': { en: 'Biology' },
+  'Inglês': { en: 'English' },
+  'Português': { en: 'Portuguese' },
+};
+
 const DEFAULT_CONFIG = {
   icone: <FaBook />,
   cor: '#5B6BAF',
@@ -53,54 +68,75 @@ const DEFAULT_CONFIG = {
   bgCor: 'rgba(91,107,175,0.08)',
 };
 
+/**
+ * Obtém a configuração de cor e ícone para uma matéria
+ * @param {string} materia - Nome da matéria em português
+ * @returns {object} Configuração com ícone, cores e bordas
+ */
 function getConfig(materia) {
   return MATERIA_CONFIG[materia] || DEFAULT_CONFIG;
 }
 
+/**
+ * Traduz o nome da matéria conforme o idioma selecionado
+ * @param {string} materia - Nome da matéria em português
+ * @param {string} idioma - Código do idioma ('pt-br' ou 'en')
+ * @returns {string} Nome da matéria traduzido
+ */
+function traduzirMateria(materia, idioma) {
+  if (idioma === 'pt-br') return materia;
+  return TRADUCAO_MATERIAS[materia]?.en || materia;
+}
+
 export default function Simulados() {
+  // ── Contexto e Navegação ──
   const navigate = useNavigate();
   const { lang } = useContext(LanguageContext);
-  const t = texts[lang];
+  const traducoes = texts[lang];
 
-  const [searchTerm, setSearchTerm] = useState('');
-  const [selectedSimulado, setSelectedSimulado] = useState(null);
-  const [allQuestions, setAllQuestions] = useState([]);
-  const [loading, setLoading] = useState(true);
+  // ── Estados ──
+  const [termoBusca, setTermoBusca] = useState('');
+  const [simuladoSelecionado, setSimuladoSelecionado] = useState(null);
+  const [todasAsQuestoes, setTodasAsQuestoes] = useState([]);
+  const [carregando, setCarregando] = useState(true);
 
   useEffect(() => {
-    const fetchSimulados = async () => {
+    const carregarSimulados = async () => {
       try {
-        const response = await fetch('/api/simulados', {
+        const resposta = await fetch('/api/simulados', {
           headers: { 'x-api-key': 'Fq0CotClRneRPJAeCakJsrSwGyVCJU58tQrPWYgLCK3ei9HT-Ygajl2KXCLiZTPO' },
         });
-        const data = await response.json();
-        setAllQuestions(data);
-      } catch (error) {
-        console.error('Erro ao buscar simulados:', error);
+        const dados = await resposta.json();
+        setTodasAsQuestoes(dados);
+      } catch (erro) {
+        console.error('Erro ao buscar simulados:', erro);
       } finally {
-        setLoading(false);
+        setCarregando(false);
       }
     };
-    fetchSimulados();
+    carregarSimulados();
   }, []);
 
-  const groupedSimulados = allQuestions.reduce((acc, item) => {
-    const subject = item.materia;
-    if (!acc[subject]) acc[subject] = { title: subject, count: 0, questions: [] };
-    acc[subject].count += 1;
-    acc[subject].questions.push(item);
-    return acc;
+  const simuladosAgrupados = todasAsQuestoes.reduce((acumulador, item) => {
+    const disciplina = item.materia;
+    if (!acumulador[disciplina]) {
+      acumulador[disciplina] = { titulo: disciplina, quantidade: 0, questoes: [] };
+    }
+    acumulador[disciplina].quantidade += 1;
+    acumulador[disciplina].questoes.push(item);
+    return acumulador;
   }, {});
 
-  const simuladosList = Object.values(groupedSimulados).map((s) => ({
-    title: s.title,
-    questionsCount: `${s.count} ${t.perguntas}`,
-    level: t.nivel,
-    rawQuestions: s.questions,
+  const listaSimulados = Object.values(simuladosAgrupados).map(grupo => ({
+    tituloOriginal: grupo.titulo,
+    titulo: traduzirMateria(grupo.titulo, lang),
+    quantidadeQuestoes: `${grupo.quantidade} ${traducoes.perguntas}`,
+    nivel: traducoes.nivel,
+    questoesRaw: grupo.questoes,
   }));
 
-  const filteredSimulados = simuladosList.filter((s) =>
-    s.title.toLowerCase().includes(searchTerm.trim().toLowerCase())
+  const simuladosFiltrados = listaSimulados.filter(simulado =>
+    simulado.titulo.toLowerCase().includes(termoBusca.trim().toLowerCase())
   );
 
   return (
@@ -115,73 +151,78 @@ export default function Simulados() {
               <span className={styles.ponto} /> SENAI + SESI · 2026
             </div>
             <h1 className={styles.titulo}>
-              The Rats — <em className={styles.destaque}>{t.titulo}</em>
+              The Rats — <em className={styles.destaque}>{traducoes.titulo}</em>
             </h1>
-            <p className={styles.subtitulo}>{t.subtitulo}</p>
+            <p className={styles.subtitulo}>{traducoes.subtitulo}</p>
             <div className={styles.searchWrapper}>
               <input
                 type="search"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder={t.placeholderBusca}
+                value={termoBusca}
+                onChange={(e) => setTermoBusca(e.target.value)}
+                placeholder={traducoes.placeholderBusca}
                 className={styles.searchInput}
+                aria-label="Buscar disciplina ou tema"
               />
             </div>
           </div>
         </section>
 
-        <section className={`${styles.cardsSection} ${selectedSimulado ? styles.withDetails : styles.noDetails}`}>
+        <section className={`${styles.cardsSection} ${simuladoSelecionado ? styles.withDetails : styles.noDetails}`}>
           <div className={styles.cards}>
-            {loading ? (
-              <p className={styles.noResults}>{t.carregando}</p>
-            ) : filteredSimulados.length === 0 ? (
-              <p className={styles.noResults}>{t.textoResultadoVazio}</p>
+            {carregando ? (
+              <p className={styles.noResults}>{traducoes.carregando}</p>
+            ) : simuladosFiltrados.length === 0 ? (
+              <p className={styles.noResults}>{traducoes.textoResultadoVazio}</p>
             ) : (
-              filteredSimulados.map((simulado, index) => {
-                const cfg = getConfig(simulado.title);
-                const isSelected = selectedSimulado?.title === simulado.title;
+              simuladosFiltrados.map((simulado, indice) => {
+                const configuracao = getConfig(simulado.tituloOriginal);
+                const ehSelecionado = simuladoSelecionado?.titulo === simulado.titulo;
                 return (
                   <div
-                    key={index}
-                    className={`${styles.card} ${isSelected ? styles.cardSelected : ''}`}
+                    key={indice}
+                    className={`${styles.card} ${ehSelecionado ? styles.cardSelected : ''}`}
                     style={{
-                      borderColor: isSelected ? cfg.bordaCor : undefined,
-                      background: isSelected ? cfg.bgCor : undefined,
+                      borderColor: ehSelecionado ? configuracao.bordaCor : undefined,
+                      background: ehSelecionado ? configuracao.bgCor : undefined,
                     }}
-                    onClick={() => setSelectedSimulado(simulado)}
+                    onClick={() => setSimuladoSelecionado(simulado)}
+                    role="button"
+                    tabIndex={0}
+                    onKeyPress={(e) => e.key === 'Enter' && setSimuladoSelecionado(simulado)}
                   >
                     <div
                       className={styles.cardIcone}
-                      style={{ color: cfg.cor, background: cfg.bgCor, border: `1px solid ${cfg.bordaCor}` }}
+                      style={{ color: configuracao.cor, background: configuracao.bgCor, border: `1px solid ${configuracao.bordaCor}` }}
                     >
-                      {cfg.icone}
+                      {configuracao.icone}
                     </div>
-                    <h2 className={styles.cardTitulo}>{simulado.title}</h2>
-                    <p className={styles.cardQuestoes}>{simulado.questionsCount}</p>
-                    <p className={styles.cardNivel}>{simulado.level}</p>
+                    <h2 className={styles.cardTitulo}>{simulado.titulo}</h2>
+                    <p className={styles.cardQuestoes}>{simulado.quantidadeQuestoes}</p>
+                    <p className={styles.cardNivel}>{simulado.nivel}</p>
                   </div>
                 );
               })
             )}
           </div>
 
-          {selectedSimulado && (
+          {simuladoSelecionado && (
             <aside className={styles.detailsPanel}>
               <div className={styles.detailsCard}>
                 <div className={styles.detailsHeader}>
                   <div>
-                    <p className={styles.detailsLabel}>{t.detalhesTitulo}</p>
-                    <h2 className={styles.detailsTitle}>{selectedSimulado.title}</h2>
+                    <p className={styles.detailsLabel}>{traducoes.detalhesTitulo}</p>
+                    <h2 className={styles.detailsTitle}>{simuladoSelecionado.titulo}</h2>
                     <p className={styles.detailsInfo}>
-                      {selectedSimulado.questionsCount} · {selectedSimulado.level}
+                      {simuladoSelecionado.quantidadeQuestoes} · {simuladoSelecionado.nivel}
                     </p>
                   </div>
                   <button
                     className={styles.startButton}
-                    onClick={() => navigate('/simulados/exame', { state: { simulado: selectedSimulado } })}
-                    disabled={!selectedSimulado}
+                    onClick={() => navigate('/simulados/exame', { state: { simulado: simuladoSelecionado } })}
+                    disabled={!simuladoSelecionado}
+                    aria-label={`Iniciar simulado de ${simuladoSelecionado.titulo}`}
                   >
-                    {t.iniciar}
+                    {traducoes.iniciar}
                   </button>
                 </div>
               </div>

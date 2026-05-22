@@ -43,14 +43,19 @@ const texts = {
     },
 };
 
-const OPCOES = ['A', 'B', 'C', 'D', 'E'];
+const LETRAS_OPCOES = ['A', 'B', 'C', 'D', 'E'];
 
-function getOptionKey(lang, letra) {
-    const map = {
+/**
+ * @param {string} idioma 
+ * @param {string} letra 
+ * @returns {string}
+ */
+function obterChaveDaOpcao(idioma, letra) {
+    const mapaChaves = {
         'pt-br': { A: 'opcaoA', B: 'opcaoB', C: 'opcaoC', D: 'opcaoD', E: 'opcaoE' },
         en: { A: 'optionA', B: 'optionB', C: 'optionC', D: 'optionD', E: 'optionE' },
     };
-    return map[lang][letra];
+    return mapaChaves[idioma][letra];
 }
 
 export default function SimuladoExame() {
@@ -58,7 +63,7 @@ export default function SimuladoExame() {
     const location = useLocation();
     const navigate = useNavigate();
     const simulado = location.state?.simulado;
-    const t = texts[lang];
+    const traducoes = texts[lang];
 
     useEffect(() => {
         if (!simulado) {
@@ -70,69 +75,71 @@ export default function SimuladoExame() {
         return null;
     }
 
-    const questions = simulado.rawQuestions || [];
+    const questoes = simulado.rawQuestions || [];
 
-    const [current, setCurrent] = useState(0);
-    const [selected, setSelected] = useState(null);  
-    const [confirmed, setConfirmed] = useState(false); 
-    const [answers, setAnswers] = useState([]);
-    const [finished, setFinished] = useState(false);
+    const [indiceQuestaoAtual, setIndiceQuestaoAtual] = useState(0);
+    const [opcaoSelecionada, setOpcaoSelecionada] = useState(null);
+    const [respostaConfirmada, setRespostaConfirmada] = useState(false);
+    const [historico, setHistorico] = useState([]);
+    const [exameTerminado, setExameTerminado] = useState(false);
 
-    const q = questions[current];
-    const correct = q.respostaCorreta || q.correctAnswer;
-    const pergunta = lang === 'pt-br' ? q.pergunta : q.question;
-    const explicacao = lang === 'pt-br' ? q.explicacao : q.explanation;
+    const questaoAtual = questoes[indiceQuestaoAtual];
+    const respostaCorreta = questaoAtual.respostaCorreta || questaoAtual.correctAnswer;
+    const enunciadoQuestao = lang === 'pt-br' ? questaoAtual.pergunta : questaoAtual.question;
+    const explicacaoQuestao = lang === 'pt-br' ? questaoAtual.explicacao : questaoAtual.explanation;
 
-    const opcoesDisponiveis = OPCOES.filter(l => {
-        const key = getOptionKey(lang, l);
-        return q[key] && q[key].trim() !== '';
+    const opcoesDisponiveis = LETRAS_OPCOES.filter(letra => {
+        const chave = obterChaveDaOpcao(lang, letra);
+        return questaoAtual[chave] && questaoAtual[chave].trim() !== '';
     });
 
-    function handleSelect(letra) {
-        if (confirmed) return;
-        setSelected(letra);
-    }
+    const selecionarOpcao = (letra) => {
+        if (respostaConfirmada) return;
+        setOpcaoSelecionada(letra);
+    };
 
-    function handleConfirm() {
-        if (!selected || confirmed) return;
-        const isCorrect = getOptionKey(lang, selected) &&
-            q[getOptionKey(lang, selected)] === correct;
-        setConfirmed(true);
-        setAnswers(prev => [...prev, { index: current, correct: isCorrect }]);
-    }
+    const confirmarResposta = () => {
+        if (!opcaoSelecionada || respostaConfirmada) return;
+        const chave = obterChaveDaOpcao(lang, opcaoSelecionada);
+        const acertou = chave && questaoAtual[chave] === respostaCorreta;
+        setRespostaConfirmada(true);
+        setHistorico(prev => [...prev, { indice: indiceQuestaoAtual, acertou }]);
+    };
 
-    function handleNext() {
-        if (current < questions.length - 1) {
-            setCurrent(c => c + 1);
-            setSelected(null);
-            setConfirmed(false);
+    const irParaProximaQuestao = () => {
+        if (indiceQuestaoAtual < questoes.length - 1) {
+            setIndiceQuestaoAtual(indice => indice + 1);
+            setOpcaoSelecionada(null);
+            setRespostaConfirmada(false);
         } else {
-            setFinished(true);
+            setExameTerminado(true);
         }
-    }
+    };
 
-    function handlePrev() {
-        if (current > 0) {
-            setCurrent(c => c - 1);
-            setSelected(null);
-            setConfirmed(false);
+    const irParaQuestaoAnterior = () => {
+        if (indiceQuestaoAtual > 0) {
+            setIndiceQuestaoAtual(indice => indice - 1);
+            setOpcaoSelecionada(null);
+            setRespostaConfirmada(false);
         }
-    }
+    };
 
-    function handleReiniciar() {
-        setCurrent(0);
-        setSelected(null);
-        setConfirmed(false);
-        setAnswers([]);
-        setFinished(false);
-    }
+    const reiniciarExame = () => {
+        setIndiceQuestaoAtual(0);
+        setOpcaoSelecionada(null);
+        setRespostaConfirmada(false);
+        setHistorico([]);
+        setExameTerminado(false);
+    };
 
-    const totalAcertos = answers.filter(a => a.correct).length;
-    const pct = Math.round((totalAcertos / questions.length) * 100);
-    const feedbackMsg =
-        pct >= 80 ? t.excelente : pct >= 50 ? t.bomTrabalho : t.continue;
+    const totalAcertos = historico.filter(r => r.acertou).length;
+    const percentualAcertos = Math.round((totalAcertos / questoes.length) * 100);
+    const mensagemFeedback =
+        percentualAcertos >= 80 ? traducoes.excelente : 
+        percentualAcertos >= 50 ? traducoes.bomTrabalho : 
+        traducoes.continue;
 
-    if (finished) {
+    if (exameTerminado) {
         return (
             <>
                 <Menu />
@@ -141,9 +148,9 @@ export default function SimuladoExame() {
                         <div className={styles.heroFundo} />
                         <div className={styles.heroConteudo}>
                             <div className={styles.pilula}>
-                                <span className={styles.ponto} /> {simulado.title}
+                                <span className={styles.ponto} /> {simulado.titulo}
                             </div>
-                            <h1 className={styles.titulo}>{t.resultado}</h1>
+                            <h1 className={styles.titulo}>{traducoes.resultado}</h1>
                             <p className={styles.subtitulo}>
                                 {lang === 'pt-br'
                                     ? 'Veja seu desempenho final e continue praticando.'
@@ -159,21 +166,21 @@ export default function SimuladoExame() {
                                     <circle
                                         cx="60" cy="60" r="52"
                                         className={styles.ringFill}
-                                        style={{ strokeDashoffset: 327 - (327 * pct) / 100 }}
+                                        style={{ strokeDashoffset: 327 - (327 * percentualAcertos) / 100 }}
                                     />
                                 </svg>
-                                <span className={styles.pctLabel}>{pct}%</span>
+                                <span className={styles.pctLabel}>{percentualAcertos}%</span>
                             </div>
-                            <h2 className={styles.resultTitulo}>{t.resultado}</h2>
+                            <h2 className={styles.resultTitulo}>{traducoes.resultado}</h2>
                             <p className={styles.resultSub}>
-                                {totalAcertos} {t.acertos} {questions.length} — {feedbackMsg}
+                                {totalAcertos} {traducoes.acertos} {questoes.length} — {mensagemFeedback}
                             </p>
                             <div className={styles.resultBotoes}>
-                                <button className={styles.btnSecondary} onClick={handleReiniciar}>
-                                    {t.reiniciar}
+                                <button className={styles.btnSecondary} onClick={reiniciarExame}>
+                                    {traducoes.reiniciar}
                                 </button>
                                 <button className={styles.btnPrimary} onClick={() => navigate('/simulados')}>
-                                    {t.voltar}
+                                    {traducoes.voltar}
                                 </button>
                             </div>
                         </div>
@@ -191,7 +198,7 @@ export default function SimuladoExame() {
                     <div className={styles.heroFundo} />
                     <div className={styles.heroConteudo}>
                         <div className={styles.pilula}>
-                            <span className={styles.ponto} /> {simulado.title}
+                            <span className={styles.ponto} /> {simulado.titulo}
                         </div>
                         <h1 className={styles.titulo}>{lang === 'pt-br' ? 'Simulado' : 'Practice Exam'}</h1>
                         <p className={styles.subtitulo}>
@@ -204,48 +211,50 @@ export default function SimuladoExame() {
                 <div className={styles.conteudo}>
                     <div className={styles.exameCard}>
 
+                        {/* Barra de Progresso */}
                         <div className={styles.progressoWrap}>
                             <span className={styles.progressoLabel}>
-                                {t.pergunta} {current + 1} {t.de} {questions.length}
+                                {traducoes.pergunta} {indiceQuestaoAtual + 1} {traducoes.de} {questoes.length}
                             </span>
                             <div className={styles.progressoBar}>
                                 <div
                                     className={styles.progressoFill}
-                                    style={{ width: `${((current + 1) / questions.length) * 100}%` }}
+                                    style={{ width: `${((indiceQuestaoAtual + 1) / questoes.length) * 100}%` }}
                                 />
                             </div>
                         </div>
 
-                        <p className={styles.enunciado}>{pergunta}</p>
+                        <p className={styles.enunciado}>{enunciadoQuestao}</p>
 
                         <ul className={styles.opcoes}>
                             {opcoesDisponiveis.map(letra => {
-                                const key = getOptionKey(lang, letra);
-                                const texto = q[key];
-                                const isSelected = selected === letra;
-                                const isCorrectOpcao = texto === correct;
+                                const chave = obterChaveDaOpcao(lang, letra);
+                                const textoOpcao = questaoAtual[chave];
+                                const ehSelecionada = opcaoSelecionada === letra;
+                                const ehOpcaoCorreta = textoOpcao === respostaCorreta;
 
-                                let estadoClass = '';
-                                if (confirmed) {
-                                    if (isCorrectOpcao) estadoClass = styles.opcaoCorreta;
-                                    else if (isSelected) estadoClass = styles.opcaoErrada;
-                                } else if (isSelected) {
-                                    estadoClass = styles.opcaoSelecionada;
+                                let classEstado = '';
+                                if (respostaConfirmada) {
+                                    if (ehOpcaoCorreta) classEstado = styles.opcaoCorreta;
+                                    else if (ehSelecionada) classEstado = styles.opcaoErrada;
+                                } else if (ehSelecionada) {
+                                    classEstado = styles.opcaoSelecionada;
                                 }
 
                                 return (
                                     <li key={letra}>
                                         <button
-                                            className={`${styles.opcao} ${estadoClass}`}
-                                            onClick={() => handleSelect(letra)}
-                                            disabled={confirmed}
+                                            className={`${styles.opcao} ${classEstado}`}
+                                            onClick={() => selecionarOpcao(letra)}
+                                            disabled={respostaConfirmada}
+                                            aria-label={`Opção ${letra}: ${textoOpcao}`}
                                         >
                                             <span className={styles.opcaoLetra}>{letra}</span>
-                                            <span className={styles.opcaoTexto}>{texto}</span>
-                                            {confirmed && isCorrectOpcao && (
+                                            <span className={styles.opcaoTexto}>{textoOpcao}</span>
+                                            {respostaConfirmada && ehOpcaoCorreta && (
                                                 <span className={styles.iconCheck}>✓</span>
                                             )}
-                                            {confirmed && isSelected && !isCorrectOpcao && (
+                                            {respostaConfirmada && ehSelecionada && !ehOpcaoCorreta && (
                                                 <span className={styles.iconX}>✗</span>
                                             )}
                                         </button>
@@ -254,39 +263,45 @@ export default function SimuladoExame() {
                             })}
                         </ul>
 
-                        {confirmed && (
-                            <div className={`${styles.feedback} ${answers[answers.length - 1]?.correct ? styles.feedbackCerto : styles.feedbackErrado}`}>
+                        {respostaConfirmada && (
+                            <div className={`${styles.feedback} ${historico[historico.length - 1]?.acertou ? styles.feedbackCerto : styles.feedbackErrado}`}>
                                 <p className={styles.feedbackTitulo}>
-                                    {answers[answers.length - 1]?.correct ? t.acertou : t.errou}
-                                    {!answers[answers.length - 1]?.correct && (
-                                        <> {t.respostaCorreta}: <strong>{correct}</strong></>
+                                    {historico[historico.length - 1]?.acertou ? traducoes.acertou : traducoes.errou}
+                                    {!historico[historico.length - 1]?.acertou && (
+                                        <> {traducoes.respostaCorreta}: <strong>{respostaCorreta}</strong></>
                                     )}
                                 </p>
-                                <p className={styles.feedbackLabel}>{t.explicacao}</p>
-                                <p className={styles.feedbackTexto}>{explicacao}</p>
+                                <p className={styles.feedbackLabel}>{traducoes.explicacao}</p>
+                                <p className={styles.feedbackTexto}>{explicacaoQuestao}</p>
                             </div>
                         )}
 
                         <div className={styles.nav}>
                             <button
                                 className={styles.btnSecondary}
-                                onClick={handlePrev}
-                                disabled={current === 0}
+                                onClick={irParaQuestaoAnterior}
+                                disabled={indiceQuestaoAtual === 0}
+                                aria-label="Questão anterior"
                             >
-                                {t.anterior}
+                                {traducoes.anterior}
                             </button>
 
-                            {!confirmed ? (
+                            {!respostaConfirmada ? (
                                 <button
                                     className={styles.btnPrimary}
-                                    onClick={handleConfirm}
-                                    disabled={!selected}
+                                    onClick={confirmarResposta}
+                                    disabled={!opcaoSelecionada}
+                                    aria-label="Confirmar resposta"
                                 >
                                     Confirmar
                                 </button>
                             ) : (
-                                <button className={styles.btnPrimary} onClick={handleNext}>
-                                    {current < questions.length - 1 ? t.proxima : t.finalizar}
+                                <button 
+                                    className={styles.btnPrimary} 
+                                    onClick={irParaProximaQuestao}
+                                    aria-label={indiceQuestaoAtual < questoes.length - 1 ? 'Próxima questão' : 'Finalizar exame'}
+                                >
+                                    {indiceQuestaoAtual < questoes.length - 1 ? traducoes.proxima : traducoes.finalizar}
                                 </button>
                             )}
                         </div>
