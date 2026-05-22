@@ -8,12 +8,12 @@ const API_KEY =
   "Fq0CotClRneRPJAeCakJsrSwGyVCJU58tQrPWYgLCK3ei9HT-Ygajl2KXCLiZTPO";
 
 const MATERIAS = [
+  { pt: "Literatura", en: "Literature" },
   { pt: "Biologia", en: "Biology" },
   { pt: "Física", en: "Physics" },
   { pt: "Química", en: "Chemistry" },
   { pt: "Geografia", en: "Geography" },
-  { pt: "História", en: "History" },
-  { pt: "Literatura", en: "Literature" },
+  { pt: "História", en: "History" }
 ];
 
 export default function Curiosidades() {
