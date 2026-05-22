@@ -6,119 +6,118 @@ import { LanguageContext } from '../../contexts/LanguageContext';
 const API_URL = "/api/videoAulas";
 const API_KEY = "Fq0CotClRneRPJAeCakJsrSwGyVCJU58tQrPWYgLCK3ei9HT-Ygajl2KXCLiZTPO";
 
-const texts = {
-    'pt-br': {
-        titulo: 'Vídeo Aulas',
-        subtitulo: 'Aprenda com nossas video-aulas! Veja a seguir nossa lista de vídeos e reviews sobre os livros',
-    },
-    en: {
-        titulo: 'Video Lessons',
-        subtitulo: 'Learn with our video lessons! See below our list of videos and book reviews',
-    },
-};
+export default function VideoAula() {
+  const { lang } = useContext(LanguageContext);
+  const [videos, setVideos] = useState([]);
+  const [carregando, setCarregando] = useState(true);
+  const [erro, setErro] = useState(null);
 
-export default function Videos() {
-    const context = useContext(LanguageContext);
-    const lang = context?.lang || "pt-br";
-    const t = texts[lang] || texts["pt-br"];
-
-    const [videos, setVideos] = useState([]);
-    const [carregando, setCarregando] = useState(true);
-    const [erro, setErro] = useState("");
-
-    useEffect(() => {
-        async function fetchVideos() {
-            try {
-                const response = await fetch(API_URL, {
-                    headers: {
-                        Authorization: API_KEY,
-                    },
-                });
-
-                if (!response.ok) {
-                    throw new Error("Erro ao carregar vídeos");
-                }
-
-                const data = await response.json();
-
-                setVideos(data);
-
-            } catch (error) {
-                console.error(error);
-                setErro("Não foi possível carregar os vídeos 😵");
-            } finally {
-                setCarregando(false);
-            }
-        }
-
-        fetchVideos();
-    }, []);
-
-    function converterYoutube(url) {
-        if (!url) return "";
-
-        const videoId = url.split("v=")[1];
-
-        return `https://www.youtube.com/embed/${videoId}`;
+  const buscarVideos = async () => {
+    setCarregando(true);
+    setErro(null);
+    try {
+      const resposta = await fetch(API_URL, {
+        headers: { "x-api-key": API_KEY },
+      });
+      if (!resposta.ok) throw new Error(`Erro ${resposta.status}`);
+      const dados = await resposta.json();
+      setVideos(dados);
+    } catch (e) {
+      setErro(e.message);
+    } finally {
+      setCarregando(false);
     }
+  };
 
-    if (carregando) return <div className={styles.spinner} />;
+  useEffect(() => {
+    const carregar = async () => {
+      await buscarVideos();
+    };
+    carregar();
+  }, []);
 
-    if (erro) return <p className={styles.erro}>{erro}</p>;
+  function converterYoutube(url) {
+    if (!url) return "";
+    const videoId = url.split("v=")[1];
+    return `https://www.youtube.com/embed/${videoId}`;
+  }
 
+  if (carregando) {
     return (
-        <>
-            <Menu />
-
-            <div className={styles.pagina}>
-                <section className={styles.hero}>
-                    <div className={styles.heroFundo} />
-
-                    <div className={styles.heroConteudo}>
-                        <div className={styles.pilula}>
-                            <span className={styles.ponto} /> SENAI + SESI . 2026
-                        </div>
-
-                        <h1 className={styles.titulo}>
-                            The Rats — <em className={styles.destaque}>{t.titulo}</em>
-                        </h1>
-
-                        <p className={styles.Subtitulo}>
-                            {t.subtitulo}
-                        </p>
-                    </div>
-                </section>
-
-                <section className={styles.videos}>
-                    {videos.map((video) => (
-                        <div className={styles.video} key={video.id}>
-                            <iframe
-                                src={converterYoutube(video.urlMidia)}
-                                title={lang === "pt-br"
-                                    ? video.conteudo
-                                    : video.content}
-                                allowFullScreen
-                            ></iframe>
-
-                            <h2 className={styles.tituloVideo}>
-                                {lang === "pt-br"
-                                    ? video.conteudo
-                                    : video.content}
-                            </h2>
-
-                            <p className={styles.Materia}>
-                                ID: {video.id}
-                            </p>
-
-                            <p className={styles.descricao}>
-                                {lang === "pt-br"
-                                    ? video.descricao
-                                    : video.description}
-                            </p>
-                        </div>
-                    ))}
-                </section>
-            </div>
-        </>
+      <>
+        <Menu />
+        <div className={styles.loadingContainer}>
+          <div className={styles.spinner} />
+        </div>
+      </>
     );
+  }
+
+  if (erro) return <p className={styles.erro}>{erro}</p>;
+
+  return (
+    <>
+      <div className={styles.pagina}>
+        <Menu />
+        <section className={styles.hero}>
+          <div className={styles.heroFundo} />
+          <div className={styles.heroConteudo}>
+            <div className={styles.videoAulas}>
+              <span className={styles.ponto} />
+              {lang === "en" ? "Video Lessons" : "Vídeo Aulas"}
+            </div>
+            <h1 className={styles.titulo}>
+              {lang === "en" ? (
+                <>
+                  The Rats —{" "}
+                  <span className={styles.destaque}>video lessons</span>
+                </>
+              ) : (
+                <>
+                  Os Ratos —{" "}
+                  <span className={styles.destaque}>vídeo aulas</span>
+                </>
+              )}
+            </h1>
+            <p className={styles.subtitulo}>
+              {lang === "en"
+                ? "Learn with our video lessons! See below our list of videos and book reviews."
+                : "Aprenda com nossas vídeo-aulas! Veja a seguir nossa lista de vídeos e reviews sobre os livros."}
+            </p>
+          </div>
+        </section>
+
+        <div className={styles.conteudo}>
+          {videos.length === 0 ? (
+            <p className={styles.semResultados}>
+              {lang === "en"
+                ? "No videos found."
+                : "Nenhum vídeo encontrado."}
+            </p>
+          ) : (
+            <div className={styles.grid}>
+              {videos.map((video) => (
+                <div className={styles.card} key={video.id}>
+                  <iframe
+                    src={converterYoutube(video.urlMidia)}
+                    title={lang === "en" ? video.content : video.conteudo}
+                    allowFullScreen
+                  />
+                  <div className={styles.cardCorpo}>
+                    <span className={styles.cardTipo}>
+                      {lang === "en" ? video.content : video.conteudo}
+                    </span>
+                    <p className={styles.cardTexto}>
+                      {lang === "en" ? video.description : video.descricao}
+                    </p>
+                    <span className={styles.cardId}>#{video.id}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+    </>
+  );
 }
