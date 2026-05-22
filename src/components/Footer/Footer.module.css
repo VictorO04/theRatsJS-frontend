@@ -2,7 +2,7 @@
 
 .footerRaiz {
   background: var(--bg);
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--border-soft);
   font-family: 'DM Sans', system-ui, sans-serif;
   color: var(--text);
   padding: 48px 0 0;
@@ -14,7 +14,7 @@
 .footerInterno {
   max-width: 960px;
   margin: 0 auto;
-  padding: 0 15px;
+  padding: 0 2rem;
 }
 
 .footerGrid {
@@ -31,33 +31,25 @@
 }
 
 .iconeLogoMarca {
-  width: 160px;
-  height: 96px;
-  border-radius: 8px;
+  width: 140px;
+  height: auto;
   flex-shrink: 0;
 }
 
-.nomeMarca {
-  font-size: 15px;
-  font-weight: 500;
-  color: var(--text);
-}
-
 .descricaoMarca {
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: var(--muted);
   line-height: 1.65;
-  margin: 0 0 22px 0;
+  margin: 0 0 20px 0;
   max-width: 240px;
 }
 
 .fileiraSocial {
   display: flex;
-  gap: 10px;
+  gap: 8px;
 }
 
 .botaoSocial {
-  cursor: pointer;
   width: 34px;
   height: 34px;
   display: flex;
@@ -67,59 +59,74 @@
   border: 1px solid var(--border);
   background: var(--primary-soft);
   flex-shrink: 0;
+  text-decoration: none;
+  transition: border-color 0.2s, background 0.2s;
 }
 
 .botaoSocial svg {
   color: var(--primary);
+  font-size: 0.875rem;
 }
 
-.botaoSocial:hover svg {
-  color: var(--primary-light);
+.botaoSocial:hover {
+  border-color: var(--primary-hover);
+  background: var(--primary-border);
 }
 
 .tituloColuna {
-  font-size: 11px;
+  font-size: 0.6875rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--primary);
+  color: var(--primary-light);
   margin: 0 0 16px 0;
 }
 
 .listaLinks {
   list-style: none;
   padding: 0;
-  margin: 0;
+  margin: 0 0 20px 0;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.listaLinks a {
-  font-size: 13px;
-  color: var(--muted);
-  display: block;
-  text-decoration: none;
-}
-
+.listaLinks a,
 .listaLinks span {
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: var(--muted);
   display: block;
   text-decoration: none;
+  transition: color 0.2s;
 }
 
-.etiquetaNova {
-  display: inline-block;
-  font-size: 10px;
-  font-weight: 500;
-  padding: 2px 7px;
-  border-radius: 99px;
+.listaLinks a:hover {
+  color: var(--text);
+}
+
+.botoesNav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.botaoNav {
+  background: transparent;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 7px 12px;
+  font-size: 0.8125rem;
+  font-family: inherit;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: left;
+  transition: border-color 0.2s, color 0.2s, background 0.2s;
+}
+
+.botaoNav:hover {
+  border-color: var(--primary-hover);
+  color: var(--text);
   background: var(--primary-soft);
-  border: 1px solid var(--primary-border);
-  color: var(--primary-light);
-  margin-left: 4px;
-  line-height: 1.4;
 }
 
 .divisor {
@@ -138,13 +145,9 @@
 }
 
 .direitos {
-  font-size: 12px;
+  font-size: 0.75rem;
   color: var(--muted);
   margin: 0;
-}
-
-.direitos span {
-  color: var(--primary);
 }
 
 .fileiraTags {
@@ -155,7 +158,7 @@
 }
 
 .tag {
-  font-size: 11px;
+  font-size: 0.6875rem;
   color: var(--muted);
   padding: 3px 10px;
   border-radius: 99px;
@@ -165,28 +168,17 @@
 }
 
 .tagAzul {
-  border-color: var(--border);
+  border-color: rgba(91, 107, 175, 0.35);
   color: var(--primary);
 }
 
 .tagRose {
-  border-color: #D46475;
-  color: #D46475;
+  border-color: rgba(212, 100, 117, 0.35);
+  color: var(--primary);
 }
 
 .espacador {
   height: 28px;
-}
-
-@media (max-width: 1200px) {
-  .footerRaiz {
-    margin-left: 200px;
-    width: calc(100% - 200px);
-  }
-
-  .footerInterno {
-    max-width: 960px;
-  }
 }
 
 @media (max-width: 900px) {
@@ -198,38 +190,20 @@
 
   .footerGrid {
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
-    text-align: center;
+    gap: 32px;
   }
 
   .footerMarca {
     grid-column: 1 / -1;
   }
 
-  .logoMarca {
-    justify-content: center;
-  }
-
-  .descricaoMarca {
-    margin: 0 auto 22px;
-  }
-
-  .fileiraSocial {
-    justify-content: center;
-  }
-
   .barraInferior {
     flex-direction: column;
-    justify-content: center;
-    text-align: center;
-  }
-
-  .fileiraTags {
-    justify-content: center;
+    align-items: flex-start;
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: 480px) {
   .footerRaiz {
     padding: 32px 0 90px;
   }
@@ -240,57 +214,15 @@
 
   .footerGrid {
     grid-template-columns: 1fr;
-    gap: 32px;
-    text-align: center;
-  }
-
-  .logoMarca {
-    justify-content: center;
-  }
-
-  .descricaoMarca {
-    margin: 0 auto 22px;
-  }
-
-  .fileiraSocial {
-    justify-content: center;
+    gap: 28px;
   }
 
   .barraInferior {
-    flex-direction: column;
-    justify-content: center;
+    align-items: center;
     text-align: center;
   }
 
   .fileiraTags {
     justify-content: center;
-  }
-
-  .iconeLogoMarca {
-    width: 100%;
-    max-width: 160px;
-    height: auto;
-  }
-}
-
-@media (max-width: 420px) {
-  .footerRaiz {
-    padding-bottom: 80px;
-  }
-
-  .tituloColuna {
-    font-size: 10px;
-  }
-
-  .listaLinks a, .listaLinks span {
-    font-size: 12px;
-  }
-
-  .direitos {
-    font-size: 11px;
-  }
-
-  .tag {
-    font-size: 10px;
   }
 }

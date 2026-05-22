@@ -53,6 +53,7 @@ export default function PaginaPrincipal() {
     );
   }
 
+  const titulo = lang === "en" ? "The Rats" : "Os Ratos";
   const genero = lang === "en" ? livro.genero_en : livro.genero;
   const resumo = lang === "en" ? livro.resumo_en : livro.resumo;
 
@@ -70,7 +71,7 @@ export default function PaginaPrincipal() {
             </div>
 
             <h1 className={styles.titulo}>
-              {livro.titulo} —{" "}
+              {titulo} —{" "}
               <span className={styles.destaque}>{livro.autor}</span>
             </h1>
 
