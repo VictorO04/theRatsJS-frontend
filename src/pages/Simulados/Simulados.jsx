@@ -1,8 +1,7 @@
 import { useContext, useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './Simulados.module.css';
-import Header from '../../components/Header/Header';
 import Menu from '../../components/Menu/Menu';
-import Footer from '../../components/Footer/Footer';
 import { LanguageContext } from '../../contexts/LanguageContext';
 import {
   FaFlask, FaCalculator, FaBook, FaGlobe,
@@ -59,6 +58,7 @@ function getConfig(materia) {
 }
 
 export default function Simulados() {
+  const navigate = useNavigate();
   const { lang } = useContext(LanguageContext);
   const t = texts[lang];
 
@@ -176,7 +176,11 @@ export default function Simulados() {
                       {selectedSimulado.questionsCount} · {selectedSimulado.level}
                     </p>
                   </div>
-                  <button className={styles.startButton}>
+                  <button
+                    className={styles.startButton}
+                    onClick={() => navigate('/simulados/exame', { state: { simulado: selectedSimulado } })}
+                    disabled={!selectedSimulado}
+                  >
                     {t.iniciar}
                   </button>
                 </div>
