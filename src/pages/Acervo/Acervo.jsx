@@ -12,9 +12,9 @@ const API_KEY = 'Fq0CotClRneRPJAeCakJsrSwGyVCJU58tQrPWYgLCK3ei9HT-Ygajl2KXCLiZTP
 const texts = {
     'pt-br': {
         titulo: 'Acervo',
-        subtitulo: 'Explore obras indispensáveis para os vestibulares e aprofunde seus conhecimentos com clássicos da literatura que marcaram gerações.',
+        subtitulo: 'Explore obras indispensáveis para os vestibulares e aprofunde seus conhecimentos com clássicos da literatura que marcaram gerações. Para saber mais sobre o livro "Os Ratos", acesse a página de Início.',
         acessar: 'Conferir',
-        carregando: 'Carregando acervo...',
+        carregando: 'Carregando acervo..',
         resumo: 'Resumo',
         enredo: 'Enredo',
         contexto: 'Contexto histórico',
@@ -24,7 +24,7 @@ const texts = {
     },
     en: {
         titulo: 'Collection',
-        subtitulo: 'Explore essential works for college entrance exams and dive into literary classics that have inspired generations.',
+        subtitulo: 'Explore essential works for college entrance exams and dive into literary classics that have inspired generations. To know more about the book "Os Ratos", access the Home page.',
         acessar: 'View',
         carregando: 'Loading collection...',
         resumo: 'Summary',
@@ -65,9 +65,6 @@ function Modal({ livro, lang, t, onFechar }) {
                                     ))}
                                 </div>
                             </div>
-                        </div>
-                        <div className={styles.aviso}>
-                            <p>Fala pessoal! Se quiserem saber mais sobre "Os ratos", vão para a página Início/Home!</p>
                         </div>
                         <button className={styles.botaoFechar} onClick={onFechar}>✕</button>
                     </div>
