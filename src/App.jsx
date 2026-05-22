@@ -8,6 +8,7 @@ import VideoAula from './pages/VideoAula/VideoAula';
 import Dicas from './pages/Dicas/Dicas';
 import Curiosidades from './pages/Curiosidades/Curiosidades';
 import Acervo from './pages/Acervo/Acervo';
+import NotFound from './pages/NotFound/NotFound';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/dicas" element={<Dicas />} />
                 <Route path="/curiosidades" element={<Curiosidades />} />
                 <Route path="/acervo" element={<Acervo />} />
+                <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />
         </>
