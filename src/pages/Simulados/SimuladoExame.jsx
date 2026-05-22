@@ -75,7 +75,7 @@ export default function SimuladoExame() {
         return null;
     }
 
-    const questoes = simulado.rawQuestions || [];
+    const questoes = simulado.questoesRaw || [];
 
     const [indiceQuestaoAtual, setIndiceQuestaoAtual] = useState(0);
     const [opcaoSelecionada, setOpcaoSelecionada] = useState(null);
