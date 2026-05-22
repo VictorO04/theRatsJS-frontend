@@ -14,7 +14,7 @@ const texts = {
         titulo: 'Acervo',
         subtitulo: 'Explore obras indispensáveis para os vestibulares e aprofunde seus conhecimentos com clássicos da literatura que marcaram gerações. Para saber mais sobre o livro "Os Ratos", acesse a página de Início.',
         acessar: 'Conferir',
-        carregando: 'Carregando acervo...',
+        carregando: 'Carregando acervo..',
         resumo: 'Resumo',
         enredo: 'Enredo',
         contexto: 'Contexto histórico',
