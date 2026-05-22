@@ -1,483 +1,520 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Serif+Display:ital@0;1&display=swap');
 
 .pagina {
-  margin-left: 230px;
-  background: var(--bg);
-  font-family: 'DM Sans', system-ui, sans-serif;
-  color: var(--text);
-  min-height: 100vh;
+    margin-left: 230px;
+    background: var(--bg);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: var(--text);
+    min-height: 100vh;
 }
 
 .loadingContainer {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .spinner {
-  width: 30px;
-  height: 30px;
-  border: 2px solid var(--primary-soft);
-  border-top-color: var(--primary);
-  border-radius: 50%;
-  animation: girar 0.7s linear infinite;
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--primary-soft);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: girar 0.7s linear infinite;
 }
 
 @keyframes girar {
-  to {
-    transform: rotate(360deg);
-  }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .erro {
-  color: var(--primary);
-  text-align: center;
-  padding: 6rem 0;
-  font-size: 0.875rem;
+    color: var(--primary);
+    text-align: center;
+    padding: 6rem 0;
+    font-size: 0.875rem;
 }
 
 .hero {
-  margin-top: 3rem;
-  position: relative;
-  padding: 72px 2rem 80px;
-  border-bottom: 1px solid var(--border-soft);
-  overflow: hidden;
-  min-height: calc(100vh - 3rem);
-  display: flex;
-  align-items: center;
+    margin-top: 3rem;
+    position: relative;
+    padding: 72px 2rem 80px;
+    border-bottom: 1px solid var(--border-soft);
+    overflow: hidden;
+    min-height: calc(100vh - 3rem);
+    display: flex;
+    align-items: center;
 }
 
 .heroFundo {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 80% at 90% 50%, rgba(212, 100, 117, var(--gradiente-opacity-1)) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 60% at 5% 50%, rgba(91, 107, 175, var(--gradiente-opacity-2)) 0%, transparent 70%);
-  pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+            ellipse 60% 80% at 90% 50%,
+            rgba(212, 100, 117, var(--gradiente-opacity-1)) 0%,
+            transparent 70%
+        ),
+        radial-gradient(
+            ellipse 40% 60% at 5% 50%,
+            rgba(91, 107, 175, var(--gradiente-opacity-2)) 0%,
+            transparent 70%
+        );
+    pointer-events: none;
 }
 
 .heroConteudo {
-  max-width: 960px;
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
-  display: grid;
-  gap: 64px;
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    display: grid;
+    gap: 64px;
 }
 
 .heroTop {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: start;
-  gap: 48px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 48px;
 }
 
 .heroTexto {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .heroDetails {
-  display: grid;
-  gap: 24px;
+    display: grid;
+    gap: 24px;
 }
 
-.featureCard {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 24px;
-  padding: 28px 32px;
+.enredoSection {
+    margin-bottom: 48px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 32px;
 }
 
-.featureTitle {
-  margin: 0 0 16px 0;
-  font-size: 1.05rem;
-  color: var(--text);
+.enredoTitle {
+    margin: 0 0 20px 0;
+    font-size: 1.2rem;
+    color: var(--text);
+    font-weight: 500;
 }
 
-.smallInfoRow {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
+.enredoText {
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.8;
+    font-size: 0.95rem;
 }
 
-.smallInfo {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
+.detailedInfoColumn {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
 }
 
-.smallLabel {
-  font-size: 0.75rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--primary-light);
+.detailedInfo {
+    background: linear-gradient(
+        135deg,
+        rgba(91, 107, 175, 0.08) 0%,
+        rgba(212, 100, 117, 0.08) 100%
+    );
+    border-left: 3px solid var(--primary);
+    border-radius: 8px;
+    padding: 24px 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    transition: all 0.3s ease;
+}
+
+.detailedInfo:hover {
+    background: linear-gradient(
+        135deg,
+        rgba(91, 107, 175, 0.12) 0%,
+        rgba(212, 100, 117, 0.12) 100%
+    );
+    border-left-color: var(--primary-light);
+}
+
+.detailedLabel {
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary-light);
+    font-weight: 600;
+}
+
+.detailedContent {
+    margin: 0;
+    color: var(--text);
+    line-height: 1.75;
+    font-size: 0.95rem;
 }
 
 .gridSecondary {
-  display: grid;
-  grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
-  gap: 24px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr);
+    gap: 24px;
 }
 
 .sideColumn {
-  display: grid;
-  gap: 24px;
+    display: grid;
+    gap: 24px;
 }
 
 .blocoAlt {
-  background: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
-  padding: 22px 24px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 22px 24px;
 }
 
 .blocoWide {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
-  padding: 26px 28px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 26px 28px;
 }
 
 .personagensSection {
-  margin-top: 36px;
+    margin-top: 36px;
 }
 
 .personagensHeader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 16px;
-  margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
 }
 
 .personagensLoading {
-  color: var(--muted);
-  font-size: 0.9rem;
+    color: var(--muted);
+    font-size: 0.9rem;
 }
 
 .personagensGrid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
 }
 
 .personagemCard {
-  text-align: left;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
-  padding: 22px 20px;
-  cursor: pointer;
-  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    text-align: left;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 22px 20px;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .personagemCard:hover {
-  transform: translateY(-2px);
-  border-color: rgba(255, 255, 255, 0.14);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.14);
+    transform: translateY(-2px);
+    border-color: rgba(255, 255, 255, 0.14);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.14);
 }
 
 .personagemNome {
-  display: block;
-  font-weight: 700;
-  color: var(--text);
-  margin-bottom: 10px;
+    display: block;
+    font-weight: 700;
+    color: var(--text);
+    margin-bottom: 10px;
 }
 
 .personagemFuncao {
-  display: inline-block;
-  font-size: 0.9rem;
-  color: var(--muted);
+    display: inline-block;
+    font-size: 0.9rem;
+    color: var(--muted);
 }
 
 .personagemOverlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.65);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
 }
 
 .personagemModal {
-  width: min(820px, 100%);
-  max-height: calc(100vh - 80px);
-  overflow-y: auto;
-  background: var(--bg);
-  border-radius: 24px;
-  padding: 32px;
-  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.3);
-  position: relative;
+    width: min(820px, 100%);
+    max-height: calc(100vh - 80px);
+    overflow-y: auto;
+    background: var(--bg);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 28px 80px rgba(0, 0, 0, 0.3);
+    position: relative;
 }
 
 .personagemClose {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  border: none;
-  background: rgba(255, 255, 255, 0.08);
-  color: var(--text);
-  width: 38px;
-  height: 38px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 1rem;
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    border: none;
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text);
+    width: 38px;
+    height: 38px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1rem;
 }
 
 .personagemModalTitle {
-  margin: 0 0 18px 0;
-  font-size: 1.5rem;
-  color: var(--text);
+    margin: 0 0 18px 0;
+    font-size: 1.5rem;
+    color: var(--text);
 }
 
 .personagemModalBody {
-  display: grid;
-  gap: 16px;
+    display: grid;
+    gap: 16px;
 }
 
 .personagemField {
-  display: grid;
-  gap: 8px;
-  padding-bottom: 14px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: grid;
+    gap: 8px;
+    padding-bottom: 14px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .personagemFieldLabel {
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--primary-light);
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary-light);
 }
 
 .personagemFieldValue {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.8;
-  white-space: pre-wrap;
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.8;
+    white-space: pre-wrap;
 }
 
 .badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 4px 12px;
-  border-radius: 99px;
-  background: rgba(91, 107, 175, 0.12);
-  border: 1px solid rgba(91, 107, 175, 0.35);
-  color: var(--primary);
-  margin-bottom: 20px;
-  width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 99px;
+    background: rgba(91, 107, 175, 0.12);
+    border: 1px solid rgba(91, 107, 175, 0.35);
+    color: var(--primary);
+    margin-bottom: 20px;
+    width: fit-content;
 }
 
 .ponto {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--primary);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--primary);
 }
 
 .titulo {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(2rem, 4vw, 2.8rem);
-  font-weight: 400;
-  color: var(--text);
-  margin: 0 0 20px 0;
-  line-height: 1.15;
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 400;
+    color: var(--text);
+    margin: 0 0 20px 0;
+    line-height: 1.15;
 }
 
 .destaque {
-  color: var(--primary);
-  font-style: italic;
+    color: var(--primary);
+    font-style: italic;
 }
 
 .subtitulo {
-  font-size: 0.9375rem;
-  color: var(--muted);
-  margin: 0 0 40px 0;
-  max-width: 500px;
-  line-height: 1.75;
+    font-size: 0.9375rem;
+    color: var(--muted);
+    margin: 0 0 40px 0;
+    max-width: 500px;
+    line-height: 1.75;
 }
 
 .metaRow {
-  display: flex;
-  align-items: center;
-  gap: 24px;
+    display: flex;
+    align-items: center;
+    gap: 24px;
 }
 
 .metaItem {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
 }
 
 .metaLabel {
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--primary-light);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary-light);
 }
 
 .metaValor {
-  font-size: 0.875rem;
-  color: var(--text);
+    font-size: 0.875rem;
+    color: var(--text);
 }
 
 .metaDivider {
-  width: 1px;
-  height: 32px;
-  background: var(--border-soft);
+    width: 1px;
+    height: 32px;
+    background: var(--border-soft);
 }
 
 .infoGroup {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 32px;
 }
 
 .infoBox {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
-  padding: 18px 20px;
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 18px 20px;
 }
 
 .infoLabel {
-  display: block;
-  font-size: 0.6875rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--primary-light);
-  margin-bottom: 12px;
+    display: block;
+    font-size: 0.6875rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary-light);
+    margin-bottom: 12px;
 }
 
 .infoText {
-  margin: 0;
-  font-size: 0.9375rem;
-  line-height: 1.7;
-  color: var(--muted);
+    margin: 0;
+    font-size: 0.9375rem;
+    line-height: 1.7;
+    color: var(--muted);
 }
 
 .blocoRow {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 24px;
-  margin-top: 32px;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
+    margin-top: 32px;
 }
 
 .bloco {
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 18px;
-  padding: 22px 24px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 18px;
+    padding: 22px 24px;
 }
 
 .blocoTitulo {
-  font-size: 1rem;
-  margin: 0 0 14px 0;
-  color: var(--text);
+    font-size: 1rem;
+    margin: 0 0 14px 0;
+    color: var(--text);
 }
 
 .bloco p {
-  margin: 0;
-  color: var(--muted);
-  line-height: 1.8;
+    margin: 0;
+    color: var(--muted);
+    line-height: 1.8;
 }
 
 .capaWrapper {
-  position: relative;
-  flex-shrink: 0;
+    position: relative;
+    flex-shrink: 0;
 }
 
 .capaGlow {
-  position: absolute;
-  inset: -24px;
-  background: radial-gradient(ellipse at center, rgba(212, 100, 117, 0.25) 0%, transparent 70%);
-  pointer-events: none;
-  border-radius: 50%;
+    position: absolute;
+    inset: -24px;
+    background: radial-gradient(ellipse at center, rgba(212, 100, 117, 0.25) 0%, transparent 70%);
+    pointer-events: none;
+    border-radius: 50%;
 }
 
 .capa {
-  width: 240px;
-  border-radius: 10px;
-  box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.35),
-    0 1px 4px rgba(0, 0, 0, 0.2);
-  display: block;
-  position: relative;
+    width: 240px;
+    border-radius: 10px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35), 0 1px 4px rgba(0, 0, 0, 0.2);
+    display: block;
+    position: relative;
 }
 
 @media (max-width: 900px) {
-  .pagina {
-    margin-left: 0;
-    width: 100%;
-    overflow-x: hidden;
-    padding-bottom: 80px;
-  }
+    .pagina {
+        margin-left: 0;
+        width: 100%;
+        overflow-x: hidden;
+        padding-bottom: 80px;
+    }
 
-  .hero {
-    padding: 56px 1.25rem 56px;
-    min-height: unset;
-    align-items: flex-start;
-  }
+    .hero {
+        padding: 56px 1.25rem 56px;
+        min-height: unset;
+        align-items: flex-start;
+    }
 
-  .heroTop {
-    grid-template-columns: 1fr;
-  }
+    .heroTop {
+        grid-template-columns: 1fr;
+    }
 
-  .smallInfoRow,
-  .gridSecondary,
-  .infoGroup,
-  .blocoRow,
-  .personagensGrid {
-    grid-template-columns: 1fr;
-  }
+    .gridSecondary,
+    .infoGroup,
+    .blocoRow,
+    .personagensGrid {
+        grid-template-columns: 1fr;
+    }
 
-  .capaWrapper {
-    order: -1;
-  }
+    .detailedInfoColumn {
+        grid-template-columns: 1fr;
+    }
+    .capaWrapper {
+        order: -1;
+    }
 
-  .capa {
-    width: 180px;
-  }
+    .capa {
+        width: 180px;
+    }
 
-  .subtitulo {
-    max-width: 100%;
-  }
+    .subtitulo {
+        max-width: 100%;
+    }
 }
 
 @media (max-width: 480px) {
-  .hero {
-    padding: 40px 1rem 48px;
-  }
+    .hero {
+        padding: 40px 1rem 48px;
+    }
 
-  .titulo {
-    font-size: 1.9rem;
-  }
+    .titulo {
+        font-size: 1.9rem;
+    }
 
-  .capa {
-    width: 150px;
-  }
+    .capa {
+        width: 150px;
+    }
 
-  .metaRow {
-    flex-wrap: wrap;
-    gap: 16px;
-  }
+    .metaRow {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
 
-  .metaDivider {
-    display: none;
-  }
+    .metaDivider {
+        display: none;
+    }
 }
