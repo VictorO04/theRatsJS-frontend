@@ -1,42 +1,73 @@
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
 import styles from './NotFound.module.css';
-import Menu from '../../components/Menu/Menu';
+import { LanguageContext } from '../../contexts/LanguageContext';
+
+const texts = {
+  "pt-br": {
+    title: "Página não encontrada",
+    description: "Talvez você tenha imaginado essa página.",
+    buttonHome: "Voltar ao Início",
+    home: "Página Principal",
+    archive: "Acervo",
+    exams: "Simulados",
+    contact: "Contato",
+    filmCredit: "Still do seu site",
+    switchLang: "EN"
+  },
+  "en": {
+    title: "Page not found",
+    description: "Perhaps you imagined it.",
+    buttonHome: "Go back home",
+    home: "Home",
+    archive: "Archive",
+    exams: "Exams",
+    contact: "Contact",
+    filmCredit: "Still from your site",
+    switchLang: "PT"
+  }
+};
 
 export default function NotFound() {
+  const { lang, toggleLanguage } = useContext(LanguageContext);
+
   return (
-    <>
-      <Menu />
-      <div className={styles.container}>
-        <div className={styles.content}>
-          <div className={styles.background} />
-          
-          <div className={styles.inner}>
-            <div className={styles.codigoErro}>404</div>
-            
-            <h1 className={styles.titulo}>Página não encontrada</h1>
-            
-            <p className={styles.descricao}>
-              Parece que você se perdeu em um corredor escuro. A página que você está procurando não existe.
-            </p>
-            
-            <div className={styles.imageContainer}>
-              <img src="https://i.ibb.co/pjR01Z6g/groupe.webp" alt="The Rats" className={styles.imagem} />
-            </div>
-            
-            <Link to="/" className={styles.botao}>
-              Voltar ao Início
-            </Link>
-            
-            <div className={styles.links}>
-              <Link to="/acervo" className={styles.link}>Ir para Acervo</Link>
-              <span className={styles.divisor}>·</span>
-              <Link to="/simulados" className={styles.link}>Ir para Simulados</Link>
-              <span className={styles.divisor}>·</span>
-              <Link to="/contato" className={styles.link}>Contato</Link>
-            </div>
+    <div className={styles.container}>
+      <img
+        src="https://i.ibb.co/nFbLj18/page-Not-Found.jpg"
+        alt="Page not found"
+        className={styles.filmStill}
+      />
+
+      <div className={styles.overlay}>
+        <div className={styles.topText}>
+          <div className={styles.topRow}>
+            <p className={styles.errorMessage}>{texts[lang]?.title}</p>
+            <button onClick={toggleLanguage} className={styles.languageButton}>
+              {texts[lang]?.switchLang}
+            </button>
           </div>
+          <p className={styles.hint}>
+            {texts[lang]?.description}{' '}
+            <Link to="/contato" className={styles.contactLink}>
+              {lang === 'pt-br' ? 'contato' : 'contact'}
+            </Link>{' '}
+            {lang === 'pt-br' ? 'se o problema persistir.' : 'us if the problem persists.'}
+          </p>
         </div>
+
+        <div className={styles.filmCredit}>{texts[lang]?.filmCredit}</div>
       </div>
-    </>
+
+      <div className={styles.navBar}>
+        <Link to="/" className={styles.navLink}>{texts[lang]?.home}</Link>
+        <span className={styles.dot}>·</span>
+        <Link to="/acervo" className={styles.navLink}>{texts[lang]?.archive}</Link>
+        <span className={styles.dot}>·</span>
+        <Link to="/simulados" className={styles.navLink}>{texts[lang]?.exams}</Link>
+        <span className={styles.dot}>·</span>
+        <Link to="/contato" className={styles.navLink}>{texts[lang]?.contact}</Link>
+      </div>
+    </div>
   );
 }
