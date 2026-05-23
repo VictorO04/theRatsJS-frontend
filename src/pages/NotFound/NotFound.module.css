@@ -1,161 +1,145 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Serif+Display:ital@0;1&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&display=swap');
 
 .container {
-  margin-left: 230px;
-  min-height: 100vh;
-  background: var(--bg);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2rem;
+  position: fixed;
+  inset: 0;          /* top: 0; right: 0; bottom: 0; left: 0 */
+  background: #000;
   font-family: 'DM Sans', system-ui, sans-serif;
+  overflow: hidden;
+  z-index: 9999;
 }
 
-.content {
-  position: relative;
+.filmStill {
+  display: block;
   width: 100%;
-  max-width: 560px;
-  padding: 3px;
-  border-radius: 27px;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
 }
 
-.background {
+.overlay {
   position: absolute;
   inset: 0;
-  background: conic-gradient(
-    from 0deg,
-    rgb(255, 80, 140),
-    rgb(80, 180, 255),
-    rgb(80, 255, 140),
-    rgb(255, 200, 80),
-    rgb(255, 80, 140)
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.55) 0%,
+    rgba(0, 0, 0, 0.0) 30%,
+    rgba(0, 0, 0, 0.0) 75%,
+    rgba(0, 0, 0, 0.4) 100%
   );
-  border-radius: 27px;
-  animation: rotarRGB 5s linear infinite;
-  filter: blur(2px);
-}
-
-@keyframes rotarRGB {
-  from { filter: hue-rotate(0deg) blur(2px); }
-  to   { filter: hue-rotate(360deg) blur(2px); }
-}
-
-.inner {
-  position: relative;
-  background: var(--bg);
-  border-radius: 24px;
-  padding: 60px 40px;
-  text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  justify-content: space-between;
+  padding: 18px 20px 14px;
 }
 
-.codigoErro {
-  font-family: 'DM Serif Display', serif;
-  font-size: 7rem;
-  font-weight: 400;
-  color: var(--primary);
-  line-height: 1;
-  margin-bottom: -20px;
-}
-
-.titulo {
-  font-family: 'DM Serif Display', serif;
-  font-size: 2.5rem;
-  font-weight: 400;
-  color: var(--text);
-  margin: 0;
-  line-height: 1.2;
-}
-
-.descricao {
-  font-size: 1rem;
-  color: var(--muted);
-  margin: 0;
-  line-height: 1.7;
-}
-
-.imageContainer {
+/* Texto no canto superior esquerdo — estilo Letterboxd */
+.topText {
   display: flex;
-  justify-content: center;
-  padding: 16px 0;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.imagem {
-  max-width: 100%;
-  max-height: 280px;
-  height: auto;
-  border-radius: 12px;
-  animation: flutuarImagem 3s ease-in-out infinite;
-}
-
-@keyframes flutuarImagem {
-  0%, 100% { transform: translateY(0px); }
-  50%       { transform: translateY(-8px); }
-}
-
-.botao {
-  display: inline-block;
-  padding: 12px 32px;
-  background: var(--primary);
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-weight: 500;
-  font-size: 0.9375rem;
-  font-family: inherit;
-  cursor: pointer;
-  transition: opacity 0.2s, transform 0.2s;
-  text-decoration: none;
-  align-self: center;
-}
-
-.botao:hover {
-  opacity: 0.88;
-  transform: translateY(-2px);
-}
-
-.links {
+.topRow {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 8px;
+  justify-content: space-between;
+  gap: 16px;
 }
 
-.link {
-  font-size: 0.875rem;
-  color: var(--primary);
-  text-decoration: none;
-  transition: opacity 0.2s;
+.languageButton {
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  font-size: 0.75rem;
+  transition: background 0.2s, transform 0.2s;
 }
 
-.link:hover {
-  opacity: 0.8;
+.languageButton:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.errorMessage {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: #fff;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.hint {
+  margin: 0;
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+.contactLink {
+  color: rgba(255, 255, 255, 0.85);
   text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s;
 }
 
-.divisor {
-  color: var(--border);
+.contactLink:hover {
+  color: #fff;
+}
+
+/* Crédito do still no canto inferior esquerdo */
+.filmCredit {
+  font-size: 0.6875rem;
+  color: rgba(255, 255, 255, 0.55);
+  font-style: italic;
+  align-self: flex-start;
+}
+
+/* Barra de navegação flutuante no rodapé */
+.navBar {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.navLink {
+  font-size: 0.8125rem;
+  color: rgba(255, 255, 255, 0.75);
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.navLink:hover {
+  color: #fff;
+}
+
+.dot {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.8125rem;
+  line-height: 1;
 }
 
 @media (max-width: 900px) {
-  .container { margin-left: 0; }
+  .container {
+    margin-left: 0;
+  }
 }
 
 @media (max-width: 640px) {
-  .inner {
-    padding: 48px 24px;
-    gap: 20px;
+  .filmStill {
+    object-position: 65% center;
   }
-  .codigoErro {
-    font-size: 4.5rem;
-    margin-bottom: -10px;
+
+  .navBar {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
   }
-  .titulo { font-size: 1.875rem; }
-  .descricao { font-size: 0.9375rem; }
-  .links { flex-direction: column; gap: 8px; }
-  .divisor { display: none; }
 }
