@@ -27,6 +27,9 @@ const texts = {
     rotuloParticipantes: "O time",
     tituloSecaoParticipantes: "Conheça os integrantes",
     totalSecaoParticipantes: "participante",
+    filtroRotulo: "Selecione um curso",
+    todosCursos: "Todos os cursos",
+    semParticipantes: "Nenhum participante encontrado para este curso.",
     spinner: "Carregando integrantes...",
     estadoErro: "Não foi possível carregar os integrantes.",
     botaoTentar: "Tentar novamente",
@@ -50,11 +53,20 @@ const texts = {
     rotuloParticipantes: "The team",
     tituloSecaoParticipantes: "Meet the team members",
     totalSecaoParticipantes: "participant",
+    filtroRotulo: "Select a course",
+    todosCursos: "All courses",
+    semParticipantes: "No participants found for this course.",
     spinner: "Loading members...",
     estadoErro: "Unable to load the members.",
     botaoTentar: "Try again",
   },
 };
+
+const CURSOS = [
+  { pt: "Desenvolvimento de Sistemas", en: "Systems Development" },
+  { pt: "Fabricação Mecânica", en: "Mechanical Manufacturing" },
+  { pt: "Eletroeletrônica", en: "Electronics" },
+];
 
 export default function Participantes() {
   const { lang } = useContext(LanguageContext);
@@ -63,6 +75,7 @@ export default function Participantes() {
   const [participantes, setParticipantes] = useState([]);
   const [carregando, setCarregando] = useState(true);
   const [erro, setErro] = useState(null);
+  const [filtro, setFiltro] = useState(null);
 
   const buscarParticipantes = async () => {
     setCarregando(true);
@@ -81,14 +94,22 @@ export default function Participantes() {
     }
   };
 
+  const participantesFiltrados = filtro
+    ? participantes.filter(
+        (p) =>
+          p.curso?.toLowerCase() === filtro.toLowerCase() ||
+          p.curse?.toLowerCase() === filtro.toLowerCase(),
+      )
+    : participantes;
+
+  const plural = participantesFiltrados.length !== 1 ? "s" : "";
+
   useEffect(() => {
     const buscar = async () => {
       await buscarParticipantes();
-    }
+    };
     buscar();
   }, []);
-
-  const plural = participantes.length !== 1 ? "s" : "";
 
   return (
     <div className={styles.pagina}>
@@ -164,10 +185,30 @@ export default function Participantes() {
           </div>
           {!carregando && !erro && (
             <span className={styles.contador}>
-              {participantes.length} {t.totalSecaoParticipantes}{plural}
+              {participantesFiltrados.length} {t.totalSecaoParticipantes}{plural}
             </span>
           )}
         </div>
+
+        {!carregando && !erro && (
+          <div className={styles.filtroRow}>
+            <p>{t.filtroRotulo}</p>
+            <select
+              className={styles.filtroSelect}
+              value={filtro ?? ""}
+              onChange={(e) => {
+                setFiltro(e.target.value || null);
+              }}
+            >
+              <option value="">{t.todosCursos}</option>
+              {CURSOS.map((curso) => (
+                <option key={curso.pt} value={curso.pt}>
+                  {lang === "en" ? curso.en : curso.pt}
+                </option>
+              ))}
+            </select>
+          </div>
+        )}
 
         {carregando && (
           <div className={styles.estadoCarregando}>
@@ -186,9 +227,13 @@ export default function Participantes() {
           </div>
         )}
 
-        {!carregando && !erro && (
+        {!carregando && !erro && participantesFiltrados.length === 0 && (
+          <p className={styles.semResultados}>{t.semParticipantes}</p>
+        )}
+
+        {!carregando && !erro && participantesFiltrados.length > 0 && (
           <div className={styles.grade}>
-            {participantes.map((p) => (
+            {participantesFiltrados.map((p) => (
               <ParticipanteCard key={p.id} participante={p} />
             ))}
           </div>
