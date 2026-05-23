@@ -133,7 +133,7 @@
     font-size: clamp(1.05rem, 2.5vw, 1.25rem);
     color: var(--text);
     line-height: 1.6;
-    margin: 0;
+    margin: 1rem 0;
 }
 
 /* ── Lista de opções ─────────────────────────────────────────── */
@@ -242,6 +242,7 @@
 
 /* ── Feedback / Explicação ───────────────────────────────────── */
 .feedback {
+    margin-top: 1.5rem;
     padding: 20px 22px;
     border-radius: 14px;
     border: 1px solid transparent;
@@ -297,6 +298,7 @@
 }
 
 .btnPrimary {
+    margin-top: 1rem;
     min-width: 140px;
     height: 48px;
     padding: 0 22px;
@@ -322,6 +324,7 @@
 }
 
 .btnSecondary {
+    margin-top: 1rem;
     min-width: 120px;
     height: 48px;
     padding: 0 20px;
@@ -427,6 +430,10 @@
 
 /* ── Responsivo ──────────────────────────────────────────────── */
 @media (max-width: 600px) {
+    .pagina {
+        margin-left: 0;
+    }
+
     .exameCard {
         padding: 28px 22px;
         border-radius: 18px;
