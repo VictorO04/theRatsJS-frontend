@@ -1,13 +1,13 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "https://ratsjs.onrender.com/api/$1"
-    },
-    {
-      "source": "/((?!api).*)",
-      "destination": "/index.html"
-    }
-  ]
+    "$schema": "https://openapi.vercel.sh/vercel.json",
+    "rewrites": [
+        {
+            "source": "/api/(.*)",
+            "destination": "/api/proxy?path=$1"
+        },
+        {
+            "source": "/((?!api).*)",
+            "destination": "/index.html"
+        }
+    ]
 }

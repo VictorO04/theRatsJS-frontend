@@ -1,18 +1,23 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
+import { defineConfig, loadEnv } from 'vite';
+import { cwd } from 'process';
+import react from '@vitejs/plugin-react';
 
+export default ({ mode }) => {
+    const env = loadEnv(mode, cwd(), '');
 
-export default defineConfig({
-  plugins: [react()],
-  server: {
-    proxy: {
-      "/api": {
-        target: "https://ratsjs.onrender.com",
-        changeOrigin: true,
-        headers: {
-          "x-api-key": "Fq0CotClRneRPJAeCakJsrSwGyVCJU58tQrPWYgLCK3ei9HT-Ygajl2KXCLiZTPO",
+    return defineConfig({
+        plugins: [react()],
+        server: {
+            proxy: {
+                '/api': {
+                    target: 'https://ratsjs.onrender.com',
+                    changeOrigin: true,
+                    secure: true,
+                    headers: {
+                        'x-api-key': env.API_KEY,
+                    },
+                },
+            },
         },
-      },
-    },
-  },
-})
+    });
+};
