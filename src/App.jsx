@@ -11,11 +11,13 @@ import Acervo from './pages/Acervo/Acervo';
 import NotFound from './pages/NotFound/NotFound';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
+import ScrollToTop from './components/ScrollToTop/ScrollToTop';
 
 function App() {
     return (
         <>
             <Header />
+            <ScrollToTop />
             <Routes>
                 <Route path="/" element={<PaginaPrincipal />} />
                 <Route path="/sobre-nos" element={<Participantes />} />
