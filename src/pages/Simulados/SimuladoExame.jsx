@@ -46,8 +46,8 @@ const texts = {
 const LETRAS_OPCOES = ['A', 'B', 'C', 'D', 'E'];
 
 /**
- * @param {string} idioma 
- * @param {string} letra 
+ * @param {string} idioma
+ * @param {string} letra
  * @returns {string}
  */
 function obterChaveDaOpcao(idioma, letra) {
@@ -84,7 +84,7 @@ export default function SimuladoExame() {
     const [exameTerminado, setExameTerminado] = useState(false);
 
     const questaoAtual = questoes[indiceQuestaoAtual];
-    const respostaCorreta = lang === 'pt-br' 
+    const respostaCorreta = lang === 'pt-br'
         ? (questaoAtual.respostaCorreta || questaoAtual.correctAnswer)
         : (questaoAtual.correctAnswer || questaoAtual.respostaCorreta);
     const enunciadoQuestao = lang === 'pt-br' ? questaoAtual.pergunta : questaoAtual.question;
@@ -137,8 +137,8 @@ export default function SimuladoExame() {
     const totalAcertos = historico.filter(r => r.acertou).length;
     const percentualAcertos = Math.round((totalAcertos / questoes.length) * 100);
     const mensagemFeedback =
-        percentualAcertos >= 80 ? traducoes.excelente : 
-        percentualAcertos >= 50 ? traducoes.bomTrabalho : 
+        percentualAcertos >= 80 ? traducoes.excelente :
+        percentualAcertos >= 50 ? traducoes.bomTrabalho :
         traducoes.continue;
 
     if (exameTerminado) {
@@ -146,20 +146,6 @@ export default function SimuladoExame() {
             <>
                 <Menu />
                 <div className={styles.pagina}>
-                    <section className={styles.hero}>
-                        <div className={styles.heroFundo} />
-                        <div className={styles.heroConteudo}>
-                            <div className={styles.pilula}>
-                                <span className={styles.ponto} /> {simulado.titulo}
-                            </div>
-                            <h1 className={styles.titulo}>{traducoes.resultado}</h1>
-                            <p className={styles.subtitulo}>
-                                {lang === 'pt-br'
-                                    ? 'Veja seu desempenho final e continue praticando.'
-                                    : 'See your final performance and keep practicing.'}
-                            </p>
-                        </div>
-                    </section>
                     <div className={styles.conteudo}>
                         <div className={styles.resultCard}>
                             <div className={styles.resultCircleWrap}>
@@ -298,8 +284,8 @@ export default function SimuladoExame() {
                                     Confirmar
                                 </button>
                             ) : (
-                                <button 
-                                    className={styles.btnPrimary} 
+                                <button
+                                    className={styles.btnPrimary}
                                     onClick={irParaProximaQuestao}
                                     aria-label={indiceQuestaoAtual < questoes.length - 1 ? 'Próxima questão' : 'Finalizar exame'}
                                 >

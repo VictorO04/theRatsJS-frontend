@@ -1,6 +1,9 @@
 /* ── Layout de página para simulado ─────────────────────────── */
 .pagina {
+    margin-top: 5rem;
     margin-left: 230px;
+    display: flex;
+    flex-direction: column;
     min-height: 100vh;
     background: var(--bg);
     color: var(--text);
