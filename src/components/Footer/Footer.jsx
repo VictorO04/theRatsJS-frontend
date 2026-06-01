@@ -19,7 +19,7 @@ const text = {
     linkContato: "Entre em contato",
     linkSobre: "Sobre nós",
     linkParticipantes: "Participantes",
-    direitos: "© 2025 The Rats JS · Feito com ♥ pela equipe de desenvolvimento",
+    direitos: "© 2026 The Rats JS · Feito com ♥ pela equipe de desenvolvimento",
     tagL: "Literatura",
   },
   en: {
@@ -31,7 +31,7 @@ const text = {
     linkContato: "Get in touch",
     linkSobre: "About us",
     linkParticipantes: "Participants",
-    direitos: "© 2025 The Rats JS · Made with ♥ by the development team",
+    direitos: "© 2026 The Rats JS · Made with ♥ by the development team",
     tagL: "Literature",
   },
 };
