@@ -15,6 +15,7 @@ export default function PaginaPrincipal() {
     const [carregandoPersonagens, setCarregandoPersonagens] = useState(true);
     const [personagemSelecionado, setPersonagemSelecionado] = useState(null);
     const [secaoAtiva, setSecaoAtiva] = useState('enredo');
+    const [mostrarCompleto, setMostrarCompleto] = useState(false);
 
     useEffect(() => {
         const buscarLivro = async () => {
@@ -151,7 +152,10 @@ export default function PaginaPrincipal() {
                                 <button
                                     key={s.id}
                                     className={`${styles.tab} ${secaoAtiva === s.id ? styles.tabAtiva : ''}`}
-                                    onClick={() => setSecaoAtiva(s.id)}>
+                                    onClick={() => {
+                                        setSecaoAtiva(s.id);
+                                        setMostrarCompleto(false);
+                                    }}>
                                     {s.label}
                                 </button>
                             ))}
@@ -188,7 +192,37 @@ export default function PaginaPrincipal() {
                                 <p className={styles.secaoRotulo}>
                                     {secoes.find((s) => s.id === secaoAtiva)?.label}
                                 </p>
-                                <p className={styles.secaoTexto}>{conteudoSecao[secaoAtiva]}</p>
+                                {(() => {
+                                    const textoOriginal = conteudoSecao[secaoAtiva] ?? '';
+                                    const limite = 1000;
+                                    const precisaTruncar = textoOriginal.length > limite;
+                                    const textoExibido =
+                                        mostrarCompleto || !precisaTruncar
+                                            ? textoOriginal
+                                            : textoOriginal.slice(0, limite) + '...';
+
+                                    return (
+                                        <>
+                                            <p className={styles.secaoTexto}>{textoExibido}</p>
+                                            {precisaTruncar && (
+                                                <button
+                                                    type="button"
+                                                    className={styles.verMaisBtn}
+                                                    onClick={() =>
+                                                        setMostrarCompleto((prev) => !prev)
+                                                    }>
+                                                    {mostrarCompleto
+                                                        ? pt
+                                                            ? 'Mostrar menos'
+                                                            : 'Show less'
+                                                        : pt
+                                                          ? 'Ver mais'
+                                                          : 'Show more'}
+                                                </button>
+                                            )}
+                                        </>
+                                    );
+                                })()}
                             </div>
                         )}
                     </div>

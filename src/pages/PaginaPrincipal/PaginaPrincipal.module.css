@@ -1,439 +1,511 @@
 @import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500&family=DM+Serif+Display:ital@0;1&display=swap');
 
 .pagina {
-  margin-left: 230px;
-  background: var(--bg);
-  font-family: 'DM Sans', system-ui, sans-serif;
-  color: var(--text);
-  min-height: 100vh;
+    margin-left: 230px;
+    background: var(--bg);
+    font-family: 'DM Sans', system-ui, sans-serif;
+    color: var(--text);
+    min-height: 100vh;
 }
 
 .loadingContainer {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .spinner {
-  width: 30px;
-  height: 30px;
-  border: 2px solid var(--primary-soft);
-  border-top-color: var(--primary);
-  border-radius: 50%;
-  animation: girar 0.7s linear infinite;
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--primary-soft);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: girar 0.7s linear infinite;
 }
 
 @keyframes girar {
-  to { transform: rotate(360deg); }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .erro {
-  color: var(--primary);
-  text-align: center;
-  padding: 6rem 0;
-  font-size: 0.875rem;
+    color: var(--primary);
+    text-align: center;
+    padding: 6rem 0;
+    font-size: 0.875rem;
 }
 
 /* hero */
 .hero {
-  margin-top: 3rem;
-  position: relative;
-  padding: 72px 2rem 80px;
-  overflow: hidden;
+    margin-top: 3rem;
+    position: relative;
+    padding: 72px 2rem 80px;
+    overflow: hidden;
 }
 
 .heroFundo {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse 60% 80% at 90% 50%, rgba(212, 100, 117, var(--gradiente-opacity-1)) 0%, transparent 70%),
-    radial-gradient(ellipse 40% 60% at 5% 50%, rgba(91, 107, 175, var(--gradiente-opacity-2)) 0%, transparent 70%);
-  pointer-events: none;
+    position: absolute;
+    inset: 0;
+    background:
+        radial-gradient(
+            ellipse 60% 80% at 90% 50%,
+            rgba(212, 100, 117, var(--gradiente-opacity-1)) 0%,
+            transparent 70%
+        ),
+        radial-gradient(
+            ellipse 40% 60% at 5% 50%,
+            rgba(91, 107, 175, var(--gradiente-opacity-2)) 0%,
+            transparent 70%
+        );
+    pointer-events: none;
 }
 
 .heroConteudo {
-  max-width: 960px;
-  width: 100%;
-  margin: 0 auto;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 48px;
+    max-width: 960px;
+    width: 100%;
+    margin: 0 auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
 }
 
 /* parte de cima */
 .heroTop {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: start;
-  gap: 48px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 48px;
 }
 
 .heroTexto {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  padding: 4px 12px;
-  border-radius: 99px;
-  background: var(--primary-soft);
-  border: 1px solid var(--primary-border);
-  color: var(--primary-light);
-  margin-bottom: 20px;
-  width: fit-content;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 99px;
+    background: var(--primary-soft);
+    border: 1px solid var(--primary-border);
+    color: var(--primary-light);
+    margin-bottom: 20px;
+    width: fit-content;
 }
 
 .ponto {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--primary);
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--primary);
 }
 
 .titulo {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(2rem, 4vw, 2.8rem);
-  font-weight: 400;
-  color: var(--text);
-  margin: 0 0 20px 0;
-  line-height: 1.15;
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 400;
+    color: var(--text);
+    margin: 0 0 20px 0;
+    line-height: 1.15;
 }
 
 .destaque {
-  color: var(--primary);
-  font-style: italic;
+    color: var(--primary);
+    font-style: italic;
 }
 
 .subtitulo {
-  font-size: 0.9375rem;
-  color: var(--muted);
-  margin: 0 0 32px 0;
-  max-width: 500px;
-  line-height: 1.75;
+    font-size: 0.9375rem;
+    color: var(--muted);
+    margin: 0 0 32px 0;
+    max-width: 500px;
+    line-height: 1.75;
 }
 
 .metaRow {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  flex-wrap: wrap;
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
 }
 
 .metaItem {
-  display: flex;
-  flex-direction: column;
-  gap: 3px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
 }
 
 .metaLabel {
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--primary-light);
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary-light);
 }
 
 .metaValor {
-  font-size: 0.875rem;
-  color: var(--text);
+    font-size: 0.875rem;
+    color: var(--text);
 }
 
 .metaDivider {
-  width: 1px;
-  height: 32px;
-  background: var(--border-soft);
+    width: 1px;
+    height: 32px;
+    background: var(--border-soft);
 }
 
 .capaWrapper {
-  position: relative;
-  flex-shrink: 0;
+    position: relative;
+    flex-shrink: 0;
 }
 
 .capaGlow {
-  position: absolute;
-  inset: -24px;
-  background: radial-gradient(ellipse at center, rgba(212, 100, 117, 0.25) 0%, transparent 70%);
-  pointer-events: none;
-  border-radius: 50%;
+    position: absolute;
+    inset: -24px;
+    background: radial-gradient(ellipse at center, rgba(212, 100, 117, 0.25) 0%, transparent 70%);
+    pointer-events: none;
+    border-radius: 50%;
 }
 
 .capa {
-  width: 220px;
-  border-radius: 10px;
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
-  display: block;
-  position: relative;
+    width: 220px;
+    border-radius: 10px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+    display: block;
+    position: relative;
 }
 
 /* tabs */
 .tabsWrapper {
-  border-bottom: 1px solid var(--border-soft);
+    border-bottom: 1px solid var(--border-soft);
 }
 
 .tabs {
-  display: flex;
-  gap: 4px;
-  overflow-x: auto;
-  scrollbar-width: none;
-  padding-bottom: 0;
+    display: flex;
+    gap: 4px;
+    overflow-x: auto;
+    scrollbar-width: none;
+    padding-bottom: 0;
 }
 
 .tabs::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 
 .tab {
-  padding: 9px 16px;
-  border-radius: 8px 8px 0 0;
-  border: none;
-  border-bottom: 2px solid transparent;
-  background: transparent;
-  font-family: inherit;
-  font-size: 0.875rem;
-  color: var(--muted);
-  cursor: pointer;
-  white-space: nowrap;
-  transition: color 0.2s, border-color 0.2s;
+    padding: 9px 16px;
+    border-radius: 8px 8px 0 0;
+    border: none;
+    border-bottom: 2px solid transparent;
+    background: transparent;
+    font-family: inherit;
+    font-size: 0.875rem;
+    color: var(--muted);
+    cursor: pointer;
+    white-space: nowrap;
+    transition:
+        color 0.2s,
+        border-color 0.2s;
 }
 
 .tab:hover {
-  color: var(--text);
+    color: var(--text);
 }
 
 .tabAtiva {
-  color: var(--primary-light);
-  border-bottom-color: var(--primary);
-  font-weight: 500;
+    color: var(--primary-light);
+    border-bottom-color: var(--primary);
+    font-weight: 500;
 }
 
 /* conteudo */
 .secaoConteudo {
-  background: color-mix(in srgb, var(--primary-soft) 50%, transparent);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 32px;
-  min-height: 200px;
-  animation: fadeIn 0.2s ease;
+    background: color-mix(in srgb, var(--primary-soft) 50%, transparent);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 32px;
+    min-height: 200px;
+    animation: fadeIn 0.2s ease;
 }
 
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(6px); }
-  to   { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .secaoTextoWrapper {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
 
 .secaoRotulo {
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--primary);
-  margin: 0;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin: 0;
 }
 
 .secaoTexto {
-  font-size: 0.9375rem;
-  color: var(--text);
-  line-height: 1.8;
-  margin: 0;
+    font-size: 0.9375rem;
+    color: var(--text);
+    line-height: 1.8;
+    margin: 0;
+}
+
+.verMaisBtn {
+    margin-top: 1rem;
+    padding: 10px 16px;
+    border: 1px solid var(--primary-border);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--primary);
+    font-size: 0.875rem;
+    cursor: pointer;
+    align-self: flex-start;
+    transition:
+        background 0.2s,
+        color 0.2s,
+        transform 0.2s;
+}
+
+.verMaisBtn:hover {
+    background: var(--primary-soft);
+    color: var(--text);
+    transform: translateY(-1px);
 }
 
 /* personassss */
 .personagensGrid {
-  justify-content: center;
-  display: flex;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 12px;
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
 }
 
 .personagemCard {
-  width: 160px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  padding: 20px 16px;
-  border-radius: 12px;
-  border: 1px solid var(--border);
-  background: transparent;
-  cursor: pointer;
-  font-family: inherit;
-  transition: border-color 0.2s, background 0.2s, transform 0.2s;
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    padding: 20px 16px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: transparent;
+    cursor: pointer;
+    font-family: inherit;
+    transition:
+        border-color 0.2s,
+        background 0.2s,
+        transform 0.2s;
 }
 
 .personagemCard:hover {
-  border-color: var(--primary-border);
-  background: var(--primary-soft);
-  transform: translateY(-2px);
+    border-color: var(--primary-border);
+    background: var(--primary-soft);
+    transform: translateY(-2px);
 }
 
 .personagemAvatar {
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
-  background: var(--primary-soft);
-  border: 1px solid var(--primary-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.875rem;
-  font-weight: 500;
-  color: var(--primary-light);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--primary-soft);
+    border: 1px solid var(--primary-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--primary-light);
 }
 
 .personagemNome {
-  font-size: 0.875rem;
-  color: var(--text);
-  font-weight: 500;
-  text-align: center;
+    font-size: 0.875rem;
+    color: var(--text);
+    font-weight: 500;
+    text-align: center;
 }
 
 /* popup personagem*/
 .personagemOverlay {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.65);
-  backdrop-filter: blur(4px);
-  z-index: 1000;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
 }
 
 .personagemModal {
-  width: min(480px, 100%);
-  background: var(--bg);
-  border: 1px solid var(--primary-border);
-  border-radius: 16px;
-  overflow: hidden;
-  animation: surgir 0.2s ease;
+    width: min(480px, 100%);
+    background: var(--bg);
+    border: 1px solid var(--primary-border);
+    border-radius: 16px;
+    overflow: hidden;
+    animation: surgir 0.2s ease;
 }
 
 @keyframes surgir {
-  from { opacity: 0; transform: scale(0.97) translateY(8px); }
-  to   { opacity: 1; transform: scale(1) translateY(0); }
+    from {
+        opacity: 0;
+        transform: scale(0.97) translateY(8px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
 }
 
 .modalFaixa {
-  height: 4px;
-  background: var(--primary);
+    height: 4px;
+    background: var(--primary);
 }
 
 .modalCorpo {
-  padding: 24px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
 }
 
 .modalHeader {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
 }
 
 .personagemAvatarGrande {
-  width: 52px;
-  height: 52px;
-  border-radius: 50%;
-  background: var(--primary-soft);
-  border: 1px solid var(--primary-border);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--primary-light);
-  flex-shrink: 0;
+    width: 52px;
+    height: 52px;
+    border-radius: 50%;
+    background: var(--primary-soft);
+    border: 1px solid var(--primary-border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--primary-light);
+    flex-shrink: 0;
 }
 
 .personagemModalTitle {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--primary);
-  margin: 0 0 10px 0;
-  flex: 1;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--primary);
+    margin: 0 0 10px 0;
+    flex: 1;
 }
 
 .personagemCaracteristicas {
-  font-size: 0.8125rem;
-  color: var(--text);
-  font-style: italic;
-  margin: 0;
+    font-size: 0.8125rem;
+    color: var(--text);
+    font-style: italic;
+    margin: 0;
 }
 
 .personagemClose {
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  border: 1px solid var(--border-soft);
-  background: transparent;
-  color: var(--muted);
-  font-size: 1rem;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  transition: background 0.2s, color 0.2s;
-  font-family: inherit;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid var(--border-soft);
+    background: transparent;
+    color: var(--muted);
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    transition:
+        background 0.2s,
+        color 0.2s;
+    font-family: inherit;
 }
 
 .personagemClose:hover {
-  background: var(--primary-soft);
-  color: var(--text);
+    background: var(--primary-soft);
+    color: var(--text);
 }
 
 .modalDivisor {
-  border: none;
-  border-top: 1px solid var(--border-soft);
-  margin: 0;
+    border: none;
+    border-top: 1px solid var(--border-soft);
+    margin: 0;
 }
 
 .modalSecaoRotulo {
-  font-size: 0.6875rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--primary);
-  margin: 0 0 8px 0;
+    font-size: 0.6875rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--primary);
+    margin: 0 0 8px 0;
 }
 
 .modalTexto {
-  font-size: 0.875rem;
-  color: var(--muted);
-  line-height: 1.7;
-  margin: 0;
+    font-size: 0.875rem;
+    color: var(--muted);
+    line-height: 1.7;
+    margin: 0;
 }
 
 /* responsivo */
 @media (max-width: 900px) {
-  .pagina { margin-left: 0; }
-  .hero { padding: 56px 1.25rem 56px; }
-  .heroTop { grid-template-columns: 1fr; }
-  .capaWrapper { order: -1; }
-  .capa { width: 160px; }
-  .subtitulo { max-width: 100%; }
+    .pagina {
+        margin-left: 0;
+    }
+    .hero {
+        padding: 56px 1.25rem 56px;
+    }
+    .heroTop {
+        grid-template-columns: 1fr;
+    }
+    .capaWrapper {
+        order: -1;
+    }
+    .capa {
+        width: 160px;
+    }
+    .subtitulo {
+        max-width: 100%;
+    }
 }
 
 @media (max-width: 480px) {
-  .hero { padding: 40px 1rem 48px; }
-  .titulo { font-size: 1.9rem; }
-  .metaDivider { display: none; }
-  .personagensGrid { grid-template-columns: repeat(2, 1fr); }
+    .hero {
+        padding: 40px 1rem 48px;
+    }
+    .titulo {
+        font-size: 1.9rem;
+    }
+    .metaDivider {
+        display: none;
+    }
+    .personagensGrid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
