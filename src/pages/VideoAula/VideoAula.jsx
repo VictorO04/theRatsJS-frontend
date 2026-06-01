@@ -33,11 +33,19 @@ export default function VideoAula() {
         carregar();
     }, []);
 
-    function converterYoutube(url) {
-        if (!url) return '';
-        const videoId = url.split('v=')[1];
-        return `https://www.youtube.com/embed/${videoId}`;
-    }
+   function converterYoutube(url) {
+       if (!url) return '';
+       if (url.includes('watch?v=')) {
+           const videoId = url.split('watch?v=')[1].split('&')[0];
+           return `https://www.youtube.com/embed/${videoId}`;
+       }
+       if (url.includes('/shorts/')) {
+           const videoId = url.split('/shorts/')[1].split('?')[0];
+           return `https://www.youtube.com/embed/${videoId}`;
+       }
+
+       return '';
+   }
 
     if (carregando) {
         return (
@@ -95,7 +103,9 @@ export default function VideoAula() {
                                     <iframe
                                         src={converterYoutube(video.urlMidia)}
                                         title={lang === 'en' ? video.content : video.conteudo}
-                                        allowFullScreen
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                        allowFullScreen={true}
+                                        frameBorder="0"
                                     />
                                     <div className={styles.cardCorpo}>
                                         <span className={styles.cardTipo}>
