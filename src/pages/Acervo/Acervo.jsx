@@ -6,6 +6,8 @@ import { LanguageContext } from '../../contexts/LanguageContext';
 
 const API_URL = '/api/biblioteca';
 
+const CHAR_LIMIT = 300;
+
 const texts = {
     'pt-br': {
         titulo: 'Acervo',
@@ -19,6 +21,8 @@ const texts = {
         autor: 'Sobre o autor',
         conclusao: 'Conclusão',
         personagens: 'Personagens',
+        verMais: 'Ver mais',
+        verMenos: 'Ver menos',
     },
     en: {
         titulo: 'Collection',
@@ -32,8 +36,31 @@ const texts = {
         autor: 'About the author',
         conclusao: 'Conclusion',
         personagens: 'Characters',
+        verMais: 'Read more',
+        verMenos: 'Read less',
     },
 };
+
+function TextoExpandivel({ texto, limite = CHAR_LIMIT, t, className }) {
+    const [expandido, setExpandido] = useState(false);
+    const precisaCortar = texto && texto.length > limite;
+
+    const textoExibido =
+        precisaCortar && !expandido ? texto.slice(0, limite).trimEnd() + '…' : texto;
+
+    return (
+        <div>
+            <p className={className}>{textoExibido}</p>
+            {precisaCortar && (
+                <button
+                    className={styles.botaoVerMais}
+                    onClick={() => setExpandido((v) => !v)}>
+                    {expandido ? t.verMenos : t.verMais}
+                </button>
+            )}
+        </div>
+    );
+}
 
 function Modal({ livro, lang, t, onFechar }) {
     const pt = lang === 'pt-br';
@@ -90,15 +117,19 @@ function Modal({ livro, lang, t, onFechar }) {
                         <div className={styles.detalhesDupla}>
                             <div className={styles.detalhesCard}>
                                 <p className={styles.detalhesCardTitulo}>{t.enredo}</p>
-                                <p className={styles.detalhesCardTexto}>
-                                    {pt ? livro.enredo : livro.enredo_en}
-                                </p>
+                                <TextoExpandivel
+                                    texto={pt ? livro.enredo : livro.enredo_en}
+                                    t={t}
+                                    className={styles.detalhesCardTexto}
+                                />
                             </div>
                             <div className={styles.detalhesCard}>
                                 <p className={styles.detalhesCardTitulo}>{t.contexto}</p>
-                                <p className={styles.detalhesCardTexto}>
-                                    {pt ? livro.contexto : livro.contexto_en}
-                                </p>
+                                <TextoExpandivel
+                                    texto={pt ? livro.contexto : livro.contexto_en}
+                                    t={t}
+                                    className={styles.detalhesCardTexto}
+                                />
                             </div>
                         </div>
 
@@ -117,9 +148,11 @@ function Modal({ livro, lang, t, onFechar }) {
 
                         <div className={styles.detalhesSecao}>
                             <p className={styles.secaoRotulo}>{t.autor}</p>
-                            <p className={styles.secaoTexto}>
-                                {pt ? livro.detalhesAutor : livro.detalhesAutor_en}
-                            </p>
+                            <TextoExpandivel
+                                texto={pt ? livro.detalhesAutor : livro.detalhesAutor_en}
+                                t={t}
+                                className={styles.secaoTexto}
+                            />
                         </div>
 
                         <div className={styles.detalhesSecao}>

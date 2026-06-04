@@ -143,6 +143,7 @@
 }
 
 .flashTexto {
+  text-align: justify;
   font-family: 'DM Sans', system-ui, sans-serif;
   font-size: 0.95rem;
   color: var(--text);

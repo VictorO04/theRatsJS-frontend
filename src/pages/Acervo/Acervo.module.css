@@ -68,6 +68,7 @@
 }
 
 .subtitulo {
+    text-align: justify;
     font-size: 1rem;
     color: var(--muted);
     margin: 0;
@@ -356,6 +357,7 @@
     color: var(--muted);
     line-height: 1.7;
     margin: 0;
+    text-align: justify;
 }
 
 .detalhesCard {
@@ -379,6 +381,27 @@
     color: var(--muted);
     line-height: 1.6;
     margin: 0;
+    text-align: justify;
+}
+
+.botaoVerMais {
+    margin-top: 6px;
+    padding: 0;
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 0.75rem;
+    font-weight: 600;
+    font-family: inherit;
+    cursor: pointer;
+    letter-spacing: 0.02em;
+    transition: opacity 0.15s;
+    display: inline-block;
+}
+
+.botaoVerMais:hover {
+    opacity: 0.72;
+    text-decoration: underline;
 }
 
 .pills {
