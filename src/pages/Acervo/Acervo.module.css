@@ -200,6 +200,7 @@
     overflow: hidden;
     animation: surgir 0.2s ease;
     margin: auto;
+    box-sizing: border-box;
 }
 
 @keyframes surgir {
@@ -365,6 +366,8 @@
     border: 1px solid var(--primary-border);
     border-radius: 10px;
     padding: 16px;
+    min-width: 0;     
+    overflow: hidden;
 }
 
 .detalhesCardTitulo {
@@ -382,6 +385,8 @@
     line-height: 1.6;
     margin: 0;
     text-align: justify;
+    word-break: break-word;   
+    overflow-wrap: break-word;
 }
 
 .botaoVerMais {
