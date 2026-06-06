@@ -136,6 +136,28 @@ export default function PaginaPrincipal() {
                                         {pt ? livro.genero : livro.genero_en}
                                     </span>
                                 </div>
+                                <div className={styles.metaItem}>
+                                    <span className={styles.metaLabel}>
+                                        {pt ? 'Nota' : 'Rating'}
+                                    </span>
+                                    <span className={styles.metaValor} style={{ display: 'flex', alignItems: 'center', gap: '2px' }}>
+                                        {[1, 2, 3, 4].map((i) => (
+                                            <span key={i} style={{ color: 'var(--text)', fontSize: '1.1rem' }}>★</span>
+                                        ))}
+                                        {/* meia estrela */}
+                                        <span style={{ position: 'relative', display: 'inline-block', fontSize: '1.1rem', color: 'transparent' }}>
+                                            ★
+                                            <span style={{
+                                                position: 'absolute',
+                                                left: 0,
+                                                top: 0,
+                                                width: '50%',
+                                                overflow: 'hidden',
+                                                color: 'var(--text)',
+                                            }}>★</span>
+                                        </span>
+                                    </span>
+                                </div>
                             </div>
                         </div>
 
@@ -216,8 +238,8 @@ export default function PaginaPrincipal() {
                                                             ? 'Mostrar menos'
                                                             : 'Show less'
                                                         : pt
-                                                          ? 'Ver mais'
-                                                          : 'Show more'}
+                                                            ? 'Ver mais'
+                                                            : 'Show more'}
                                                 </button>
                                             )}
                                         </>
