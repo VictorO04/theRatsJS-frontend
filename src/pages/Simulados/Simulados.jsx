@@ -102,6 +102,18 @@ const MATERIA_CONFIG = {
         bordaCor: 'rgba(142,68,173,0.35)',
         bgCor: 'rgba(142,68,173,0.08)',
     },
+    'Língua Portuguesa': {
+        icone: <FaBook />,
+        cor: '#8e44ad',
+        bordaCor: 'rgba(142,68,173,0.35)',
+        bgCor: 'rgba(142,68,173,0.08)',
+    },
+    Artes: {
+        icone: <FaPenFancy />,
+        cor: '#e91e8c',
+        bordaCor: 'rgba(233,30,140,0.35)',
+        bgCor: 'rgba(233,30,140,0.08)',
+    },
 };
 
 const TRADUCAO_MATERIAS = {
@@ -115,6 +127,8 @@ const TRADUCAO_MATERIAS = {
     Biologia: { en: 'Biology' },
     Inglês: { en: 'English' },
     Português: { en: 'Portuguese' },
+    'Língua Portuguesa': { en: 'Portuguese' },
+    Artes: { en: 'Arts' },
 };
 
 const DEFAULT_CONFIG = {
