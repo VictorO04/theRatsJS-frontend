@@ -98,7 +98,7 @@ export default function Curiosidades() {
 
                 <div className={styles.conteudo}>
                     <div className={styles.filtroRow}>
-                        <p>Selecione uma matéria</p>
+                        <p>{lang === 'en' ? 'Select a subject' : 'Selecione uma matéria'}</p>
                         <select
                             className={styles.filtroSelect}
                             value={filtro ?? ''}
